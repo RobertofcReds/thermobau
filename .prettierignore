@@ -1,0 +1,12 @@
+node_modules
+.next
+package-lock.json
+Thermobau_VV_Kit_Pret_pour_Codex
+docs/Thermobau_VV_Cahier_des_charges_V1.md
+docs/Thermobau_VV_Architecture_Technique_V1.md
+PROMPT_CODEX_THERMOBAU_VV.md
+test-results
+playwright-report
+.qa
+.npm-cache
+next-env.d.ts
