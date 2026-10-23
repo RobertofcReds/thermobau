@@ -1,6 +1,6 @@
 # Thermobau V&V
 
-Site vitrine allemand en Next.js, React et TypeScript. La refonte V2 améliore le projet existant : accueil photographique, six fiches métier détaillées, présentation de l'entreprise, galerie « Einblicke », navigation et formulaire. Les huit photographies Pexels sont hébergées localement, documentées et signalées comme « Symbolbilder ». Le logo approuvé et les six métiers sont conservés. L'envoi du formulaire et l'indexation restent désactivés ; aucun déploiement ni e-mail réel n'a été effectué.
+Site vitrine multilingue DE/EN/FR en Next.js, React et TypeScript. La refonte V3 améliore le projet existant : 42 pages pré-générées, compositions éditoriales communes aux trois langues, 31 photographies Pexels locales sans duplication d’emplacement et formulaire traduit. Le logo approuvé et les six métiers sont conservés. Le formulaire reste en démonstration et l’indexation est désactivée. Aucun déploiement, push GitHub ni e-mail réel n’a été effectué. Voir le [rapport V3 et les routes](docs/REFONTE_V3.md).
 
 ## Démarrer sous Windows 11
 
@@ -31,45 +31,27 @@ Conserver les valeurs par défaut tant que les validations métier et techniques
 
 ## Pages et organisation
 
-Les **13 pages publiques** sont :
+Les **42 pages publiques** correspondent à 14 familles en allemand, anglais et français. L’allemand est sans préfixe ; l’anglais et le français utilisent `/en` et `/fr`. La [table complète des routes](docs/REFONTE_V3.md#routes-publiques) est conservée dans le rapport V3. Une page 404 traduite est renvoyée pour une URL inconnue.
 
-| Route                         | Page                                   |
-| ----------------------------- | -------------------------------------- |
-| `/`                           | Startseite                             |
-| `/leistungen`                 | Leistungen                             |
-| `/leistungen/fassaden`        | Fassadenarbeiten                       |
-| `/leistungen/trockenbau`      | Trockenbau                             |
-| `/leistungen/putzarbeiten`    | Putzarbeiten                           |
-| `/leistungen/malerarbeiten`   | Malerarbeiten                          |
-| `/leistungen/fliesenarbeiten` | Fliesenarbeiten                        |
-| `/leistungen/renovierungen`   | Renovierungen aller Art                |
-| `/ueber-uns`                  | Über uns                               |
-| `/referenzen`                 | Einblicke in unsere Tätigkeitsbereiche |
-| `/kontakt`                    | Kontakt                                |
-| `/impressum`                  | Impressum provisoire                   |
-| `/datenschutz`                | Datenschutzerklärung provisoire        |
+Les documents et images fournis sont préservés. L’ancien dossier de routes `src/app/(website)` et le layout racine ont été remplacés par une structure commune sous `src/app/[locale]` ; les URL allemandes historiques sont conservées.
 
-Une URL inconnue produit une page 404 allemande. `/api/contact` accepte les requêtes POST JSON ; `sitemap.xml`, `robots.txt` et l'icône utilisent les conventions Next.js.
+| Emplacement                                                   | Rôle                                                                    |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `src/config/site.ts`                                          | Coordonnées et informations confirmées ; inconnues à null               |
+| `src/app/[locale]/layout.tsx`                                 | Layout, langue HTML, navigation et footer                               |
+| `src/app/[locale]/[[...path]]/page.tsx`                       | 42 pages, paramètres statiques, métadonnées et 404                      |
+| `src/i18n/routing.ts`, `src/proxy.ts`                         | Routage next-intl et équivalences de pages                              |
+| `src/i18n/content.ts`, `services.ts`, `legal.ts`, `form.ts`   | Contenus DE/EN/FR et erreurs de formulaire                              |
+| `src/components/sections/EditorialPages.tsx`, `LegalPage.tsx` | Compositions partagées                                                  |
+| `src/data/photo-plan.ts`                                      | 31 emplacements exclusifs, sources et alt traduits                      |
+| `src/data/service-identifiers.ts`                             | Catalogue léger pour formulaire et validation côté client               |
+| `src/components/privacy/`, `src/lib/privacy-consent.ts`       | Préférences versionnées, retrait et expiration                          |
+| `src/config/maps.ts`, `src/components/maps/`                  | Carte conditionnelle ; repli adresse/lien en attendant un point vérifié |
+| `src/app/editorial.css`, `src/app/globals.css`                | Styles et responsive                                                    |
+| `src/lib/`, `src/app/api/contact/`                            | Validation, envoi désactivé, limitation de débit et SEO                 |
+| `tests/unit/`, `tests/e2e/`                                   | Tests unitaires et parcours navigateur                                  |
 
-Les documents et images du kit `Thermobau_VV_Kit_Pret_pour_Codex/` sont préservés. Le prompt a été copié à la racine et les sources fournies dans `docs/` et `assets/`. Le projet Next.js se trouve uniquement à la racine du workspace.
-
-| Emplacement                                     | Rôle et modifications courantes                                                                          |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `src/config/site.ts`                            | Nom, personne de contact, adresse, contacts, domaine et données juridiques ; valeurs inconnues à `null`  |
-| `src/data/services.ts`                          | Six services : textes allemands, slugs, travaux typiques, préparation, étapes, FAQ, photographies et SEO |
-| `src/data/photos.ts`                            | Huit photographies locales, textes alternatifs allemands, auteurs et pages sources                       |
-| `src/data/projects.ts`                          | Galerie, crédits et autorisations ; seuls les éléments publiés avec droits confirmés sont affichables    |
-| `src/data/navigation.ts`                        | Navigation allemande                                                                                     |
-| `src/types/content.ts`                          | Contrats de données                                                                                      |
-| `src/app/(website)/`                            | Pages ; fiches métier générées depuis les données                                                        |
-| `src/components/`                               | Composants partagés, navigation et formulaire                                                            |
-| `src/lib/`                                      | Validation, configuration d'envoi, transport, limitation de débit et SEO                                 |
-| `public/brand/`, `public/images/`, `src/fonts/` | Logo approuvé, photographies WebP locales, SVG historiques et police locale                              |
-| `tests/unit/`, `tests/e2e/`                     | Tests unitaires et parcours navigateur                                                                   |
-
-Le logo public est **strictement identique au PNG approuvé**. Le favicon `src/app/icon.png` en 128 × 128 reprend le logo complet après réduction de sa marge blanche, sans redessin. Les photographies de l'accueil, des services et de la galerie proviennent de Pexels ; elles ne représentent aucun chantier ni salarié de Thermobau V&V. La photographie du véhicule reste interne. Manrope est servi localement avec sa licence OFL. Voir [le registre des médias](docs/MEDIAS.md) et [les sources des huit photos](docs/IMAGE_SOURCES.md).
-
-Les données de galerie distinguent `stock-photo`, `illustration` et `real-project`. Elles prévoient un titre, un domaine, une description, des photos autorisées, une date et un lieu facultatifs. Date, lieu et titre de chantier restent vides pour les photographies stock. Le rendu filtre les médias non publiés ou sans droits confirmés.
+Le logo est inchangé, vérifié par test SHA-256. Les photographies ne représentent pas des chantiers ou salariés confirmés de Thermobau V&V. Le véhicule reste interne sans autorisation de publication. Sources et licence : [registre des 31 photos](docs/IMAGE_SOURCES.md). Les anciennes données `photos.ts` et `projects.ts` sont conservées pour compatibilité ; le rendu V3 utilise exclusivement `photo-plan.ts`.
 
 ## Stack retenue
 
@@ -78,6 +60,7 @@ Les versions directes sont fixées dans `package.json`, et les dépendances tran
 | Outil                           | Version du projet |
 | ------------------------------- | ----------------- |
 | Next.js, App Router             | 16.4.1            |
+| next-intl                       | 4.14.9            |
 | React / React DOM               | 19.3.1            |
 | TypeScript strict               | 6.0.3             |
 | Tailwind CSS / PostCSS Tailwind | 4.3.3             |
@@ -90,7 +73,7 @@ Les versions directes sont fixées dans `package.json`, et les dépendances tran
 | Playwright Test                 | 1.64.1            |
 | axe pour Playwright             | 4.13.0            |
 
-Les pages utilisent principalement des Server Components. Le menu mobile et le formulaire sont interactifs. Les six fiches utilisent `generateStaticParams`, `dynamicParams = false` et les paramètres asynchrones de la version installée. Tailwind v4 est intégré avec `@tailwindcss/postcss` et `@import "tailwindcss"`. Le script de lint appelle ESLint directement.
+Les pages utilisent principalement des Server Components. Les 42 pages utilisent `generateStaticParams` et les paramètres asynchrones de Next.js. La navigation mobile, le sélecteur de langue, le formulaire et les préférences sont interactifs. Les autres contenus ne nécessitent pas de JavaScript client. Tailwind v4 est intégré avec `@tailwindcss/postcss` et `@import "tailwindcss"`. Le script de lint appelle ESLint directement.
 
 Références : [installation Next.js](https://nextjs.org/docs/app/getting-started/installation), [Route Handlers](https://nextjs.org/docs/app/api-reference/file-conventions/route), [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params), [Tailwind CSS avec Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs).
 
@@ -118,7 +101,7 @@ npm.cmd run start
 
 Playwright utilise le **Google Chrome installé** (`channel: "chrome"`) et un serveur de production dédié sur `http://127.0.0.1:3100`. Il lance directement Next.js avec `node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100`, sans réutiliser un serveur existant ; un build préalable est donc nécessaire. Le démarrage de développement reste sur `http://localhost:3000`. Si Chrome manque, installer un navigateur adapté ou modifier explicitement la configuration Playwright pour un navigateur disponible, puis consigner ce changement. Les rapports sont produits dans `playwright-report/` et les traces d'échec dans `test-results/`.
 
-Ces commandes constituent la procédure de vérification, pas une déclaration de réussite. Les résultats réellement obtenus, les captures et les limites de l'environnement sont consignés dans [docs/RECETTE.md](docs/RECETTE.md). Les cibles Lighthouse, Core Web Vitals et WCAG ne constituent pas des résultats mesurés ou une conformité auditée.
+Ces commandes constituent la procédure de vérification, pas une déclaration de réussite. Les résultats réellement obtenus, les captures et les limites de l'environnement sont consignés dans [docs/REFONTE_V3.md](docs/REFONTE_V3.md) (la recette V2 est conservée comme historique). Les cibles Lighthouse, Core Web Vitals et WCAG ne constituent pas des résultats mesurés ou une conformité auditée.
 
 Aperçus locaux : [accueil ordinateur](docs/preview/accueil-desktop.png), [accueil mobile](docs/preview/accueil-mobile.png), [contact ordinateur](docs/preview/contact-desktop.png).
 

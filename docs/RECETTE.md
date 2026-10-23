@@ -1,5 +1,7 @@
 ﻿# Recette V2 — Thermobau V&V
 
+> Archive V2 : consulter [la recette V3](REFONTE_V3.md) pour l’état actuel, les 42 routes et les derniers résultats.
+
 **Livraison locale vérifiée le 22 octobre 2026.** La refonte a été réalisée dans le projet Next.js existant, sans recréer l'application, modifier les dépendances ou déployer le site. Le formulaire reste en démonstration et l'indexation reste désactivée.
 
 ## Modifications livrées

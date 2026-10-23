@@ -1,11 +1,14 @@
 import { MapPin, UserRound, Mail, Phone } from "lucide-react";
+import type { Locale } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
 import type { SiteConfig } from "@/types/content";
 export function ContactDetails({
   config = siteConfig,
   showPerson = true,
+  locale = "de",
 }: {
   config?: SiteConfig;
+  locale?: Locale;
   showPerson?: boolean;
 }) {
   return (
@@ -19,14 +22,24 @@ export function ContactDetails({
           <br />
           {config.address.postalCode} {config.address.city}
           <br />
-          Deutschland
+          {locale === "de"
+            ? "Deutschland"
+            : locale === "en"
+              ? "Germany"
+              : "Allemagne"}
         </address>
       </div>
       {showPerson && (
         <div>
           <UserRound size={20} aria-hidden="true" />
           <p>
-            <span className="detail-label">Ansprechpartner</span>
+            <span className="detail-label">
+              {locale === "de"
+                ? "Ansprechpartner"
+                : locale === "en"
+                  ? "Contact person"
+                  : "Interlocuteur"}
+            </span>
             {config.contactName}
           </p>
         </div>
@@ -48,7 +61,13 @@ export function ContactDetails({
       {config.openingHours && (
         <div>
           <p>
-            <span className="detail-label">Öffnungszeiten</span>
+            <span className="detail-label">
+              {locale === "de"
+                ? "Öffnungszeiten"
+                : locale === "en"
+                  ? "Opening hours"
+                  : "Horaires"}
+            </span>
             {config.openingHours.join(" · ")}
           </p>
         </div>

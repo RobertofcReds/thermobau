@@ -15,9 +15,10 @@ const routes = [
   "/kontakt",
   "/impressum",
   "/datenschutz",
+  "/nutzungsbedingungen",
 ];
 
-test("les 13 pages allemandes ont des métadonnées uniques et restent non indexables", async ({
+test("les 14 pages allemandes ont des métadonnées uniques et restent non indexables", async ({
   page,
 }) => {
   test.setTimeout(90000);
@@ -69,7 +70,9 @@ test("les 13 pages allemandes ont des métadonnées uniques et restent non index
         anchors.map((anchor) => anchor.getAttribute("href")!.split(/[?#]/)[0]),
       );
     for (const href of internalLinks)
-      expect(routes, `Lien depuis ${route}: ${href}`).toContain(href);
+      expect(href, `Lien interne depuis ${route}`).toMatch(
+        /^\/(?:$|en(?:\/|$)|fr(?:\/|$)|leistungen(?:\/|$)|ueber-uns$|referenzen$|kontakt$|impressum$|datenschutz$|nutzungsbedingungen$)/,
+      );
     await page.locator("img").evaluateAll((images) => {
       images.forEach((image) => {
         (image as HTMLImageElement).loading = "eager";
@@ -104,7 +107,7 @@ test("l'accueil donne accès aux services et au contact en un clic", async ({
     .click();
   await expect(page).toHaveURL(/\/leistungen$/);
   await expect(
-    page.locator('.service-grid a[href^="/leistungen/"]'),
+    page.locator('.editorial-cards h3 a[href^="/leistungen/"]'),
   ).toHaveCount(6);
   await page
     .getByRole("link", { name: "Angebot anfragen", exact: true })
@@ -149,6 +152,9 @@ test("le formulaire vérifie localement les saisies sans aucun envoi en démonst
       contactRequests.push(request.method());
   });
   await page.goto("/kontakt?service=trockenbau");
+  await page
+    .getByRole("button", { name: "Alle ablehnen", exact: true })
+    .click();
   await expect(page.locator('[name="service"]')).toHaveValue("trockenbau");
   await expect(
     page.getByText(/Demomodus|Demonstrationsmodus/i).first(),
@@ -224,7 +230,7 @@ test("la galerie expose clairement son caractère illustratif", async ({
 }) => {
   await page.goto("/referenzen");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Einblicke in unsere Tätigkeitsbereiche",
+    "Handgriffe und Materialien im Detail.",
   );
   await expect(
     page.getByText(
@@ -232,10 +238,11 @@ test("la galerie expose clairement son caractère illustratif", async ({
       { exact: true },
     ),
   ).toBeVisible();
-  await expect(page.locator(".gallery-grid img")).toHaveCount(6);
-  await expect(page.locator(".gallery-grid .image-label")).toHaveText(
-    Array(6).fill("Symbolbild"),
-  );
+  await expect(page.locator(".editorial-gallery img")).toHaveCount(6);
+  for (const caption of await page
+    .locator(".editorial-gallery figcaption")
+    .allTextContents())
+    expect(caption).toContain("Symbolbild");
 });
 
 test("les pages inconnues et les services inconnus répondent avec une 404 allemande", async ({
@@ -270,6 +277,68 @@ test("robots et sitemap restent fermés en démonstration", async ({
   expect(await sitemap.text()).not.toContain("<loc>");
 });
 
+test("le sélecteur conserve la page métier équivalente dans les trois langues", async ({
+  page,
+}) => {
+  await page.goto("/leistungen/trockenbau");
+  await page.getByRole("link", { name: "EN", exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/services\/drywall$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await page.getByRole("link", { name: "FR", exact: true }).click();
+  await expect(page).toHaveURL(/\/fr\/prestations\/cloisons-seches$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+});
+
+test("la carte intégrée se charge après accord et disparaît après retrait", async ({
+  page,
+  context,
+}) => {
+  const mapRequests: string[] = [];
+  await context.route(
+    "https://www.openstreetmap.org/export/embed.html**",
+    (route) =>
+      route.fulfill({
+        contentType: "text/html",
+        body: '<!doctype html><html lang="en"><title>Test map</title><body>Test map</body></html>',
+      }),
+  );
+  page.on("request", (request) => {
+    if (request.url().includes("openstreetmap.org/export/embed.html"))
+      mapRequests.push(request.url());
+  });
+  await page.goto("/");
+  await expect(page.locator(".map-shell iframe")).toHaveCount(0);
+  expect(mapRequests).toEqual([]);
+  await page
+    .getByRole("button", { name: "Einstellungen", exact: true })
+    .click();
+  await page
+    .getByRole("checkbox", { name: "Externe Karten", exact: true })
+    .check();
+  await page
+    .getByRole("button", { name: "Auswahl speichern", exact: true })
+    .click();
+  await expect(page.locator(".map-shell iframe")).toHaveCount(1);
+  await page.locator(".map-shell iframe").scrollIntoViewIfNeeded();
+  await expect.poll(() => mapRequests.length).toBe(1);
+  await page
+    .getByRole("button", { name: "Datenschutzeinstellungen", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Alle ablehnen", exact: true })
+    .click();
+  await expect(page.locator(".map-shell iframe")).toHaveCount(0);
+  await page.reload();
+  await expect(page.locator(".map-shell iframe")).toHaveCount(0);
+  expect(mapRequests).toHaveLength(1);
+  await expect(
+    page.getByRole("link", { name: "Route planen" }),
+  ).toHaveAttribute("href", /destination=Bl/);
+  await expect(
+    page.getByRole("link", { name: "Route planen" }),
+  ).not.toHaveAttribute("target", "_blank");
+});
+
 for (const route of [
   "/",
   "/leistungen/trockenbau",
@@ -293,7 +362,7 @@ for (const route of [
 }
 
 for (const width of [320, 360, 390, 768, 1024, 1440, 1920]) {
-  test(`les 13 pages restent sans débordement horizontal à ${width}px`, async ({
+  test(`les 14 pages restent sans débordement horizontal à ${width}px`, async ({
     page,
   }, testInfo) => {
     test.setTimeout(120000);

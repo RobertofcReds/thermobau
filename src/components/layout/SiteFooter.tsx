@@ -1,45 +1,85 @@
 import Link from "next/link";
-import { services } from "@/data/services";
-import { navigation } from "@/data/navigation";
+import { getServices } from "@/i18n/services";
 import { siteConfig } from "@/config/site";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "./Logo";
 import { ContactDetails } from "./ContactDetails";
-export function SiteFooter() {
+import {
+  localizedNavigation,
+  pagePath,
+  servicePath,
+  type Locale,
+} from "@/i18n/routing";
+import { PrivacySettingsButton } from "@/components/privacy/PrivacyPreferences";
+export function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer className="site-footer">
       <Container>
         <div className="footer-grid">
           <div className="footer-brand">
-            <Logo footer />
+            <Logo footer locale={locale} />
             <p>
-              Arbeiten rund um Renovierung und Innenausbau in{" "}
-              {siteConfig.address.city}.
+              {locale === "de"
+                ? "Renovierung und Innenausbau in Ludwigshafen."
+                : locale === "en"
+                  ? "Renovation and interior construction in Ludwigshafen."
+                  : "Rénovation et aménagement intérieur à Ludwigshafen."}
             </p>
           </div>
           <div>
-            <h2>Entdecken</h2>
-            <nav aria-label="Navigation im Fußbereich">
-              {navigation.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  {item.label}
+            <h2>
+              {locale === "de"
+                ? "Entdecken"
+                : locale === "en"
+                  ? "Explore"
+                  : "Découvrir"}
+            </h2>
+            <nav
+              aria-label={
+                locale === "de"
+                  ? "Navigation im Fußbereich"
+                  : locale === "en"
+                    ? "Footer navigation"
+                    : "Navigation du pied de page"
+              }
+            >
+              {localizedNavigation[locale].map(([label, href]) => (
+                <Link key={href} href={href}>
+                  {label}
                 </Link>
               ))}
             </nav>
           </div>
           <div>
-            <h2>Leistungen</h2>
-            <nav aria-label="Leistungen im Fußbereich">
-              {services.map((service) => (
-                <Link key={service.slug} href={`/leistungen/${service.slug}`}>
+            <h2>
+              {locale === "de"
+                ? "Leistungen"
+                : locale === "en"
+                  ? "Services"
+                  : "Prestations"}
+            </h2>
+            <nav
+              aria-label={
+                locale === "de"
+                  ? "Leistungen im Fußbereich"
+                  : locale === "en"
+                    ? "Services in footer"
+                    : "Prestations du pied de page"
+              }
+            >
+              {getServices(locale).map((service) => (
+                <Link
+                  key={service.slug}
+                  href={servicePath(service.slug, locale)}
+                >
                   {service.title}
                 </Link>
               ))}
             </nav>
           </div>
           <div>
-            <h2>Kontakt</h2>
-            <ContactDetails />
+            <h2>{locale === "de" ? "Kontakt" : "Contact"}</h2>
+            <ContactDetails locale={locale} />
           </div>
         </div>
         <div className="footer-bottom">
@@ -47,10 +87,36 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}
           </span>
           <div>
-            <Link href="/impressum">Impressum</Link>
-            <Link href="/datenschutz">Datenschutz</Link>
+            <Link href={pagePath("legal", locale)}>
+              {locale === "de"
+                ? "Impressum"
+                : locale === "en"
+                  ? "Legal notice"
+                  : "Mentions légales"}
+            </Link>
+            <Link href={pagePath("privacy", locale)}>
+              {locale === "de"
+                ? "Datenschutz"
+                : locale === "en"
+                  ? "Privacy"
+                  : "Confidentialité"}
+            </Link>
+            <Link href={pagePath("terms", locale)}>
+              {locale === "de"
+                ? "Nutzung"
+                : locale === "en"
+                  ? "Terms of use"
+                  : "Conditions d’utilisation"}
+            </Link>
+            <PrivacySettingsButton locale={locale} />
           </div>
-          <span>Renovierung mit Perspektive.</span>
+          <span>
+            {locale === "de"
+              ? "Räume neu denken."
+              : locale === "en"
+                ? "Rethink your space."
+                : "Repenser vos espaces."}
+          </span>
         </div>
       </Container>
     </footer>

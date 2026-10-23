@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { serviceSlugs } from "@/data/services";
+import { serviceSlugs } from "@/data/service-identifiers";
 
 const hasControlCharacters = (value: string, multiline = false) =>
   [...value].some((character) => {

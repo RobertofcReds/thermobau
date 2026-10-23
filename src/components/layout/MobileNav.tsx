@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-import { navigation } from "@/data/navigation";
+import { localizedNavigation, pagePath, type Locale } from "@/i18n/routing";
 
-export function MobileNav() {
+export function MobileNav({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -41,19 +41,31 @@ export function MobileNav() {
       <button
         ref={trigger}
         className="menu-trigger"
-        aria-label="Menü öffnen"
+        aria-label={
+          locale === "de"
+            ? "Menü öffnen"
+            : locale === "en"
+              ? "Open menu"
+              : "Ouvrir le menu"
+        }
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={show}
       >
         <Menu size={24} aria-hidden="true" />
-        <span>Menü</span>
+        <span>{locale === "de" ? "Menü" : "Menu"}</span>
       </button>
       <dialog
         ref={dialog}
         id="mobile-menu"
         className="mobile-dialog"
-        aria-label="Hauptmenü"
+        aria-label={
+          locale === "de"
+            ? "Hauptmenü"
+            : locale === "en"
+              ? "Main menu"
+              : "Menu principal"
+        }
         onCancel={(event) => {
           event.preventDefault();
           close();
@@ -68,39 +80,62 @@ export function MobileNav() {
             <button
               onClick={close}
               className="menu-trigger"
-              aria-label="Menü schließen"
+              aria-label={
+                locale === "de"
+                  ? "Menü schließen"
+                  : locale === "en"
+                    ? "Close menu"
+                    : "Fermer le menu"
+              }
             >
               <X size={24} aria-hidden="true" />
             </button>
           </div>
-          <nav aria-label="Mobile Hauptnavigation">
-            {navigation.map((item) => (
+          <nav
+            aria-label={
+              locale === "de"
+                ? "Mobile Hauptnavigation"
+                : locale === "en"
+                  ? "Mobile navigation"
+                  : "Navigation mobile"
+            }
+          >
+            {localizedNavigation[locale].map(([label, href]) => (
               <Link
-                key={item.href}
-                href={item.href}
+                key={href}
+                href={href}
                 aria-current={
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(`${item.href}/`))
+                  pathname === href ||
+                  (href !== pagePath("home", locale) &&
+                    pathname.startsWith(`${href}/`))
                     ? "page"
                     : undefined
                 }
                 onClick={close}
               >
-                {item.label}
+                {label}
                 <ArrowUpRight size={20} aria-hidden="true" />
               </Link>
             ))}
           </nav>
           <Link
-            href="/kontakt"
+            href={pagePath("contact", locale)}
             className="button button-primary"
             onClick={close}
           >
-            Angebot anfragen
+            {locale === "de"
+              ? "Projekt anfragen"
+              : locale === "en"
+                ? "Request a project"
+                : "Parler du projet"}
             <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
           <p className="small-text">
-            Renovierung & Innenausbau
+            {locale === "de"
+              ? "Renovierung & Innenausbau"
+              : locale === "en"
+                ? "Renovation & interiors"
+                : "Rénovation & aménagement intérieur"}
             <br />
             Ludwigshafen
           </p>

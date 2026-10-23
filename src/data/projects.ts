@@ -3,12 +3,12 @@ import { photos } from "@/data/photos";
 import type { GalleryItem, ServiceSlug } from "@/types/content";
 
 const servicePhotos = {
-  fassaden: photos.facade,
-  trockenbau: photos.drywall,
-  putzarbeiten: photos.plaster,
-  malerarbeiten: photos.painting,
-  fliesenarbeiten: photos.tiles,
-  renovierungen: photos.renovation,
+  fassaden: photos.facadeBrick,
+  trockenbau: photos.drywallDetail,
+  putzarbeiten: photos.paintingPrep,
+  malerarbeiten: photos.paintingDetail,
+  fliesenarbeiten: photos.tilesWall,
+  renovierungen: photos.renovationKitchen,
 } satisfies Record<ServiceSlug, (typeof photos)[keyof typeof photos]>;
 
 // Licensed stock photographs illustrate the trades; they are not company projects.

@@ -1,14 +1,7 @@
 ﻿import { photos } from "@/data/photos";
 import type { Service, ServiceSlug } from "@/types/content";
 
-export const serviceSlugs = [
-  "fassaden",
-  "trockenbau",
-  "putzarbeiten",
-  "malerarbeiten",
-  "fliesenarbeiten",
-  "renovierungen",
-] as const satisfies readonly ServiceSlug[];
+export { serviceSlugs } from "./service-identifiers";
 
 export const services: Service[] = [
   {
@@ -276,7 +269,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetails> = {
       "Sichtbare Veränderungen der vorhandenen Oberfläche",
       "Zugang zur Fassade und gewünschte Gestaltung",
     ],
-    secondaryImage: photos.building,
+    secondaryImage: photos.facadeWorkers,
     steps: [
       {
         title: "Kontakt aufnehmen",
@@ -308,7 +301,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetails> = {
       "Gewünschte Aufteilung, Türen und Öffnungen",
       "Geplante Nutzung und spätere Wandgestaltung",
     ],
-    secondaryImage: photos.renovation,
+    secondaryImage: photos.drywallDetail,
     steps: [
       {
         title: "Kontakt aufnehmen",
@@ -340,7 +333,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetails> = {
       "Vorhandener Putz, Beschichtungen und sichtbare Schäden",
       "Gewünschte Struktur und anschließende Gestaltung",
     ],
-    secondaryImage: photos.painting,
+    secondaryImage: photos.paintingPrep,
     steps: [
       {
         title: "Kontakt aufnehmen",
@@ -372,7 +365,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetails> = {
       "Vorhandene Beschichtungen und erkennbare Schäden",
       "Farbwünsche, Möblierung und Nutzung während der Arbeiten",
     ],
-    secondaryImage: photos.plaster,
+    secondaryImage: photos.paintingDetail,
     steps: [
       {
         title: "Kontakt aufnehmen",
@@ -404,7 +397,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetails> = {
       "Vorhandener Belag und Übergänge zu angrenzenden Flächen",
       "Gewünschte Fliesenformate und vorhandene Einbauten",
     ],
-    secondaryImage: photos.renovation,
+    secondaryImage: photos.tilesWall,
     steps: [
       {
         title: "Kontakt aufnehmen",
@@ -436,7 +429,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetails> = {
       "Gewünschte Veränderungen und persönliche Prioritäten",
       "Nutzung während der Arbeiten und zeitliche Vorstellungen",
     ],
-    secondaryImage: photos.drywall,
+    secondaryImage: photos.renovationKitchen,
     steps: [
       {
         title: "Kontakt aufnehmen",

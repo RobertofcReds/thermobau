@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { pagePath, type Locale } from "@/i18n/routing";
+import { formCopy } from "@/i18n/form";
 import { ArrowUpRight, LoaderCircle, ShieldCheck } from "lucide-react";
 import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
-import { services } from "@/data/services";
+import { serviceSlugs, serviceLabels } from "@/data/service-identifiers";
 import {
   contactFieldErrors,
   contactSchema,
@@ -13,6 +15,7 @@ import {
 
 interface ContactFormProps {
   enabled: boolean;
+  locale?: Locale;
   initialService?: string;
 }
 
@@ -21,7 +24,10 @@ const subscribe = () => () => {};
 export function ContactForm({
   enabled,
   initialService = "",
+  locale = "de",
 }: ContactFormProps) {
+  const t = formCopy[locale];
+  const titles = serviceLabels[locale];
   const formRef = useRef<HTMLFormElement>(null);
   const hydrated = useSyncExternalStore(
     subscribe,
@@ -40,9 +46,7 @@ export function ContactForm({
     | "failed"
     | "unavailable"
   >("idle");
-  const selectedService = services.some(
-    (service) => service.slug === initialService,
-  )
+  const selectedService = serviceSlugs.some((slug) => slug === initialService)
     ? initialService
     : "";
 
@@ -64,22 +68,20 @@ export function ContactForm({
       const errors = contactFieldErrors(parsed.error);
       setFieldErrors(errors);
       setState("invalid");
-      setMessage("Bitte prüfen Sie die markierten Eingaben.");
+      setMessage(t.invalid);
       focusFirstError(errors);
       return;
     }
     setFieldErrors({});
     if (!enabled) {
       setState("checked");
-      setMessage(
-        "Die Eingaben sind gültig. Demomodus: Es wurde keine Nachricht gesendet. Ihre Eingaben wurden nicht übertragen.",
-      );
+      setMessage(t.checked);
       return;
     }
 
     setSending(true);
     setState("sending");
-    setMessage("Ihre Nachricht wird übermittelt …");
+    setMessage(t.sending);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -90,14 +92,16 @@ export function ContactForm({
       const result = (await response.json()) as ContactResponse;
       if (response.ok && result.ok === true) {
         setState("sent");
-        setMessage(result.message);
+        setMessage(t.sent);
         formRef.current?.reset();
       } else {
         setState(response.status === 503 ? "unavailable" : "failed");
         setMessage(
-          typeof result.message === "string"
-            ? result.message
-            : "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+          response.status === 429
+            ? t.limited
+            : response.status === 503
+              ? t.unavailable
+              : t.failed,
         );
         if (result.fieldErrors) {
           setFieldErrors(result.fieldErrors);
@@ -106,9 +110,7 @@ export function ContactForm({
       }
     } catch {
       setState("failed");
-      setMessage(
-        "Die Übermittlung konnte nicht bestätigt werden. Bitte versuchen Sie es später erneut.",
-      );
+      setMessage(t.failed);
     } finally {
       setSending(false);
     }
@@ -118,7 +120,7 @@ export function ContactForm({
     const errors = fieldErrors[name];
     return errors?.length ? (
       <p id={`${name}-error`} className="field-error">
-        {errors[0]}
+        {locale === "de" ? errors[0] : t.errors[name]}
       </p>
     ) : null;
   }
@@ -129,45 +131,29 @@ export function ContactForm({
       className="contact-form"
       onSubmit={handleSubmit}
       noValidate
-      aria-label="Projektanfrage"
+      aria-label={t.label}
       aria-describedby="contact-mode"
       aria-busy={sending}
     >
       <div className="contact-form-heading">
-        <p className="eyebrow">Ihr Projekt</p>
-        <h2>Was haben Sie vor?</h2>
-        <p>
-          Ob einzelner Raum oder mehrere Arbeiten: Ein paar Angaben helfen, Ihr
-          Vorhaben einzuordnen.
-        </p>
+        <p className="eyebrow">{t.eye}</p>
+        <h2>{t.title}</h2>
+        <p>{t.intro}</p>
       </div>
       {!enabled && (
         <div id="contact-mode" className="form-notice">
           <strong className="flex items-center gap-2">
             <ShieldCheck size={18} aria-hidden="true" />
-            Demomodus – kein Versand
+            {t.demo}
           </strong>
-          <p>
-            Sie können das Formular ausprobieren. „Eingaben prüfen“ kontrolliert
-            Ihre Angaben nur in diesem Browser. Es werden keine Formulardaten
-            übertragen und keine Nachrichten gesendet.
-          </p>
+          <p>{t.demoText}</p>
         </div>
       )}
-      {enabled && (
-        <p id="contact-mode">
-          Beschreiben Sie Ihr Vorhaben. Mit * gekennzeichnete Felder sind
-          erforderlich.
-        </p>
-      )}
-      {!enabled && (
-        <p className="form-help">
-          Mit * gekennzeichnete Felder sind für die Prüfung erforderlich.
-        </p>
-      )}
+      {enabled && <p id="contact-mode">{t.required}</p>}
+      {!enabled && <p className="form-help">{t.required}</p>}
       <div className="form-grid">
         <div className="form-field">
-          <label htmlFor="contact-name">Name *</label>
+          <label htmlFor="contact-name">{t.name} *</label>
           <input
             id="contact-name"
             name="name"
@@ -183,7 +169,7 @@ export function ContactForm({
           {errorFor("name")}
         </div>
         <div className="form-field">
-          <label htmlFor="contact-email">E-Mail *</label>
+          <label htmlFor="contact-email">{t.email} *</label>
           <input
             id="contact-email"
             name="email"
@@ -199,9 +185,7 @@ export function ContactForm({
           {errorFor("email")}
         </div>
         <div className="form-field">
-          <label htmlFor="contact-phone">
-            Telefon <span>(freiwillig)</span>
-          </label>
+          <label htmlFor="contact-phone">{t.phone}</label>
           <input
             id="contact-phone"
             name="phone"
@@ -215,7 +199,7 @@ export function ContactForm({
           {errorFor("phone")}
         </div>
         <div className="form-field">
-          <label htmlFor="contact-service">Gewünschte Leistung *</label>
+          <label htmlFor="contact-service">{t.service} *</label>
           <select
             id="contact-service"
             name="service"
@@ -225,17 +209,17 @@ export function ContactForm({
             aria-invalid={Boolean(fieldErrors.service)}
             aria-describedby={fieldErrors.service ? "service-error" : undefined}
           >
-            <option value="">Bitte auswählen</option>
-            {services.map((service) => (
-              <option key={service.slug} value={service.slug}>
-                {service.title}
+            <option value="">{t.select}</option>
+            {serviceSlugs.map((slug) => (
+              <option key={slug} value={slug}>
+                {titles[slug]}
               </option>
             ))}
           </select>
           {errorFor("service")}
         </div>
         <div className="form-field form-field-full">
-          <label htmlFor="contact-message">Nachricht *</label>
+          <label htmlFor="contact-message">{t.message} *</label>
           <textarea
             id="contact-message"
             name="message"
@@ -244,7 +228,7 @@ export function ContactForm({
             minLength={20}
             maxLength={3000}
             disabled={sending}
-            placeholder="Welche Räume oder Flächen möchten Sie verändern? Wie ist der aktuelle Zustand?"
+            placeholder={t.placeholder}
             aria-invalid={Boolean(fieldErrors.message)}
             aria-describedby={
               fieldErrors.message
@@ -253,14 +237,13 @@ export function ContactForm({
             }
           />
           <p id="message-help" className="form-help">
-            20 bis 3000 Zeichen. Bitte keine vertraulichen oder sensiblen
-            Angaben eintragen.
+            {t.help}
           </p>
           {errorFor("message")}
         </div>
       </div>
       <div hidden aria-hidden="true">
-        <label htmlFor="contact-website">Dieses Feld bitte leer lassen</label>
+        <label htmlFor="contact-website">{t.honeypot}</label>
         <input
           id="contact-website"
           name="website"
@@ -270,11 +253,8 @@ export function ContactForm({
         />
       </div>
       <p className="form-help">
-        {enabled
-          ? "Ihre Angaben werden zur Bearbeitung Ihrer Anfrage übermittelt. "
-          : "Die Prüfung erfolgt lokal in Ihrem Browser. "}
-        Hinweise zum Umgang mit Daten finden Sie in der{" "}
-        <Link href="/datenschutz">Datenschutzerklärung</Link>.
+        {enabled ? t.remote : t.local} {t.privacy}{" "}
+        <Link href={pagePath("privacy", locale)}>{t.privacyLink}</Link>.
       </p>
       <button
         className="button button-primary"
@@ -284,23 +264,12 @@ export function ContactForm({
         {sending && (
           <LoaderCircle size={18} className="animate-spin" aria-hidden="true" />
         )}
-        {sending
-          ? "Wird übermittelt …"
-          : enabled
-            ? "Nachricht senden"
-            : "Eingaben prüfen"}
+        {sending ? t.sending : enabled ? t.send : t.check}
         {!sending && <ArrowUpRight size={18} aria-hidden="true" />}
       </button>
-      {!enabled && (
-        <p className="form-help">
-          Der Nachrichtenversand ist noch nicht verfügbar.
-        </p>
-      )}
+      {!enabled && <p className="form-help">{t.unavailable}</p>}
       <noscript>
-        <p>
-          Bitte aktivieren Sie JavaScript, um die Eingaben im Formular zu
-          prüfen.
-        </p>
+        <p>{t.nojs}</p>
       </noscript>
       <div
         className="form-status"

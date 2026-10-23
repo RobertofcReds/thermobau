@@ -1,9 +1,14 @@
 import type { NextConfig } from "next";
 import { publicationReady } from "./src/lib/publication";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   devIndicators: false,
+  // Preserve the incoming origin for next-intl's internal locale rewrites.
+  // URL normalization otherwise replaces loopback IPs with localhost.
+  skipProxyUrlNormalize: true,
+  images: { formats: ["image/webp"], minimumCacheTTL: 86400 },
   async headers() {
     return [
       {
@@ -29,4 +34,4 @@ const nextConfig: NextConfig = {
     ];
   },
 };
-export default nextConfig;
+export default createNextIntlPlugin()(nextConfig);

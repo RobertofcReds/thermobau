@@ -103,19 +103,27 @@ describe("Protection de l'indexation", () => {
     expect(publicationReady()).toBe(false);
   });
 
-  it("génère les 13 URLs uniquement pour la production officiellement validée", () => {
+  it("génère les 42 URLs multilingues uniquement pour la production officiellement validée", () => {
     configureApprovedProduction();
     expect(publicationReady()).toBe(true);
     expect(getSiteUrl()).toBe(testOrigin);
     const entries = sitemap();
-    expect(entries).toHaveLength(13);
-    expect(new Set(entries.map((entry) => entry.url)).size).toBe(13);
+    expect(entries).toHaveLength(42);
+    expect(new Set(entries.map((entry) => entry.url)).size).toBe(42);
     expect(
       entries.every((entry) => entry.url.startsWith(`${testOrigin}/`)),
     ).toBe(true);
-    expect(entries).toContainEqual({
-      url: `${testOrigin}/leistungen/trockenbau`,
-    });
+    expect(entries).toContainEqual(
+      expect.objectContaining({
+        url: `${testOrigin}/leistungen/trockenbau`,
+        alternates: expect.objectContaining({
+          languages: expect.objectContaining({
+            en: `${testOrigin}/en/services/drywall`,
+            fr: `${testOrigin}/fr/prestations/cloisons-seches`,
+          }),
+        }),
+      }),
+    );
     expect(robots()).toEqual({
       rules: { userAgent: "*", allow: "/", disallow: "/api/" },
       sitemap: `${testOrigin}/sitemap.xml`,
@@ -126,7 +134,15 @@ describe("Protection de l'indexation", () => {
       "/kontakt",
     );
     expect(metadata.robots).toEqual({ index: true, follow: true });
-    expect(metadata.alternates).toEqual({ canonical: `${testOrigin}/kontakt` });
+    expect(metadata.alternates).toEqual({
+      canonical: `${testOrigin}/kontakt`,
+      languages: {
+        de: `${testOrigin}/kontakt`,
+        en: `${testOrigin}/en/contact`,
+        fr: `${testOrigin}/fr/contact`,
+        "x-default": `${testOrigin}/kontakt`,
+      },
+    });
     expect(metadata.openGraph).toHaveProperty("url", `${testOrigin}/kontakt`);
   });
 });

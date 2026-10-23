@@ -11,5 +11,7 @@ export default defineConfig([
     "test-results/**",
     "playwright-report/**",
     ".qa/**",
+    "tmp/**",
+    ".tmp/**",
   ]),
 ]);

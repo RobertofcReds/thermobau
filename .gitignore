@@ -9,3 +9,5 @@ playwright-report/
 *.tsbuildinfo
 .npm-cache/
 .qa/
+tmp/
+.tmp/

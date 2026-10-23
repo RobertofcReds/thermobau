@@ -17,11 +17,14 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ],
-  webServer: {
-    command:
-      "node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100",
-    url: "http://127.0.0.1:3100",
-    reuseExistingServer: false,
-    timeout: 120000,
-  },
+  webServer:
+    process.env.PLAYWRIGHT_EXTERNAL_SERVER === "true"
+      ? undefined
+      : {
+          command:
+            "node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100",
+          url: "http://127.0.0.1:3100",
+          reuseExistingServer: false,
+          timeout: 120000,
+        },
 });
