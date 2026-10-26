@@ -30,7 +30,7 @@ Les anciennes URL allemandes restent accessibles. Les fichiers suivis supprimés
 
 **31 photographies actives différentes**, environ **3,06 Mio** de fichiers WebP au total. Les variantes de langue d’une même page partagent leur photographie ; les emplacements de pages différentes ne la réutilisent pas.
 
-Les crédits, sources, sujets, affectations et conditions sont détaillés dans [IMAGE_SOURCES.md](IMAGE_SOURCES.md). Les photos proviennent de [Pexels et de sa licence](https://www.pexels.com/license/), sont hébergées localement et portent une légende Symbolbild / Illustrative photo / Photo d’illustration. Elles ne sont ni des références commerciales ni des portraits de salariés.
+Les crédits, sources, sujets, affectations et conditions sont détaillés dans [IMAGE_SOURCES.md](IMAGE_SOURCES.md). Les photos proviennent de [Pexels et de sa licence](https://www.pexels.com/license/) et sont hébergées localement. À la demande du client, les étiquettes et crédits individuels ont été retirés de toutes les pages le 26 octobre 2026 ; la licence n’impose pas cette attribution. Une information générale reste présente : ces photos ne sont ni des références commerciales ni des portraits de salariés.
 
 Le hero immobilier a été retiré du rendu. Une photo dont le titre source évoquait le drywall mais qui montrait du carrelage a également été écartée après inspection visuelle. La photographie du véhicule demeure interne faute d’autorisation.
 
@@ -69,13 +69,38 @@ Le site reste **noindex**. Canonical, hreflang et sitemap de production sont con
 
 Préférences accessibles en permanence dans le footer. Panneau non bloquant, lien de confidentialité, services nécessaires distincts, cartes facultatives désactivées par défaut, acceptation/refus d’importance comparable.
 
-Le choix versionné est valable au plus 180 jours, avec repli en mémoire si localStorage est bloqué. Les entrées expirées sont supprimées pendant une session ouverte ou à la consultation suivante. Les modifications entre onglets sont synchronisées ; le retrait démonte toute carte active et empêche son rechargement.
+Le choix versionné est valable au plus 180 jours, avec repli en mémoire si localStorage est bloqué. La version 4, sous `thermobau-privacy-v4`, demande un nouvel accord pour Google Maps Plan/Satellite ; les choix des versions 2 et 3 ne sont pas réutilisés. Les entrées expirées sont supprimées pendant une session ouverte ou à la consultation suivante. Les modifications entre onglets sont synchronisées ; le retrait démonte toute carte active et empêche son rechargement.
 
-**État actuel : aucun point cartographique vérifié.** `src/config/maps.ts` reste à `null`. L’accueil et le contact montrent l’adresse et un lien Google d’itinéraire, sans iframe, coordonnées inventées ni appel cartographique automatique. Le lien fonctionne indépendamment de tout accord pour une carte intégrée.
+**Carte Google Maps Plan/Satellite sous le footer de l’accueil et de Contact.** Les anciens emplacements au milieu du contenu ont été retirés. Les deux boutons de vue remplacent la même iframe, sans navigation ni nouvel onglet ; choisir un mode avant accord ne contacte pas le fournisseur. Le bouton principal charge la carte sur place après accord explicite. L’adresse reste lisible sans consentement ; un lien secondaire d’itinéraire reste utilisable indépendamment et s’ouvre dans le même onglet. Les autres pages ne répètent pas la carte.
 
-Puisqu’aucun service facultatif n’est actif, aucun bandeau initial superflu n’est présenté. Le panneau reste ouvrable depuis le footer. L’activation future d’un point vérifié rendra le choix initial nécessaire. Le chargement d’une véritable iframe en production reste à valider après vérification du point, du fournisseur et des informations juridiques.
+Le point `49.4878874, 8.4332520` a été vérifié le **23 octobre 2026** par une réponse exacte de Nominatim : numéro 59, Blücherstraße, Ludwigshafen am Rhein, code postal 67063. Source : [bâtiment OpenStreetMap 298541737](https://www.openstreetmap.org/way/298541737), [requête de géocodage reproductible](https://nominatim.openstreetmap.org/search?street=59%20Bl%C3%BCcherstra%C3%9Fe&city=Ludwigshafen%20am%20Rhein&postalcode=67063&country=Germany&format=jsonv2&addressdetails=1). Cette vérification situe le **bâtiment**, pas une fiche commerciale ou une validation de l’implantation de l’entreprise. L’adresse professionnelle reste celle communiquée par le client.
+
+Le panneau de choix initial concerne Google Maps ; il reste ouvrable depuis le footer. Les textes DE/EN/FR distinguent la carte intégrée du lien d’itinéraire et renvoient à la [politique de confidentialité Google](https://policies.google.com/privacy). Les informations juridiques restent provisoires et à faire valider avant publication.
+
+L’intégration utilise l’URL Google Maps sans clé `maps?...&output=embed`, avec `t=m` (plan), `t=k` (satellite) et `hl` selon la langue. Les deux réponses fournisseur ont été vérifiées. Ce format historique n’est pas l’API Embed v1 documentée avec clé : sa disponibilité doit être recontrôlée avant publication. Les attributions du fournisseur restent intactes. Références : [intégration par partage Google Maps](https://support.google.com/maps/answer/7101463?hl=fr), [règles d’utilisation des cartes Google](https://about.google/brand-resource-center/products-and-services/geo-guidelines/).
 
 ## Vérifications exécutées
+
+### Photos sans légendes et carte Plan/Satellite — 26 octobre 2026
+
+- Retrait des étiquettes et crédits individuels dans tous les composants photo, sans suppression des sources ni des contrôles de droits.
+- Carte placée après le footer, uniquement sur l’accueil et Contact en DE/EN/FR. Sélection Plan/Satellite sans navigation externe et sans requête avant consentement ; migration du choix en v4.
+- **162 tests unitaires réussis**, 9 fichiers ; **51 tests Chrome réussis**, dont 11 scénarios cartographiques. Le parcours des 42 pages vérifie aussi l’absence de légendes et liens de crédit sous les photos.
+- Compilation de production, TypeScript, lint et formatage réussis. Correction du chevauchement mobile : un espace de défilement suit la hauteur réelle du panneau de confidentialité.
+- Vues Google Plan et Satellite contrôlées séparément avec le vrai fournisseur ; les tests automatisés récurrents utilisent un document simulé pour éviter de solliciter Google à chaque scénario.
+- Aucun push ni déploiement effectué.
+
+### Complément carte intégrée — 24 octobre 2026
+
+- Compilation de production, TypeScript, lint et 155 tests unitaires réussis.
+- **50 tests Chrome réussis** sur la version finale, dont 10 scénarios dédiés à la carte : accueil/contact DE/EN/FR, aucun appel externe avant accord, aucun nouvel onglet, persistance, changement de langue, retrait, ancien consentement ignoré et mobile.
+- La suite automatise le document externe avec une réponse locale pour tester le comportement sans solliciter répétitivement le fournisseur. Un contrôle séparé avec le vrai fournisseur a confirmé une iframe HTTP 200, les tuiles HTTP 200, le marqueur et l’attribution OpenStreetMap visibles.
+- Correction du focus après montage du panneau de préférences ; fermeture avec Échap vérifiée.
+- Aucun push ni déploiement effectué.
+
+### Recette initiale de la refonte
+
+Le tableau ci-dessous consigne la recette de la refonte **avant l’activation de la carte OpenStreetMap**. Il ne constitue pas une validation de la nouvelle iframe ni de la migration du consentement en version 3.
 
 | Vérification            | Résultat                                                                                                                      |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -101,11 +126,11 @@ Le contrôle `npm.cmd run format:check` est également réussi. Les deux copies 
 
 1. Confirmer l’identité juridique exacte, l’e-mail professionnel, les inscriptions/identifiants applicables et les données de contact. Les textes légaux et leurs traductions sont explicitement provisoires.
 2. Confirmer hébergement, destinataires/sous-traitants, bases légales, durées de conservation et éventuels transferts ; faire vérifier DDG, RGPD, TDDDG et l’applicabilité du BFSG. Aucun label de conformité juridique n’est revendiqué. Sources : [§ 5 DDG](https://www.gesetze-im-internet.de/ddg/__5.html), [§ 25 TDDDG](https://www.gesetze-im-internet.de/ttdsg/__25.html), [RGPD](https://eur-lex.europa.eu/eli/reg/2016/679/oj), [BFSG](https://www.gesetze-im-internet.de/bfsg/).
-3. Vérifier le point géographique avant toute iframe ; conserver le repli adresse/lien tant que cette vérification manque.
+3. Le point géographique du bâtiment est vérifié. Faire confirmer par l’entreprise l’usage professionnel de cette adresse et valider les conditions du fournisseur cartographique, les informations de confidentialité et le fonctionnement réel de l’iframe après consentement avant publication.
 4. Ne pas activer l’e-mail avant configuration du destinataire officiel, tests réels autorisés et adaptation des textes légaux/FAQ au mode d’envoi réel. Aucun e-mail ni service tiers de formulaire n’a été testé en production.
 5. L’installation des dépendances avait signalé cinq alertes de sévérité élevée. L’audit réseau final a été bloqué par le mécanisme d’approbation faute de crédits, sans détermination que la commande serait dangereuse. Aucune correction forcée n’a été appliquée. Reprendre `npm.cmd audit` et traiter les alertes avant publication.
 6. Recontrôler le lien source Pexels 5691545, accessible lors de la sélection initiale mais non rouvert avec l’outil web le 23 octobre. Obtenir des photographies réelles autorisées si souhaitées.
-7. Pas de mesure Lighthouse, de test sur appareils physiques ni de validation réelle d’une iframe cartographique. Les contrôles navigateur décrits ci-dessus ne remplacent pas ces validations.
+7. Pas de mesure Lighthouse ni de test sur appareils physiques. La carte réelle a été contrôlée localement dans Chrome, mais sa disponibilité dépend du réseau et du fournisseur ; revérifier le déploiement final. Les contrôles décrits ci-dessus ne remplacent pas un audit complet.
 
 ## Démarrer
 

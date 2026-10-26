@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ContactDetails } from "@/components/layout/ContactDetails";
 import { ContactFormWithQuery } from "@/components/forms/ContactFormWithQuery";
-import { Location } from "./Location";
 import { getContent } from "@/i18n/content";
 import { getServices, type LocalizedService } from "@/i18n/services";
 import {
@@ -28,7 +27,6 @@ function Photo({
   locale: Locale;
   hero?: boolean;
 }) {
-  const t = getContent(locale).common;
   return (
     <figure className={`editorial-photo ${hero ? "editorial-photo-hero" : ""}`}>
       <div className="editorial-photo-frame">
@@ -44,15 +42,6 @@ function Photo({
           preload={hero}
         />
       </div>
-      <figcaption>
-        {t.illustration}
-        <span>
-          ©{" "}
-          <a href={photo.sourceUrl} target="_blank" rel="noreferrer">
-            {photo.credit}
-          </a>
-        </span>
-      </figcaption>
     </figure>
   );
 }
@@ -410,7 +399,6 @@ export function WebsitePage({
             </Link>
           </Container>
         </section>
-        <Location locale={locale} />
         <CTA locale={locale} />
       </>
     );
@@ -542,7 +530,6 @@ export function WebsitePage({
           </Suspense>
         </Container>
       </section>
-      <Location locale={locale} />
     </>
   );
 }

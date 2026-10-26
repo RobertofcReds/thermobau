@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { FooterLocation } from "@/components/layout/FooterLocation";
 import { siteConfig } from "@/config/site";
 import { publicationReady, getSiteUrl } from "@/lib/publication";
 import "../globals.css";
@@ -88,6 +89,7 @@ export default async function RootLayout({
             {children}
           </main>
           <SiteFooter locale={locale} />
+          <FooterLocation locale={locale} />
           <PrivacyPreferences locale={locale} />
         </NextIntlClientProvider>
         {business && (

@@ -6,9 +6,8 @@ const copy = {
       servicesCta: "Leistungen entdecken",
       detailsCta: "Mehr erfahren",
       allServices: "Alle Leistungen",
-      illustration: "Symbolbild",
       illustrationNote:
-        "Symbolbilder · Keine dokumentierten Referenzprojekte von Thermobau V&V",
+        "Die Fotos veranschaulichen die Tätigkeiten und zeigen keine dokumentierten Kundenprojekte von Thermobau V&V.",
       typicalWork: "Typische Arbeiten",
       planning: "Für Ihre erste Anfrage",
       faqTitle: "Was Sie vorab wissen möchten",
@@ -105,7 +104,7 @@ const copy = {
         ],
         [
           "Zeigen die Fotos eigene Projekte?",
-          "Nein. Alle als Symbolbild gekennzeichneten Fotos illustrieren die Tätigkeiten. Sie dokumentieren keine ausgeführten Kundenprojekte und zeigen nicht die Beschäftigten von Thermobau V&V.",
+          "Nein. Die Fotos veranschaulichen die Tätigkeiten. Sie dokumentieren keine ausgeführten Kundenprojekte und zeigen nicht die Beschäftigten von Thermobau V&V.",
         ],
         [
           "Kann ich über das Formular schon eine Nachricht senden?",
@@ -178,9 +177,8 @@ const copy = {
       servicesCta: "Explore services",
       detailsCta: "Find out more",
       allServices: "All services",
-      illustration: "Illustrative photo",
       illustrationNote:
-        "Illustrative photos · Not documented Thermobau V&V projects",
+        "The photos illustrate areas of work, not documented Thermobau V&V customer projects.",
       typicalWork: "Typical work",
       planning: "For your first enquiry",
       faqTitle: "What you may want to know",
@@ -277,7 +275,7 @@ const copy = {
         ],
         [
           "Do the photos show company projects?",
-          "No. Photos marked as illustrative show the areas of work. They do not document customer projects and do not represent Thermobau V&V employees.",
+          "No. The photos show the areas of work. They do not document customer projects and do not represent Thermobau V&V employees.",
         ],
         [
           "Can I send a message using the form?",
@@ -350,9 +348,8 @@ const copy = {
       servicesCta: "Découvrir les prestations",
       detailsCta: "En savoir plus",
       allServices: "Toutes les prestations",
-      illustration: "Photo d’illustration",
       illustrationNote:
-        "Photos d’illustration · Aucun chantier documenté de Thermobau V&V",
+        "Les photos présentent les métiers et ne documentent pas des chantiers clients de Thermobau V&V.",
       typicalWork: "Travaux typiques",
       planning: "Pour votre première demande",
       faqTitle: "Les réponses à vos premières questions",
@@ -449,7 +446,7 @@ const copy = {
         ],
         [
           "Les photos montrent-elles des réalisations de l’entreprise ?",
-          "Non. Les photos signalées comme illustrations présentent les métiers. Elles ne documentent pas des chantiers clients et ne représentent pas les employés de Thermobau V&V.",
+          "Non. Les photos présentent les métiers. Elles ne documentent pas des chantiers clients et ne représentent pas les employés de Thermobau V&V.",
         ],
         [
           "Puis-je envoyer un message depuis le formulaire ?",

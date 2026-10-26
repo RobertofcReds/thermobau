@@ -40,7 +40,7 @@ const copy: Record<
         {
           title: "Bildmaterial",
           paragraphs: [
-            "Die verwendeten Fotografien stammen aus der Bildbibliothek Pexels und sind als Symbolbilder gekennzeichnet. Sie zeigen keine nachgewiesenen Kundenprojekte und stellen keine Mitarbeiter von Thermobau V&V dar. Urheber und Quellen sind an den Fotografien verlinkt.",
+            "Die verwendeten Fotografien stammen aus der Bildbibliothek Pexels und veranschaulichen die Tätigkeitsbereiche. Sie zeigen keine nachgewiesenen Kundenprojekte und stellen keine Mitarbeiter von Thermobau V&V dar. Die einzelnen Bilder tragen keine Quellenzeile; Urheber, Quellen und Lizenznachweise werden in der internen Projektdokumentation aufbewahrt.",
           ],
         },
       ],
@@ -75,15 +75,16 @@ const copy: Record<
         {
           title: "Datenschutzeinstellungen",
           paragraphs: [
-            "Die Auswahl zu optionalen Karten ist höchstens 180 Tage gültig und wird unter thermobau-privacy-v2 im lokalen Browserspeicher hinterlegt. Ein abgelaufener Eintrag wird beim nächsten Aufruf der Website beziehungsweise während einer geöffneten Sitzung entfernt. Gespeichert werden nur Version, Auswahl und Ablaufzeit – keine Formulareingaben. Diese Speicherung dient der gewünschten Verwaltung Ihrer Einstellungen. Freiwillige Dienste sind standardmäßig aus.",
+            "Die Auswahl zu optionalen Karten ist höchstens 180 Tage gültig und wird unter thermobau-privacy-v4 im lokalen Browserspeicher hinterlegt. Ein abgelaufener Eintrag wird beim nächsten Aufruf der Website beziehungsweise während einer geöffneten Sitzung entfernt. Gespeichert werden nur Version, Auswahl und Ablaufzeit – keine Formulareingaben. Diese Speicherung dient der gewünschten Verwaltung Ihrer Einstellungen. Freiwillige Dienste sind standardmäßig aus. Für die aktuelle Google-Maps-Einbindung ist eine neue Auswahl erforderlich; frühere Einstellungen für Google Maps oder OpenStreetMap werden nicht übernommen.",
             "Sie können Ihre Auswahl jederzeit über „Datenschutzeinstellungen“ im Fußbereich ändern. Nach dem Widerruf wird eine aktive Karte entfernt und nicht erneut geladen. Der Widerruf wirkt für die Zukunft. Wenn der Browserspeicher blockiert ist, gilt die Auswahl nur für die laufende Sitzung.",
           ],
         },
         {
           title: "Karten und externe Links",
           paragraphs: [
-            "Solange der geografische Punkt nicht bestätigt ist, zeigen wir nur die textuelle Adresse und einen externen Routenlink. Es wird keine eingebettete Karte geladen. Der Klick auf einen externen Link öffnet den Anbieter unabhängig von den Einstellungen dieser Website.",
-            "Eine künftige Google-Maps-Einbettung darf erst nach Bestätigung des Punktes und Ihrer gesonderten Zustimmung geladen werden. Dabei können IP-Adresse, Browserdaten und gegebenenfalls weitere vom Anbieter verarbeitete Daten an Google übertragen werden. Anbieterbedingungen, Empfänger, Speicherfristen und mögliche Drittlandübermittlungen sind vor Aktivierung zu prüfen. Angaben von Google finden Sie über den unten verlinkten Datenschutzhinweis.",
+            "Auf der Start- und Kontaktseite befindet sich unterhalb des Fußbereichs eine eingebettete Google-Maps-Karte mit wählbarer Karten- und Satellitenansicht. Sie wird direkt innerhalb der Seite angezeigt und bleibt bis zu Ihrer ausdrücklichen Zustimmung über die Kartenschaltfläche oder die Datenschutzeinstellungen deaktiviert. Die textuelle Adresse ist auch ohne Karte verfügbar. Der markierte Punkt wurde für das Gebäude an der angegebenen Adresse geprüft, nicht als Unternehmensverzeichnis-Eintrag.",
+            "Beim Laden werden unter anderem IP-Adresse, Browser- und Geräteinformationen an Google und beteiligte Dienstleister übertragen. Abhängig von Ihren Google- und Browsereinstellungen kann Google weitere Informationen verarbeiten oder Daten mit einem angemeldeten Konto verknüpfen. Einzelheiten stehen im unten verlinkten Datenschutzhinweis von Google. Empfänger, Speicherfristen, Rechtsgrundlagen und mögliche internationale Übermittlungen bleiben vor Veröffentlichung rechtlich zu prüfen.",
+            "Der separate Routenlink führt zu Google Maps im selben Browser-Tab. Er ist unabhängig von der Zustimmung zur eingebetteten Karte nutzbar. Auch das Öffnen dieses Links ruft Google auf; dort gelten die unten verlinkten Datenschutzhinweise von Google.",
           ],
         },
         {
@@ -96,7 +97,7 @@ const copy: Record<
         {
           title: "Vor Veröffentlichung zu bestätigen",
           paragraphs: [
-            "Verantwortlicher und elektronische Kontaktmöglichkeit; Hosting und Protokolle; rechtliche Grundlagen; tatsächliche Empfänger und Auftragsverarbeiter; Aufbewahrungs- und Löschfristen; Kartenanbieter und Punkt; Formularbetrieb sowie mögliche internationale Übermittlungen.",
+            "Verantwortlicher und elektronische Kontaktmöglichkeit; Hosting und Protokolle; rechtliche Grundlagen; tatsächliche Empfänger und Auftragsverarbeiter; Aufbewahrungs- und Löschfristen; Bedingungen des Kartendienstes und geschäftliche Nutzung der angegebenen Adresse; Formularbetrieb sowie mögliche internationale Übermittlungen.",
           ],
         },
       ],
@@ -117,7 +118,7 @@ const copy: Record<
         {
           title: "Inhalte und Urheberrechte",
           paragraphs: [
-            "Texte, Gestaltung, Logo und Fotos können unterschiedlichen Rechten unterliegen. Aus der Anzeige auf dieser Website folgt keine allgemeine Erlaubnis zur Weiterverwendung. Die Pexels-Fotografien unterliegen der jeweiligen Lizenz. Quellen und Urheber sind an den Bildern angegeben.",
+            "Texte, Gestaltung, Logo und Fotos können unterschiedlichen Rechten unterliegen. Aus der Anzeige auf dieser Website folgt keine allgemeine Erlaubnis zur Weiterverwendung. Die Pexels-Fotografien unterliegen der jeweiligen Lizenz. Quellen, Urheber und Lizenznachweise werden in der internen Projektdokumentation aufbewahrt. Die erforderlichen Quellenhinweise des Kartendienstes bleiben innerhalb der Karte sichtbar.",
           ],
         },
         {
@@ -165,7 +166,7 @@ const copy: Record<
         {
           title: "Photographs",
           paragraphs: [
-            "Photographs are sourced from Pexels and labelled as illustrative. They are not verified customer projects and do not depict Thermobau V&V employees. Credits and source links accompany the photographs.",
+            "Photographs are sourced from Pexels to illustrate the areas of work. They are not verified customer projects and do not depict Thermobau V&V employees. Individual photographs have no credit line; authors, sources and licence records are retained in the internal project documentation.",
           ],
         },
       ],
@@ -200,15 +201,16 @@ const copy: Record<
         {
           title: "Privacy settings",
           paragraphs: [
-            "Your optional-map choice is valid for no more than 180 days and is stored locally in your browser under thermobau-privacy-v2. Expired entries are removed during an open session or when you next visit the website. Only the version, choice and expiry are stored, not form entries. This storage manages your requested preferences. Optional services are off by default.",
+            "Your optional-map choice is valid for no more than 180 days and is stored locally in your browser under thermobau-privacy-v4. Expired entries are removed during an open session or when you next visit the website. Only the version, choice and expiry are stored, not form entries. This storage manages your requested preferences. Optional services are off by default. The current Google Maps embed requires a new choice; previous Google Maps or OpenStreetMap preferences are not carried over.",
             "You can change your choice using “Privacy settings” in the footer. Withdrawal removes an active map and prevents further loading. Withdrawal takes effect for the future. If browser storage is blocked, the choice lasts only for the current session.",
           ],
         },
         {
           title: "Maps and external links",
           paragraphs: [
-            "Until the geographic point is confirmed, only a text address and external directions link are displayed. No embedded map is loaded. Following an external link opens its provider independently of this website’s preferences.",
-            "A future Google Maps embed may load only after the point is confirmed and you give separate consent. This can transmit your IP address, browser data and other provider-processed information to Google. Provider terms, recipients, retention and any international transfers must be reviewed before activation. Google’s privacy information is linked below.",
+            "The home and contact pages offer an embedded Google Maps map below the footer, with a choice of road and satellite views. It is displayed directly within the page and remains disabled until you explicitly consent using the map button or privacy settings. The text address remains available without the map. The marker was checked against the building at the supplied address, not a business-directory listing.",
+            "Loading transmits information including your IP address, browser and device details to Google and involved service providers. Depending on your Google and browser settings, Google may process other information or associate data with a signed-in account. See Google’s privacy policy linked below. Recipients, retention, legal bases and possible international transfers still require legal review before publication.",
+            "The separate directions link opens Google Maps in the same browser tab. It works independently of consent for the embedded map. Following this link also contacts Google; Google’s privacy information, linked below, applies there.",
           ],
         },
         {
@@ -221,7 +223,7 @@ const copy: Record<
         {
           title: "Before publication",
           paragraphs: [
-            "Confirm the controller and electronic contact, hosting and logs, legal bases, actual recipients and processors, retention and deletion periods, map provider and location, form operation and any international transfers.",
+            "Confirm the controller and electronic contact, hosting and logs, legal bases, actual recipients and processors, retention and deletion periods, map-service terms and business use of the supplied address, form operation and any international transfers.",
           ],
         },
       ],
@@ -242,7 +244,7 @@ const copy: Record<
         {
           title: "Content and copyright",
           paragraphs: [
-            "Text, design, the logo and photographs may be subject to different rights. Display on this website does not provide general permission for reuse. Pexels photographs are governed by their licence. Credits and sources accompany each image.",
+            "Text, design, the logo and photographs may be subject to different rights. Display on this website does not provide general permission for reuse. Pexels photographs are governed by their licence. Authors, sources and licence records are retained in the internal project documentation. Required map-provider attribution remains visible within the map.",
           ],
         },
         {
@@ -291,7 +293,7 @@ const copy: Record<
         {
           title: "Photographies",
           paragraphs: [
-            "Les photographies proviennent de Pexels et sont signalées comme illustrations. Elles ne représentent pas des chantiers clients vérifiés ni les employés de Thermobau V&V. Le crédit et la source accompagnent chaque photographie.",
+            "Les photographies proviennent de Pexels et illustrent les domaines de travaux. Elles ne représentent pas des chantiers clients vérifiés ni les employés de Thermobau V&V. Les images individuelles n’affichent pas de ligne de crédit ; les auteurs, sources et justificatifs de licence sont conservés dans la documentation interne du projet.",
           ],
         },
       ],
@@ -326,15 +328,16 @@ const copy: Record<
         {
           title: "Préférences de confidentialité",
           paragraphs: [
-            "Le choix relatif aux cartes facultatives est valable au maximum 180 jours et conservé localement dans le navigateur sous thermobau-privacy-v2. Une entrée expirée est supprimée pendant une session ouverte ou lors de la prochaine consultation du site. Seuls la version, le choix et l’expiration sont enregistrés, jamais les champs du formulaire. Ce stockage sert à gérer les préférences demandées. Les services facultatifs sont désactivés par défaut.",
+            "Le choix relatif aux cartes facultatives est valable au maximum 180 jours et conservé localement dans le navigateur sous thermobau-privacy-v4. Une entrée expirée est supprimée pendant une session ouverte ou lors de la prochaine consultation du site. Seuls la version, le choix et l’expiration sont enregistrés, jamais les champs du formulaire. Ce stockage sert à gérer les préférences demandées. Les services facultatifs sont désactivés par défaut. L’intégration actuelle de Google Maps demande un nouveau choix ; les anciennes préférences Google Maps ou OpenStreetMap ne sont pas reprises.",
             "Vous pouvez modifier ce choix via « Paramètres de confidentialité » dans le pied de page. Le retrait supprime une carte active et empêche tout nouveau chargement. Il prend effet pour l’avenir. Si le stockage du navigateur est bloqué, le choix ne dure que pendant la session en cours.",
           ],
         },
         {
           title: "Cartes et liens externes",
           paragraphs: [
-            "Tant que le point géographique n’est pas confirmé, seules l’adresse textuelle et un lien d’itinéraire externe sont affichés. Aucune carte intégrée n’est chargée. Ouvrir un lien externe mène chez son fournisseur indépendamment des préférences de ce site.",
-            "Une future intégration Google Maps ne pourra être chargée qu’après confirmation du point et votre accord distinct. Elle peut transmettre à Google votre adresse IP, des informations sur le navigateur et d’autres données traitées par ce fournisseur. Conditions, destinataires, durées et éventuels transferts internationaux doivent être vérifiés avant activation. Les informations de Google sont liées ci-dessous.",
+            "L’accueil et la page Contact proposent une carte Google Maps intégrée sous le pied de page, avec un choix entre les vues Plan et Satellite. Elle s’affiche directement dans la page et reste désactivée jusqu’à votre accord explicite via le bouton de la carte ou les paramètres de confidentialité. L’adresse textuelle reste disponible sans carte. Le marqueur a été vérifié pour le bâtiment à l’adresse fournie, pas comme fiche d’entreprise.",
+            "Le chargement transmet notamment l’adresse IP et des informations sur le navigateur et l’appareil à Google et aux prestataires impliqués. Selon vos paramètres Google et ceux du navigateur, Google peut traiter d’autres informations ou associer des données à un compte connecté. Sa politique de confidentialité est liée ci-dessous. Destinataires, durées, bases légales et éventuels transferts internationaux restent à vérifier juridiquement avant publication.",
+            "Le lien d’itinéraire distinct ouvre Google Maps dans le même onglet. Il fonctionne indépendamment de l’accord pour la carte intégrée. L’ouverture de ce lien contacte également Google ; ses informations de confidentialité, liées ci-dessous, s’y appliquent.",
           ],
         },
         {
@@ -347,7 +350,7 @@ const copy: Record<
         {
           title: "À confirmer avant publication",
           paragraphs: [
-            "Responsable et contact électronique, hébergement et journaux, bases légales, destinataires et sous-traitants réels, durées de conservation et de suppression, fournisseur et point cartographiques, fonctionnement du formulaire et éventuels transferts internationaux.",
+            "Responsable et contact électronique, hébergement et journaux, bases légales, destinataires et sous-traitants réels, durées de conservation et de suppression, conditions du service cartographique et utilisation professionnelle de l’adresse fournie, fonctionnement du formulaire et éventuels transferts internationaux.",
           ],
         },
       ],
@@ -368,7 +371,7 @@ const copy: Record<
         {
           title: "Contenus et droits d’auteur",
           paragraphs: [
-            "Textes, présentation, logo et photographies peuvent relever de droits différents. Leur affichage ne constitue pas une autorisation générale de réutilisation. Les photographies Pexels sont régies par leur licence. Les crédits et sources accompagnent chaque image.",
+            "Textes, présentation, logo et photographies peuvent relever de droits différents. Leur affichage ne constitue pas une autorisation générale de réutilisation. Les photographies Pexels sont régies par leur licence. Les auteurs, sources et justificatifs de licence sont conservés dans la documentation interne du projet. Les attributions requises par le fournisseur cartographique restent visibles dans la carte.",
           ],
         },
         {

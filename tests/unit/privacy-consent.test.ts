@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { CONSENT_KEY, CONSENT_TTL, parseConsent } from "@/lib/privacy-consent";
 
 const now = Date.UTC(2026, 9, 23, 12);
-const valid = { version: 3, maps: true, expires: now + CONSENT_TTL };
+const valid = { version: 4, maps: true, expires: now + CONSENT_TTL };
 
 afterEach(() => {
   vi.useRealTimers();
@@ -10,7 +10,7 @@ afterEach(() => {
 
 describe("stored privacy consent", () => {
   it("uses the current storage version and a maximum lifetime of 180 days", () => {
-    expect(CONSENT_KEY).toBe("thermobau-privacy-v3");
+    expect(CONSENT_KEY).toBe("thermobau-privacy-v4");
     expect(CONSENT_TTL).toBe(180 * 24 * 60 * 60 * 1000);
   });
 
@@ -33,7 +33,7 @@ describe("stored privacy consent", () => {
     },
   );
 
-  it.each([undefined, 1, 3, "2"])(
+  it.each([undefined, 1, 2, 3, "4"])(
     "requires a new choice for missing or different consent version %s",
     (version) => {
       expect(
@@ -60,7 +60,7 @@ describe("stored privacy consent", () => {
 
   it("rejects a non-finite expiry parsed from JSON", () => {
     expect(
-      parseConsent('{"version":2,"maps":true,"expires":1e999}', now),
+      parseConsent('{"version":4,"maps":true,"expires":1e999}', now),
     ).toBeNull();
   });
 

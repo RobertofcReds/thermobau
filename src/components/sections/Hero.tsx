@@ -44,9 +44,6 @@ export function Hero() {
             <span>Bestand neu denken.</span>
             <ArrowDown size={23} />
           </div>
-          <figcaption>
-            Symbolbild · Kein Referenzprojekt von Thermobau V&V
-          </figcaption>
         </figure>
       </Container>
     </section>

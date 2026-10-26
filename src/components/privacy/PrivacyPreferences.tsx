@@ -10,7 +10,7 @@ let storageUnavailable = false;
 const copy = {
   de: {
     title: "Ihre Datenschutzeinstellungen",
-    text: "Wir verwenden notwendige Funktionen für diese Website. Die optionale OpenStreetMap-Karte wird nur mit Ihrer Zustimmung geladen. Dabei werden Ihre IP-Adresse und Browserdaten an die OpenStreetMap Foundation übertragen.",
+    text: "Wir verwenden notwendige Funktionen für diese Website. Die optionale Google-Maps-Karte wird nur mit Ihrer Zustimmung geladen. Dabei werden Ihre IP-Adresse und Browserdaten an Google übertragen.",
     reject: "Alle ablehnen",
     settings: "Einstellungen",
     accept: "Alle akzeptieren",
@@ -23,11 +23,11 @@ const copy = {
     unavailable:
       "Der Kartenpunkt ist noch nicht bestätigt. Aktuell wird keine externe Karte eingebunden.",
     detail:
-      "OpenStreetMap Foundation: Ihre Auswahl gilt höchstens 180 Tage und ist jederzeit hier widerrufbar. Ohne Zustimmung bleibt die Karte deaktiviert.",
+      "Google Maps (Karte und Satellit): Ihre Auswahl gilt höchstens 180 Tage und ist jederzeit hier widerrufbar. Ohne Zustimmung bleibt die Karte deaktiviert.",
   },
   en: {
     title: "Privacy settings",
-    text: "We use necessary functions to operate this website. The optional OpenStreetMap map loads only with your consent, transmitting your IP address and browser data to the OpenStreetMap Foundation.",
+    text: "We use necessary functions to operate this website. The optional Google Maps embed loads only with your consent, transmitting your IP address and browser data to Google.",
     reject: "Reject optional",
     settings: "Settings",
     accept: "Accept optional",
@@ -40,11 +40,11 @@ const copy = {
     unavailable:
       "The map location has not yet been confirmed. No external map is currently embedded.",
     detail:
-      "OpenStreetMap Foundation: your choice lasts no more than 180 days and can be withdrawn here at any time. Without consent, the map stays disabled.",
+      "Google Maps (map and satellite): your choice lasts no more than 180 days and can be withdrawn here at any time. Without consent, the map stays disabled.",
   },
   fr: {
     title: "Paramètres de confidentialité",
-    text: "Nous utilisons les fonctions nécessaires à ce site. La carte facultative OpenStreetMap se charge uniquement avec votre accord et transmet alors votre adresse IP et des données du navigateur à la fondation OpenStreetMap.",
+    text: "Nous utilisons les fonctions nécessaires à ce site. La carte facultative Google Maps se charge uniquement avec votre accord et transmet alors votre adresse IP et des données du navigateur à Google.",
     reject: "Tout refuser",
     settings: "Paramètres",
     accept: "Tout accepter",
@@ -57,7 +57,7 @@ const copy = {
     unavailable:
       "Le point géographique n’est pas encore confirmé. Aucune carte externe n’est actuellement intégrée.",
     detail:
-      "Fondation OpenStreetMap : votre choix dure au maximum 180 jours et peut être retiré ici à tout moment. Sans accord, la carte reste désactivée.",
+      "Google Maps (plan et satellite) : votre choix dure au maximum 180 jours et peut être retiré ici à tout moment. Sans accord, la carte reste désactivée.",
   },
 };
 function rawChoice() {
@@ -142,7 +142,7 @@ export function useMapConsent() {
 }
 export function setMapConsent(maps: boolean) {
   memory = JSON.stringify({
-    version: 3,
+    version: 4,
     maps,
     expires: Date.now() + CONSENT_TTL,
   });
@@ -159,20 +159,37 @@ export function PrivacyPreferences({ locale }: { locale: Locale }) {
   const [forcedOpen, setForcedOpen] = useState(false);
   const [detailed, setDetailed] = useState(false);
   const [maps, setMaps] = useState(false);
+  const [panelHeight, setPanelHeight] = useState(0);
   const trigger = useRef<HTMLElement | null>(null);
   const panel = useRef<HTMLElement | null>(null);
   const t = copy[locale];
+  const visible =
+    stored !== "server" &&
+    (forcedOpen || (stored === null && verifiedMapLocation !== null));
+  useEffect(() => {
+    if (!visible || !panel.current) return;
+    // Reserve enough scroll space to reach controls behind the floating panel,
+    // including the map now placed at the very bottom of the document.
+    const observer = new ResizeObserver(() => {
+      setPanelHeight(panel.current?.getBoundingClientRect().height ?? 0);
+    });
+    observer.observe(panel.current);
+    return () => observer.disconnect();
+  }, [visible]);
   useEffect(() => {
     const reopen = () => {
       trigger.current = document.activeElement as HTMLElement;
       setMaps(getMapConsent());
       setDetailed(true);
       setForcedOpen(true);
-      requestAnimationFrame(() => panel.current?.focus());
     };
     window.addEventListener("thermobau-open-privacy", reopen);
     return () => window.removeEventListener("thermobau-open-privacy", reopen);
   }, []);
+  useEffect(() => {
+    // Focus only after React has mounted the reopened panel.
+    if (forcedOpen) panel.current?.focus();
+  }, [forcedOpen]);
   useEffect(() => {
     // Only another tab's persisted choice replaces the draft selection. Focus,
     // polling and editing this tab's checkbox must leave that draft untouched.
@@ -191,65 +208,64 @@ export function PrivacyPreferences({ locale }: { locale: Locale }) {
     setMapConsent(choice);
     close();
   }
-  if (
-    stored === "server" ||
-    (!forcedOpen && (stored !== null || !verifiedMapLocation))
-  )
-    return null;
+  if (!visible) return null;
   return (
-    <section
-      ref={panel}
-      tabIndex={-1}
-      className="privacy-panel"
-      role="dialog"
-      aria-modal="false"
-      aria-labelledby="privacy-title"
-      onKeyDown={(e) => {
-        if (e.key === "Escape" && forcedOpen) close();
-      }}
-    >
-      <div className="privacy-heading">
-        <h2 id="privacy-title">{t.title}</h2>
-        {forcedOpen && (
-          <button onClick={close} aria-label={t.close}>
-            ×
-          </button>
-        )}
-      </div>
-      <p>{t.text}</p>
-      <p>
-        <Link href={pagePath("privacy", locale)}>{t.privacy}</Link>
-      </p>
-      {detailed && (
-        <div className="privacy-options">
-          <div>
-            <span>{t.necessary}</span>
-            <strong>{t.always}</strong>
-          </div>
-          <label>
-            <span>{t.maps}</span>
-            <input
-              type="checkbox"
-              checked={maps}
-              onChange={(e) => setMaps(e.target.checked)}
-            />
-          </label>
-          <p>{t.detail}</p>
-          {!verifiedMapLocation && <p>{t.unavailable}</p>}
+    <>
+      <section
+        ref={panel}
+        tabIndex={-1}
+        className="privacy-panel"
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="privacy-title"
+        onKeyDown={(e) => {
+          if (e.key === "Escape" && forcedOpen) close();
+        }}
+      >
+        <div className="privacy-heading">
+          <h2 id="privacy-title">{t.title}</h2>
+          {forcedOpen && (
+            <button onClick={close} aria-label={t.close}>
+              ×
+            </button>
+          )}
         </div>
-      )}
-      <div className="privacy-actions">
-        <button onClick={() => choose(false)}>{t.reject}</button>
-        {!detailed ? (
-          <>
-            <button onClick={() => setDetailed(true)}>{t.settings}</button>
-            <button onClick={() => choose(true)}>{t.accept}</button>
-          </>
-        ) : (
-          <button onClick={() => choose(maps)}>{t.save}</button>
+        <p>{t.text}</p>
+        <p>
+          <Link href={pagePath("privacy", locale)}>{t.privacy}</Link>
+        </p>
+        {detailed && (
+          <div className="privacy-options">
+            <div>
+              <span>{t.necessary}</span>
+              <strong>{t.always}</strong>
+            </div>
+            <label>
+              <span>{t.maps}</span>
+              <input
+                type="checkbox"
+                checked={maps}
+                onChange={(e) => setMaps(e.target.checked)}
+              />
+            </label>
+            <p>{t.detail}</p>
+            {!verifiedMapLocation && <p>{t.unavailable}</p>}
+          </div>
         )}
-      </div>
-    </section>
+        <div className="privacy-actions">
+          <button onClick={() => choose(false)}>{t.reject}</button>
+          {!detailed ? (
+            <>
+              <button onClick={() => setDetailed(true)}>{t.settings}</button>
+              <button onClick={() => choose(true)}>{t.accept}</button>
+            </>
+          ) : (
+            <button onClick={() => choose(maps)}>{t.save}</button>
+          )}
+        </div>
+      </section>
+      <div aria-hidden="true" style={{ height: panelHeight + 32 }} />
+    </>
   );
 }
 export function PrivacySettingsButton({ locale }: { locale: Locale }) {

@@ -20,7 +20,6 @@ export function ServiceGrid({ items = services }: { items?: Service[] }) {
               height={480}
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
             />
-            <span className="image-label">Symbolbild</span>
           </div>
           <div className="service-card-content">
             <div className="service-card-title">

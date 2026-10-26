@@ -6,9 +6,9 @@ Vérification et intégration : 21–23 octobre 2026. Registre correspondant à 
 
 ## Licence et présentation
 
-Toutes les photos actives sont issues de [Pexels](https://www.pexels.com/license/), dont la licence permet l’utilisation commerciale sur un site et la modification. Les fichiers sont hébergés localement. Les crédits et les liens sources sont visibles sous chaque image, même lorsque l’attribution n’est pas obligatoire. Il ne faut pas suggérer que les personnes ou marques photographiées soutiennent l’entreprise, revendre les copies non modifiées, ni redistribuer ces fichiers comme photothèque.
+Toutes les photos actives sont issues de [Pexels](https://www.pexels.com/license/), dont la licence permet l’utilisation commerciale sur un site et la modification sans imposer d’attribution. Les fichiers sont hébergés localement. À la demande du client, les crédits et les liens sous chaque image ont été retirés ; le présent registre conserve leur provenance et leur licence. Il ne faut pas suggérer que les personnes ou marques photographiées soutiennent l’entreprise, revendre les copies non modifiées, ni redistribuer ces fichiers comme photothèque.
 
-Toutes les lignes du registre utilisent cette licence et la mention localisée **Symbolbild / Illustrative photo / Photo d’illustration**. Les personnes stock ne sont pas l’équipe Thermobau V&V ; aucune image n’est une référence client ou une preuve de chantier réalisé. Un échafaudage ou un autre équipement visible n’ajoute pas de prestation aux six domaines confirmés.
+Toutes les lignes du registre utilisent cette licence. Les étiquettes individuelles **Symbolbild / Illustrative photo / Photo d’illustration** ont été retirées ; une information générale précise le caractère illustratif des photos. Les personnes stock ne sont pas l’équipe Thermobau V&V ; aucune image n’est une référence client ou une preuve de chantier réalisé. Un échafaudage ou un autre équipement visible n’ajoute pas de prestation aux six domaines confirmés.
 
 ## Fichiers actifs
 

@@ -113,8 +113,10 @@ describe("Rendu des médias autorisés", () => {
     expect(html).not.toContain("sans-droits");
     expect(html).toContain('alt="Illustration autorise"');
     expect(html).toContain("/images/tests/autorise.svg");
-    expect(html).toContain("Bildnachweis autorise");
-    expect(html).toContain("Symbolbild · Illustration");
+    expect(html).not.toContain("Bildnachweis autorise");
+    expect(html).not.toContain("Symbolbild");
+    expect(html).not.toContain('class="photo-credit"');
+    expect(html).not.toContain('class="image-label"');
     expect(html).toContain("keine dokumentierten Referenzprojekte");
   });
 
@@ -132,7 +134,7 @@ describe("Rendu des médias autorisés", () => {
     );
   });
 
-  it("distingue un projet réel autorisé par son titre, son lieu et son crédit vérifiés", () => {
+  it("conserve le titre et le lieu vérifiés d'un projet autorisé sans crédit ou badge sous l'image", () => {
     const html = renderToStaticMarkup(
       createElement(GalleryComponent, {
         items: [
@@ -146,10 +148,11 @@ describe("Rendu des médias autorisés", () => {
       }),
     );
 
-    expect(html).toContain("Dokumentiertes Projekt");
+    expect(html).not.toContain("Dokumentiertes Projekt");
     expect(html).toContain("Projekttitel aus der Testfreigabe");
     expect(html).toContain("Freigegebener Testort");
-    expect(html).toContain("Bildnachweis projet-test");
+    expect(html).not.toContain("Bildnachweis projet-test");
+    expect(html).not.toContain('class="photo-credit"');
     expect(html).toContain('alt="Beschreibung des freigegebenen Testprojekts"');
     expect(html).not.toContain("Symbolbild · Illustration");
     expect(html).not.toContain("Titel projet-test");

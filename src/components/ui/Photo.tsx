@@ -4,13 +4,11 @@ export function Photo({
   image,
   className = "",
   priority = false,
-  caption = "Symbolbild · Kein Referenzprojekt von Thermobau V&V",
   sizes = "(max-width: 767px) 100vw, 50vw",
 }: {
   image: { src: string; alt: string };
   className?: string;
   priority?: boolean;
-  caption?: string;
   sizes?: string;
 }) {
   return (
@@ -24,7 +22,6 @@ export function Photo({
           preload={priority}
         />
       </div>
-      <figcaption>{caption}</figcaption>
     </figure>
   );
 }

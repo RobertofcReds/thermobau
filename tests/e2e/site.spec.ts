@@ -239,10 +239,10 @@ test("la galerie expose clairement son caractère illustratif", async ({
     ),
   ).toBeVisible();
   await expect(page.locator(".editorial-gallery img")).toHaveCount(6);
-  for (const caption of await page
-    .locator(".editorial-gallery figcaption")
-    .allTextContents())
-    expect(caption).toContain("Symbolbild");
+  await expect(page.locator(".editorial-gallery figcaption")).toHaveCount(0);
+  await expect(
+    page.locator(".editorial-gallery a[href*='pexels.com']"),
+  ).toHaveCount(0);
 });
 
 test("les pages inconnues et les services inconnus répondent avec une 404 allemande", async ({
@@ -294,16 +294,14 @@ test("la carte intégrée se charge après accord et disparaît après retrait",
   context,
 }) => {
   const mapRequests: string[] = [];
-  await context.route(
-    "https://www.openstreetmap.org/export/embed.html**",
-    (route) =>
-      route.fulfill({
-        contentType: "text/html",
-        body: '<!doctype html><html lang="en"><title>Test map</title><body>Test map</body></html>',
-      }),
+  await context.route("https://www.google.com/maps?**", (route) =>
+    route.fulfill({
+      contentType: "text/html",
+      body: '<!doctype html><html lang="en"><title>Test map</title><body>Test map</body></html>',
+    }),
   );
   page.on("request", (request) => {
-    if (request.url().includes("openstreetmap.org/export/embed.html"))
+    if (request.url().startsWith("https://www.google.com/maps?"))
       mapRequests.push(request.url());
   });
   await page.goto("/");

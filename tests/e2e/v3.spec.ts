@@ -24,13 +24,11 @@ const routes = german.flatMap((route) =>
 
 test.beforeEach(async ({ context }) => {
   // Consent tests exercise embedding without contacting the live provider.
-  await context.route(
-    "https://www.openstreetmap.org/export/embed.html**",
-    (route) =>
-      route.fulfill({
-        contentType: "text/html",
-        body: '<!doctype html><html lang="en"><title>Test map</title><body>Test map</body></html>',
-      }),
+  await context.route("https://www.google.com/maps?**", (route) =>
+    route.fulfill({
+      contentType: "text/html",
+      body: '<!doctype html><html lang="en"><title>Test map</title><body>Test map</body></html>',
+    }),
   );
 });
 
@@ -65,8 +63,8 @@ test("le consentement expiré est purgé et un retrait dans un autre onglet sync
   await page.addInitScript(() => {
     if (!sessionStorage.getItem("expiry-seeded")) {
       localStorage.setItem(
-        "thermobau-privacy-v3",
-        JSON.stringify({ version: 3, maps: true, expires: Date.now() - 1000 }),
+        "thermobau-privacy-v4",
+        JSON.stringify({ version: 4, maps: true, expires: Date.now() - 1000 }),
       );
       sessionStorage.setItem("expiry-seeded", "1");
     }
@@ -74,7 +72,7 @@ test("le consentement expiré est purgé et un retrait dans un autre onglet sync
   await page.goto("/fr");
   await expect
     .poll(() =>
-      page.evaluate(() => localStorage.getItem("thermobau-privacy-v3")),
+      page.evaluate(() => localStorage.getItem("thermobau-privacy-v4")),
     )
     .toBeNull();
   await page.getByRole("button", { name: "Paramètres", exact: true }).click();
@@ -108,6 +106,10 @@ test("42 pages : langue, métadonnées, photos distinctes, images chargées et a
     expect(response?.status(), path).toBe(200);
     await expect(page.locator("html")).toHaveAttribute("lang", locale);
     await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator(".editorial-photo figcaption")).toHaveCount(0);
+    await expect(
+      page.locator(".editorial-photo a[href*='pexels.com']"),
+    ).toHaveCount(0);
     const title = await page.title();
     expect(titles.has(title), path).toBe(false);
     titles.add(title);
@@ -256,7 +258,7 @@ test("préférences persistantes, refus, retrait, clavier et stockage bloqué", 
   await page.getByRole("button", { name: "Enregistrer", exact: true }).click();
   expect(
     await page.evaluate(
-      () => JSON.parse(localStorage.getItem("thermobau-privacy-v3")!).maps,
+      () => JSON.parse(localStorage.getItem("thermobau-privacy-v4")!).maps,
     ),
   ).toBe(true);
   await page.reload();
@@ -265,10 +267,11 @@ test("préférences persistantes, refus, retrait, clavier et stockage bloqué", 
   await page.getByRole("button", { name: "Tout refuser", exact: true }).click();
   expect(
     await page.evaluate(
-      () => JSON.parse(localStorage.getItem("thermobau-privacy-v3")!).maps,
+      () => JSON.parse(localStorage.getItem("thermobau-privacy-v4")!).maps,
     ),
   ).toBe(false);
   await open();
+  await expect(page.locator(".privacy-panel")).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(page.locator(".privacy-panel")).toHaveCount(0);
   await expect(

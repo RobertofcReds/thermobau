@@ -1,4 +1,4 @@
-﻿import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/config/site";
@@ -27,12 +27,20 @@ export function Location({ locale = "de" }: { locale?: Locale }) {
     },
   }[locale];
   return (
-    <section className="section location-section">
-      <Container className="location-grid">
-        <div>
-          <p className="eyebrow">{t.eye}</p>
-          <h2>{t.title}</h2>
-          <p>{t.text}</p>
+    <section
+      className="location-section footer-location"
+      aria-labelledby="location-title"
+    >
+      <Container>
+        <div className="footer-location-heading">
+          <div>
+            <p className="eyebrow">{t.eye}</p>
+            <h2 id="location-title">{t.title}</h2>
+            <address>
+              {siteConfig.name} · {siteConfig.address.street} ·{" "}
+              {siteConfig.address.postalCode} {siteConfig.address.city}
+            </address>
+          </div>
           <Link
             href={locale === "de" ? "/kontakt" : `/${locale}/contact`}
             className="text-link"
@@ -40,28 +48,7 @@ export function Location({ locale = "de" }: { locale?: Locale }) {
             {t.link} <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
         </div>
-        <div className="location-stack">
-          <div className="location-address">
-            <MapPin size={30} aria-hidden="true" />
-            <div>
-              <span className="eyebrow">Ludwigshafen am Rhein</span>
-              <address>
-                <strong>{siteConfig.name}</strong>
-                <br />
-                {siteConfig.address.street}
-                <br />
-                {siteConfig.address.postalCode} {siteConfig.address.city}
-                <br />
-                {locale === "de"
-                  ? "Deutschland"
-                  : locale === "en"
-                    ? "Germany"
-                    : "Allemagne"}
-              </address>
-            </div>
-          </div>
-          <ConsentMap locale={locale} />
-        </div>
+        <ConsentMap locale={locale} />
       </Container>
     </section>
   );

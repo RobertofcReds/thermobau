@@ -1,4 +1,4 @@
-/** Licensed stock photography. Always display as Symbolbild, never as a company reference. */
+/** Licensed stock photography. Sources are archived; never imply company references. */
 export type PhotoAsset = {
   src: string;
   alt: string;

@@ -1,17 +1,61 @@
 import { expect, test } from "@playwright/test";
 
-const mapPattern = "https://www.openstreetmap.org/export/embed.html**";
-const consentKey = "thermobau-privacy-v3";
+const mapPattern = "https://www.google.com/maps?**";
+const consentKey = "thermobau-privacy-v4";
 const pages = [
-  { path: "/", load: "Karte hier anzeigen", reject: "Alle ablehnen" },
-  { path: "/kontakt", load: "Karte hier anzeigen", reject: "Alle ablehnen" },
-  { path: "/en", load: "Show map here", reject: "Reject optional" },
-  { path: "/en/contact", load: "Show map here", reject: "Reject optional" },
-  { path: "/fr", load: "Afficher la carte ici", reject: "Tout refuser" },
   {
-    path: "/fr/contact",
+    path: "/",
+    locale: "de",
+    load: "Karte hier anzeigen",
+    reject: "Alle ablehnen",
+    group: "Kartenansicht",
+    plan: "Karte",
+    satellite: "Satellit",
+  },
+  {
+    path: "/kontakt",
+    locale: "de",
+    load: "Karte hier anzeigen",
+    reject: "Alle ablehnen",
+    group: "Kartenansicht",
+    plan: "Karte",
+    satellite: "Satellit",
+  },
+  {
+    path: "/en",
+    locale: "en",
+    load: "Show map here",
+    reject: "Reject optional",
+    group: "Map view",
+    plan: "Map",
+    satellite: "Satellite",
+  },
+  {
+    path: "/en/contact",
+    locale: "en",
+    load: "Show map here",
+    reject: "Reject optional",
+    group: "Map view",
+    plan: "Map",
+    satellite: "Satellite",
+  },
+  {
+    path: "/fr",
+    locale: "fr",
     load: "Afficher la carte ici",
     reject: "Tout refuser",
+    group: "Affichage de la carte",
+    plan: "Plan",
+    satellite: "Satellite",
+  },
+  {
+    path: "/fr/contact",
+    locale: "fr",
+    load: "Afficher la carte ici",
+    reject: "Tout refuser",
+    group: "Affichage de la carte",
+    plan: "Plan",
+    satellite: "Satellite",
   },
 ];
 
@@ -26,8 +70,8 @@ test.beforeEach(async ({ context }) => {
   );
 });
 
-for (const { path, load, reject } of pages) {
-  test(`la carte de ${path} reste dans la page et ne charge rien avant accord`, async ({
+for (const { path, locale, load, reject, group, plan, satellite } of pages) {
+  test(`la carte de ${path} est sous le footer et les modes restent dans la page après accord`, async ({
     page,
     context,
   }) => {
@@ -43,13 +87,39 @@ for (const { path, load, reject } of pages) {
     const initialUrl = page.url();
     await expect(page.locator(".privacy-panel")).toBeVisible();
     await expect(page.locator(".map-shell iframe")).toHaveCount(0);
+    await expect(page.locator(".location-section")).toHaveCount(1);
+    await expect(
+      page.locator("main .location-section, main .map-shell"),
+    ).toHaveCount(0);
+    expect(
+      await page
+        .locator(".location-section")
+        .evaluate((section) =>
+          Boolean(
+            document.querySelector("footer")!.compareDocumentPosition(section) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+          ),
+        ),
+    ).toBe(true);
     expect(externalRequests).toEqual([]);
     await page.getByRole("button", { name: reject, exact: true }).click();
     await expect(page.locator(".privacy-panel")).toHaveCount(0);
     await page.locator(".map-shell").scrollIntoViewIfNeeded();
-    await expect(page.locator(".map-placeholder")).toContainText(
-      "OpenStreetMap",
-    );
+    await expect(page.locator(".map-placeholder")).toContainText("Google Maps");
+    const switcher = page.getByRole("group", { name: group, exact: true });
+    await expect(
+      switcher.getByRole("button", { name: plan, exact: true }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await switcher
+      .getByRole("button", { name: satellite, exact: true })
+      .click();
+    await expect(
+      switcher.getByRole("button", { name: satellite, exact: true }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      switcher.getByRole("button", { name: plan, exact: true }),
+    ).toHaveAttribute("aria-pressed", "false");
+    await expect(page.locator(".map-shell iframe")).toHaveCount(0);
     expect(externalRequests).toEqual([]);
 
     // An explicit later request for this optional service can replace refusal.
@@ -58,11 +128,16 @@ for (const { path, load, reject } of pages) {
     await expect(frame).toBeVisible();
     await frame.scrollIntoViewIfNeeded();
     const source = new URL((await frame.getAttribute("src"))!);
-    expect(source.origin).toBe("https://www.openstreetmap.org");
-    expect(source.pathname).toBe("/export/embed.html");
-    expect(source.searchParams.get("marker")).toBe("49.4878874,8.433252");
-    expect(source.searchParams.has("bbox")).toBe(true);
-    await expect(frame).toHaveAttribute("title", /Thermobau V&V/);
+    expect(source.origin).toBe("https://www.google.com");
+    expect(source.pathname).toBe("/maps");
+    expect(source.searchParams.get("q")).toBe("49.4878874,8.433252");
+    expect(source.searchParams.get("output")).toBe("embed");
+    expect(source.searchParams.get("t")).toBe("k");
+    expect(source.searchParams.get("hl")).toBe(locale);
+    await expect(frame).toHaveAttribute(
+      "title",
+      new RegExp(`Thermobau V&V.* — ${satellite}$`),
+    );
     await expect
       .poll(
         () =>
@@ -70,6 +145,23 @@ for (const { path, load, reject } of pages) {
             .length,
       )
       .toBe(1);
+    await switcher.getByRole("button", { name: plan, exact: true }).click();
+    await expect(frame).toHaveAttribute("src", /[?&]t=m(?:&|$)/);
+    await expect(frame).toHaveAttribute("title", new RegExp(` — ${plan}$`));
+    await expect(
+      switcher.getByRole("button", { name: plan, exact: true }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      switcher.getByRole("button", { name: satellite, exact: true }),
+    ).toHaveAttribute("aria-pressed", "false");
+    await expect(page.locator(".map-shell iframe")).toHaveCount(1);
+    await expect
+      .poll(
+        () =>
+          externalRequests.filter((url) => url.startsWith(source.origin))
+            .length,
+      )
+      .toBe(2);
     await expect(page).toHaveURL(initialUrl);
     expect(popups).toEqual([]);
     expect(context.pages()).toHaveLength(1);
@@ -77,7 +169,7 @@ for (const { path, load, reject } of pages) {
       (key) => JSON.parse(localStorage.getItem(key)!),
       consentKey,
     );
-    expect(choice).toMatchObject({ version: 3, maps: true });
+    expect(choice).toMatchObject({ version: 4, maps: true });
     await expect(page.locator(".map-directions")).not.toHaveAttribute(
       "target",
       "_blank",
@@ -90,7 +182,7 @@ test("l'accord persiste après actualisation et changement de langue, puis le re
 }) => {
   const mapRequests: string[] = [];
   page.on("request", (request) => {
-    if (request.url().includes("openstreetmap.org/export/embed.html"))
+    if (request.url().startsWith("https://www.google.com/maps?"))
       mapRequests.push(request.url());
   });
   await page.goto("/fr/contact");
@@ -105,10 +197,22 @@ test("l'accord persiste après actualisation et changement de langue, puis le re
   await expect(page).toHaveURL(/\/en\/contact$/);
   await expect(page.locator(".map-shell iframe")).toHaveAttribute(
     "title",
-    "Map: Thermobau V&V in Ludwigshafen",
+    "Map: Thermobau V&V in Ludwigshafen — Map",
+  );
+  await expect(page.locator(".map-shell iframe")).toHaveAttribute(
+    "src",
+    /[?&]hl=en(?:&|$)/,
   );
   await page.locator(".map-shell iframe").scrollIntoViewIfNeeded();
   await expect.poll(() => mapRequests.length).toBeGreaterThan(0);
+  await page
+    .getByRole("group", { name: "Map view", exact: true })
+    .getByRole("button", { name: "Satellite", exact: true })
+    .click();
+  await expect(page.locator(".map-shell iframe")).toHaveAttribute(
+    "src",
+    /[?&]t=k(?:&|$)/,
+  );
   await page
     .getByRole("button", { name: "Privacy settings", exact: true })
     .click();
@@ -132,18 +236,16 @@ test("l'accord persiste après actualisation et changement de langue, puis le re
   ).toBe(false);
 });
 
-test("l'ancien accord Google ne vaut pas consentement à OpenStreetMap", async ({
+test("les anciens accords Google et OpenStreetMap ne remplacent pas le choix actuel", async ({
   page,
 }) => {
   await page.addInitScript(() => {
-    localStorage.setItem(
-      "thermobau-privacy-v2",
-      JSON.stringify({
-        version: 2,
-        maps: true,
-        expires: Date.now() + 86400000,
-      }),
-    );
+    for (const version of [2, 3]) {
+      localStorage.setItem(
+        `thermobau-privacy-v${version}`,
+        JSON.stringify({ version, maps: true, expires: Date.now() + 86400000 }),
+      );
+    }
   });
   await page.goto("/fr");
   await expect(page.locator(".privacy-panel")).toBeVisible();
@@ -175,4 +277,56 @@ test("la carte intégrée reste dans sa colonne sur mobile à 360px", async ({
   expect(bounds!.x).toBeGreaterThanOrEqual(0);
   expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(360);
   expect(bounds!.height).toBeGreaterThanOrEqual(300);
+  await page
+    .getByRole("group", { name: "Affichage de la carte" })
+    .getByRole("button", { name: "Satellite", exact: true })
+    .click();
+  await expect(frame).toHaveAttribute("src", /[?&]t=k(?:&|$)/);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+});
+
+test("le bouton de la carte est utilisable dès la première visite sur mobile", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/fr/contact");
+  await expect(page.locator(".privacy-panel")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Afficher la carte ici", exact: true })
+    .click();
+  await expect(page.locator(".map-shell iframe")).toBeVisible();
+  await expect(page.locator(".privacy-panel")).toHaveCount(0);
+  await expect(page).toHaveURL(/\/fr\/contact$/);
+});
+
+test("les autres pages n'ajoutent pas de carte sous le footer", async ({
+  page,
+}) => {
+  for (const path of [
+    "/leistungen",
+    "/leistungen/trockenbau",
+    "/ueber-uns",
+    "/referenzen",
+    "/impressum",
+    "/datenschutz",
+    "/nutzungsbedingungen",
+    "/en/services",
+    "/en/services/drywall",
+    "/en/about",
+    "/en/gallery",
+    "/en/privacy",
+    "/fr/prestations",
+    "/fr/prestations/cloisons-seches",
+    "/fr/a-propos",
+    "/fr/galerie",
+    "/fr/confidentialite",
+  ]) {
+    await page.goto(path);
+    await expect(page.locator("footer")).toHaveCount(1);
+    await expect(page.locator(".map-shell, .location-section")).toHaveCount(0);
+  }
 });

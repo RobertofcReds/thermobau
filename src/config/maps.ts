@@ -11,18 +11,17 @@ export const verifiedMapLocation: {
   verifiedSource: "https://www.openstreetmap.org/way/298541737",
 };
 
-// Official OSM share/export iframe; no SDK, API key or runtime geocoding.
-export const mapEmbedUrl = verifiedMapLocation
-  ? `https://www.openstreetmap.org/export/embed.html?${new URLSearchParams({
-      bbox: [
-        verifiedMapLocation.longitude - 0.004,
-        verifiedMapLocation.latitude - 0.0025,
-        verifiedMapLocation.longitude + 0.004,
-        verifiedMapLocation.latitude + 0.0025,
-      ]
-        .map((coordinate) => coordinate.toFixed(7))
-        .join(","),
-      layer: "mapnik",
-      marker: `${verifiedMapLocation.latitude},${verifiedMapLocation.longitude}`,
-    })}`
-  : null;
+export type MapView = "roadmap" | "satellite";
+
+// Google's keyless website embed, verified in both modes. This is not the
+// keyed Maps Embed API v1. Keep provider attribution and recheck before launch.
+export function getMapEmbedUrl(view: MapView, locale: "de" | "en" | "fr") {
+  if (!verifiedMapLocation) return null;
+  return `https://www.google.com/maps?${new URLSearchParams({
+    q: `${verifiedMapLocation.latitude},${verifiedMapLocation.longitude}`,
+    z: "17",
+    t: view === "satellite" ? "k" : "m",
+    output: "embed",
+    hl: locale,
+  })}`;
+}

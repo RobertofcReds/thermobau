@@ -33,13 +33,6 @@ export function Gallery({
                 height={480}
                 sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
               />
-              <span className="image-label">
-                {item.kind === "illustration"
-                  ? "Symbolbild · Illustration"
-                  : item.kind === "stock-photo"
-                    ? "Symbolbild"
-                    : "Dokumentiertes Projekt"}
-              </span>
             </div>
             <figcaption>
               <h3>
@@ -54,22 +47,6 @@ export function Gallery({
                 <p>{item.location}</p>
               )}
               {item.kind === "real-project" && item.date && <p>{item.date}</p>}
-              {item.copyrightCredit && (
-                <p className="photo-credit">
-                  Foto:{" "}
-                  {item.sourceUrl ? (
-                    <a href={item.sourceUrl} target="_blank" rel="noreferrer">
-                      {item.copyrightCredit}
-                      <span className="sr-only">
-                        {" "}
-                        (Bildquelle, öffnet in einem neuen Tab)
-                      </span>
-                    </a>
-                  ) : (
-                    item.copyrightCredit
-                  )}
-                </p>
-              )}
             </figcaption>
           </figure>
         ))}
