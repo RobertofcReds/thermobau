@@ -22,7 +22,7 @@ export function LegalPage({
           <p className="editorial-lead">{t.description}</p>
         </Container>
       </section>
-      <section className="section">
+      <section className="section editorial-legal-section">
         <Container>
           <p className="editorial-notice">{t.warning}</p>
           <div className="editorial-legal">

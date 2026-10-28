@@ -4,20 +4,24 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { localizedNavigation, pagePath, type Locale } from "@/i18n/routing";
+import { useHeaderMenu } from "./SmartHeader";
 
 export function MobileNav({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const setHeaderMenuOpen = useHeaderMenu();
   const trigger = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   function close() {
     dialog.current?.close();
     setOpen(false);
+    setHeaderMenuOpen?.(false);
     trigger.current?.focus();
   }
   function show() {
     dialog.current?.showModal();
     setOpen(true);
+    setHeaderMenuOpen?.(true);
   }
   useEffect(() => {
     if (!open) return;
@@ -28,6 +32,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
       if (query.matches) {
         dialog.current?.close();
         setOpen(false);
+        setHeaderMenuOpen?.(false);
       }
     };
     query.addEventListener("change", onResize);
@@ -35,7 +40,8 @@ export function MobileNav({ locale }: { locale: Locale }) {
       document.body.style.overflow = before;
       query.removeEventListener("change", onResize);
     };
-  }, [open]);
+  }, [open, setHeaderMenuOpen]);
+  useEffect(() => () => setHeaderMenuOpen?.(false), [setHeaderMenuOpen]);
   return (
     <div className="mobile-navigation">
       <button

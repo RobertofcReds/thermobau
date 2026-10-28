@@ -71,7 +71,7 @@ test.beforeEach(async ({ context }) => {
 });
 
 for (const { path, locale, load, reject, group, plan, satellite } of pages) {
-  test(`la carte de ${path} est sous le footer et les modes restent dans la page après accord`, async ({
+  test(`la carte de ${path} reste dans le footer avant le copyright et ses modes restent intégrés après accord`, async ({
     page,
     context,
   }) => {
@@ -96,8 +96,10 @@ for (const { path, locale, load, reject, group, plan, satellite } of pages) {
         .locator(".location-section")
         .evaluate((section) =>
           Boolean(
-            document.querySelector("footer")!.compareDocumentPosition(section) &
-            Node.DOCUMENT_POSITION_FOLLOWING,
+            section.closest("footer") &&
+            section.compareDocumentPosition(
+              document.querySelector("footer .footer-bottom")!,
+            ) & Node.DOCUMENT_POSITION_FOLLOWING,
           ),
         ),
     ).toBe(true);
@@ -303,7 +305,7 @@ test("le bouton de la carte est utilisable dès la première visite sur mobile",
   await expect(page).toHaveURL(/\/fr\/contact$/);
 });
 
-test("les autres pages n'ajoutent pas de carte sous le footer", async ({
+test("les autres pages n'ajoutent pas de carte dans le footer", async ({
   page,
 }) => {
   for (const path of [

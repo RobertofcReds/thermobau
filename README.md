@@ -1,6 +1,6 @@
 # Thermobau V&V
 
-Site vitrine multilingue DE/EN/FR en Next.js, React et TypeScript. La refonte V3 améliore le projet existant : 42 pages pré-générées, compositions éditoriales communes aux trois langues, 31 photographies Pexels locales sans duplication d’emplacement et formulaire traduit. Le logo approuvé et les six métiers sont conservés. Le formulaire reste en démonstration et l’indexation est désactivée. Aucun déploiement, push GitHub ni e-mail réel n’a été effectué. Voir le [rapport V3 et les routes](docs/REFONTE_V3.md).
+Site vitrine multilingue DE/EN/FR en Next.js, React et TypeScript. La refonte V4 améliore le projet existant : 42 pages pré-générées, compositions éditoriales communes aux trois langues, 33 photographies Pexels locales sans duplication d’emplacement et formulaire traduit. Le logo approuvé et les six métiers sont conservés. Le formulaire reste en démonstration et l’indexation est désactivée. Aucun déploiement, push GitHub ni e-mail réel n’a été effectué. Voir le [rapport V4](docs/REFONTE_V4.md) et les [routes conservées](docs/REFONTE_V3.md).
 
 ## Démarrer sous Windows 11
 
@@ -43,7 +43,7 @@ Les documents et images fournis sont préservés. L’ancien dossier de routes `
 | `src/i18n/routing.ts`, `src/proxy.ts`                         | Routage next-intl et équivalences de pages                              |
 | `src/i18n/content.ts`, `services.ts`, `legal.ts`, `form.ts`   | Contenus DE/EN/FR et erreurs de formulaire                              |
 | `src/components/sections/EditorialPages.tsx`, `LegalPage.tsx` | Compositions partagées                                                  |
-| `src/data/photo-plan.ts`                                      | 31 emplacements exclusifs, sources et alt traduits                      |
+| `src/data/photo-plan.ts`                                      | 33 emplacements exclusifs, sources et alt traduits                      |
 | `src/data/service-identifiers.ts`                             | Catalogue léger pour formulaire et validation côté client               |
 | `src/components/privacy/`, `src/lib/privacy-consent.ts`       | Préférences versionnées, retrait et expiration                          |
 | `src/config/maps.ts`, `src/components/maps/`                  | Carte conditionnelle ; repli adresse/lien en attendant un point vérifié |
@@ -51,7 +51,7 @@ Les documents et images fournis sont préservés. L’ancien dossier de routes `
 | `src/lib/`, `src/app/api/contact/`                            | Validation, envoi désactivé, limitation de débit et SEO                 |
 | `tests/unit/`, `tests/e2e/`                                   | Tests unitaires et parcours navigateur                                  |
 
-Le logo est inchangé, vérifié par test SHA-256. Les photographies ne représentent pas des chantiers ou salariés confirmés de Thermobau V&V. Le véhicule reste interne sans autorisation de publication. Sources et licence : [registre des 31 photos](docs/IMAGE_SOURCES.md). Les anciennes données `photos.ts` et `projects.ts` sont conservées pour compatibilité ; le rendu V3 utilise exclusivement `photo-plan.ts`.
+Le logo est inchangé, vérifié par test SHA-256. Les photographies ne représentent pas des chantiers ou salariés confirmés de Thermobau V&V. Le véhicule reste interne sans autorisation de publication. Sources et licence : [registre des 33 photos](docs/IMAGE_SOURCES.md). Les anciennes données `photos.ts` et `projects.ts` sont conservées pour compatibilité ; le rendu V4 utilise exclusivement `photo-plan.ts`.
 
 ## Stack retenue
 
@@ -73,7 +73,7 @@ Les versions directes sont fixées dans `package.json`, et les dépendances tran
 | Playwright Test                 | 1.64.1            |
 | axe pour Playwright             | 4.13.0            |
 
-Les pages utilisent principalement des Server Components. Les 42 pages utilisent `generateStaticParams` et les paramètres asynchrones de Next.js. La navigation mobile, le sélecteur de langue, le formulaire et les préférences sont interactifs. Les autres contenus ne nécessitent pas de JavaScript client. Tailwind v4 est intégré avec `@tailwindcss/postcss` et `@import "tailwindcss"`. Le script de lint appelle ESLint directement.
+Les pages utilisent principalement des Server Components. Les 42 pages utilisent `generateStaticParams` et les paramètres asynchrones de Next.js. Le hero, le header, le retour en haut, la navigation mobile, le sélecteur de langue, le formulaire et les préférences sont interactifs. Les autres contenus ne nécessitent pas de JavaScript client. Tailwind v4 est intégré avec `@tailwindcss/postcss` et `@import "tailwindcss"`. Le script de lint appelle ESLint directement.
 
 Références : [installation Next.js](https://nextjs.org/docs/app/getting-started/installation), [Route Handlers](https://nextjs.org/docs/app/api-reference/file-conventions/route), [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params), [Tailwind CSS avec Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs).
 
@@ -101,7 +101,7 @@ npm.cmd run start
 
 Playwright utilise le **Google Chrome installé** (`channel: "chrome"`) et un serveur de production dédié sur `http://127.0.0.1:3100`. Il lance directement Next.js avec `node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100`, sans réutiliser un serveur existant ; un build préalable est donc nécessaire. Le démarrage de développement reste sur `http://localhost:3000`. Si Chrome manque, installer un navigateur adapté ou modifier explicitement la configuration Playwright pour un navigateur disponible, puis consigner ce changement. Les rapports sont produits dans `playwright-report/` et les traces d'échec dans `test-results/`.
 
-Ces commandes constituent la procédure de vérification, pas une déclaration de réussite. Les résultats réellement obtenus, les captures et les limites de l'environnement sont consignés dans [docs/REFONTE_V3.md](docs/REFONTE_V3.md) (la recette V2 est conservée comme historique). Les cibles Lighthouse, Core Web Vitals et WCAG ne constituent pas des résultats mesurés ou une conformité auditée.
+Ces commandes constituent la procédure de vérification, pas une déclaration de réussite. Les résultats réellement obtenus, les captures et les limites de l'environnement sont consignés dans [docs/REFONTE_V4.md](docs/REFONTE_V4.md) (la recette V2 est conservée comme historique). Les cibles Lighthouse, Core Web Vitals et WCAG ne constituent pas des résultats mesurés ou une conformité auditée.
 
 Aperçus locaux : [accueil ordinateur](docs/preview/accueil-desktop.png), [accueil mobile](docs/preview/accueil-mobile.png), [contact ordinateur](docs/preview/contact-desktop.png).
 

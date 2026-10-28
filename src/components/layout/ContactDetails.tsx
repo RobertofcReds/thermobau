@@ -1,16 +1,33 @@
-import { MapPin, UserRound, Mail, Phone } from "lucide-react";
+import { MapPin, UserRound, Mail, Phone, MessageCircle } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
 import type { SiteConfig } from "@/types/content";
+import { contactChannels } from "@/lib/company-contact";
+
+const contactCopy = {
+  de: { phone: "Telefon", email: "E-Mail", pending: "wird ergänzt" },
+  en: { phone: "Phone", email: "Email", pending: "to be added" },
+  fr: { phone: "Téléphone", email: "E-mail", pending: "à renseigner" },
+};
+
 export function ContactDetails({
   config = siteConfig,
   showPerson = true,
   locale = "de",
+  showPending = false,
 }: {
   config?: SiteConfig;
   locale?: Locale;
   showPerson?: boolean;
+  showPending?: boolean;
 }) {
+  const channels = contactChannels(config);
+  const t = contactCopy[locale];
+  const contacts = [
+    { key: "phone" as const, label: t.phone, icon: Phone },
+    { key: "email" as const, label: t.email, icon: Mail },
+    { key: "whatsapp" as const, label: "WhatsApp", icon: MessageCircle },
+  ];
   return (
     <div className="contact-details">
       <div>
@@ -44,20 +61,22 @@ export function ContactDetails({
           </p>
         </div>
       )}
-      {config.phone && (
-        <div>
-          <Phone size={20} aria-hidden="true" />
-          <a href={`tel:${config.phone.replace(/[^+\d]/g, "")}`}>
-            {config.phone}
-          </a>
-        </div>
-      )}
-      {config.email && (
-        <div>
-          <Mail size={20} aria-hidden="true" />
-          <a href={`mailto:${config.email}`}>{config.email}</a>
-        </div>
-      )}
+      {contacts.map(({ key, label, icon: Icon }) => {
+        const channel = channels[key];
+        if (!channel && !showPending) return null;
+        return (
+          <div key={key} className={channel ? undefined : "contact-pending"}>
+            <Icon size={20} aria-hidden="true" />
+            {channel ? (
+              <a href={channel.href}>{channel.label}</a>
+            ) : (
+              <span>
+                {label} – {t.pending}
+              </span>
+            )}
+          </div>
+        );
+      })}
       {config.openingHours && (
         <div>
           <p>

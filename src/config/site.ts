@@ -13,6 +13,13 @@ export const siteConfig: SiteConfig = {
   phone: null,
   email: null,
   whatsapp: null,
+  // Numéros internationaux (+49…), adresses et profils officiels vérifiés uniquement.
+  social: {
+    facebook: null,
+    instagram: null,
+    linkedin: null,
+    youtube: null,
+  },
   openingHours: null,
   confirmedServiceAreas: [],
   domain: null,

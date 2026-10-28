@@ -1,0 +1,82 @@
+/* Anchor destinations remain below the sticky navigation. */
+html {
+  scroll-padding-top: calc(var(--header-height, 80px) + 16px);
+}
+/* Sticky positioning preserves the header's space throughout each transition. */
+.smart-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  transform: translateY(0);
+  opacity: 1;
+  box-shadow: 0 4px 20px rgb(30 32 36 / 5%);
+  transition:
+    transform 240ms ease,
+    opacity 240ms ease;
+}
+.smart-header[data-hidden="true"] {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.back-to-top {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: calc(
+    var(--privacy-panel-height, 0px) + 32px + env(safe-area-inset-bottom)
+  );
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 50%;
+  color: white;
+  background: var(--color-brand-dark);
+  box-shadow: 0 5px 20px rgb(30 32 36 / 22%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    background 200ms ease,
+    visibility 200ms ease;
+}
+.back-to-top[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--color-ink);
+  transform: translateY(-3px);
+}
+.back-to-top:focus-visible {
+  outline: 3px solid var(--color-brand-dark);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px white;
+}
+.privacy-panel {
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  /* Leave room for the header, floating control and their focus rings even on
+     short screens; lengthy preferences stay scrollable within the panel. */
+  max-height: min(80dvh, calc(100dvh - 220px - env(safe-area-inset-bottom)));
+}
+@media (max-width: 767px) {
+  .back-to-top {
+    right: max(16px, env(safe-area-inset-right));
+    width: 46px;
+    height: 46px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .smart-header,
+  .back-to-top {
+    transition: none;
+  }
+}

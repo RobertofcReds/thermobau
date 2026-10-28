@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { FooterLocation } from "@/components/layout/FooterLocation";
+import { PageMotion } from "@/components/layout/PageMotion";
+import { BackToTop } from "@/components/layout/BackToTop";
 import { siteConfig } from "@/config/site";
 import { publicationReady, getSiteUrl } from "@/lib/publication";
+import { contactChannels } from "@/lib/company-contact";
 import "../globals.css";
 import "../editorial.css";
+import "../page-motion.css";
+import "../hero.css";
+import "../footer.css";
+import "../motion.css";
+import "../header.css";
+import "../palette.css";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -52,6 +60,7 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, requested)) notFound();
   const locale = requested as Locale;
   setRequestLocale(locale);
+  const channels = contactChannels(siteConfig);
   const business = publicationReady()
     ? {
         "@context": "https://schema.org",
@@ -65,8 +74,8 @@ export default async function RootLayout({
           addressLocality: siteConfig.address.city,
           addressCountry: siteConfig.address.country,
         },
-        ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
-        ...(siteConfig.email ? { email: siteConfig.email } : {}),
+        ...(channels.phone ? { telephone: channels.phone.href.slice(4) } : {}),
+        ...(channels.email ? { email: channels.email.label } : {}),
       }
     : null;
   return (
@@ -89,8 +98,9 @@ export default async function RootLayout({
             {children}
           </main>
           <SiteFooter locale={locale} />
-          <FooterLocation locale={locale} />
+          <PageMotion />
           <PrivacyPreferences locale={locale} />
+          <BackToTop locale={locale} />
         </NextIntlClientProvider>
         {business && (
           <script

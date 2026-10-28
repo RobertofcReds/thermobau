@@ -96,6 +96,7 @@ test("42 pages : langue, métadonnées, photos distinctes, images chargées et a
   page,
 }) => {
   test.setTimeout(180000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   const titles = new Set<string>();
@@ -106,6 +107,15 @@ test("42 pages : langue, métadonnées, photos distinctes, images chargées et a
     expect(response?.status(), path).toBe(200);
     await expect(page.locator("html")).toHaveAttribute("lang", locale);
     await expect(page.locator("h1")).toHaveCount(1);
+    if (path === "/")
+      await page
+        .getByRole("button", { name: "Alle ablehnen", exact: true })
+        .click();
+    // Exercise the deferred images explicitly instead of depending on autoplay.
+    for (const button of await page.locator(".cinematic-dot").all()) {
+      await button.click();
+      await expect(button).toHaveAttribute("aria-pressed", "true");
+    }
     await expect(page.locator(".editorial-photo figcaption")).toHaveCount(0);
     await expect(
       page.locator(".editorial-photo a[href*='pexels.com']"),
@@ -114,7 +124,7 @@ test("42 pages : langue, métadonnées, photos distinctes, images chargées et a
     expect(titles.has(title), path).toBe(false);
     titles.add(title);
     const photoSources = await page
-      .locator("main .editorial-photo img")
+      .locator("main .editorial-photo img, main .cinematic-slide img")
       .evaluateAll((nodes) =>
         nodes.map((n) =>
           new URL((n as HTMLImageElement).src).searchParams.get("url")!,
@@ -129,7 +139,7 @@ test("42 pages : langue, métadonnées, photos distinctes, images chargées et a
       }
     } else expect(photoSources).toEqual(families.get(equivalents(path).de));
     for (const alt of await page
-      .locator("main .editorial-photo img")
+      .locator("main .editorial-photo img, main .cinematic-slide img")
       .evaluateAll((nodes) => nodes.map((n) => n.getAttribute("alt") ?? "")))
       expect(alt.length).toBeGreaterThan(10);
     await page
@@ -155,7 +165,7 @@ test("42 pages : langue, métadonnées, photos distinctes, images chargées et a
         /Ansprechpartner|Deutschland|Leistungen|Datenschutz/,
       );
   }
-  expect(uniquePhotos.size).toBe(31);
+  expect(uniquePhotos.size).toBe(33);
   expect(errors).toEqual([]);
 });
 

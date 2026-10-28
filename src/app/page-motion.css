@@ -1,0 +1,55 @@
+/* Entry motion runs once per block. Nothing is hidden before enhancement. */
+[data-page-reveal="rise"] {
+  animation: editorial-enter 750ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+[data-page-reveal="image"] {
+  animation: editorial-image-enter 1100ms cubic-bezier(0.22, 1, 0.36, 1)
+    backwards;
+}
+[data-reveal-complete="true"],
+[data-page-reveal]:focus-within {
+  animation: none;
+}
+@keyframes editorial-enter {
+  from {
+    opacity: 0.45;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes editorial-image-enter {
+  from {
+    opacity: 0.55;
+    transform: translate3d(0, 16px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .editorial-card .editorial-photo img,
+  .editorial-gallery article .editorial-photo img {
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .editorial-card:hover .editorial-photo img,
+  .editorial-card:focus-within .editorial-photo img,
+  .editorial-gallery article:hover .editorial-photo img,
+  .editorial-gallery article:focus-within .editorial-photo img {
+    transform: scale(1.035);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-page-reveal] {
+    animation: none;
+  }
+}
+@media print {
+  [data-page-reveal] {
+    animation: none;
+  }
+}

@@ -9,12 +9,12 @@ function collect(value: unknown): EditorialPhoto[] {
 }
 const photos = collect(photoPlan);
 describe("editorial photo placements", () => {
-  it("uses 31 different photographs with no repeated placement", () => {
-    expect(photos).toHaveLength(31);
-    expect(new Set(photos.map((p) => p.src)).size).toBe(31);
+  it("uses 33 different photographs with no repeated placement", () => {
+    expect(photos).toHaveLength(33);
+    expect(new Set(photos.map((p) => p.src)).size).toBe(33);
     expect(
       new Set(photos.map((p) => p.sourceUrl.match(/(\d+)\/$/)?.[1])).size,
-    ).toBe(31);
+    ).toBe(33);
   });
   it.each(photos)(
     "has a local file, credit, Pexels source and all three alt texts for $src",

@@ -21,7 +21,11 @@ export function Logo({
         width={1254}
         height={1254}
         loading={footer ? "lazy" : "eager"}
-        sizes="(max-width: 767px) 112px, 144px"
+        sizes={
+          footer
+            ? "144px"
+            : "(max-width: 767px) 66px, (max-width: 1023px) 72px, 78px"
+        }
       />
     </Link>
   );

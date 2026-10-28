@@ -42,7 +42,7 @@ const copy = {
       eyebrow: "Thermobau V&V · Ludwigshafen",
       title: "Renovierung und Innenausbau in Ludwigshafen",
       description:
-        "Von der Fassade bis zum letzten Anstrich. Wir besprechen die passenden Arbeiten für Ihre Räume, Ihre Oberflächen und Ihren Bestand.",
+        "Fassaden, Trockenbau, Putzarbeiten, Malerarbeiten, Fliesen und Renovierungen – entdecken Sie unsere Tätigkeitsbereiche und sprechen Sie mit uns über Ihr Vorhaben.",
       servicesTitle: "Sechs Bereiche. Ein guter Anfang für Ihr Projekt.",
       servicesDescription:
         "Entdecken Sie unsere Tätigkeitsbereiche und erfahren Sie, welche Angaben für eine erste Anfrage hilfreich sind.",
@@ -213,7 +213,7 @@ const copy = {
       eyebrow: "Thermobau V&V · Ludwigshafen",
       title: "Renovation and interior construction in Ludwigshafen",
       description:
-        "From the facade to the final coat. Discuss the right work for your rooms, surfaces and existing building.",
+        "Facades, drywall, plastering, painting, tiling and renovation – explore our areas of work and talk to us about your project.",
       servicesTitle: "Six areas. A clear starting point for your project.",
       servicesDescription:
         "Explore the areas of work and find out which details help with an initial enquiry.",
@@ -384,7 +384,7 @@ const copy = {
       eyebrow: "Thermobau V&V · Ludwigshafen",
       title: "Rénovation et aménagement intérieur à Ludwigshafen",
       description:
-        "De la façade à la dernière couche de peinture. Échangeons sur les travaux adaptés à vos pièces, vos surfaces et votre bâtiment.",
+        "Façades, cloisons sèches, enduits, peinture, carrelage et rénovation – découvrez nos domaines d’activité et échangeons sur votre projet.",
       servicesTitle: "Six domaines. Un point de départ pour votre projet.",
       servicesDescription:
         "Découvrez les prestations et les informations utiles pour une première demande.",

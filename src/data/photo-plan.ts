@@ -104,11 +104,6 @@ const p = {
     "Positioning a tile against a kitchen wall",
     "Positionnement d’un carreau contre un mur de cuisine",
   ),
-  facadeBrick: existing(
-    "facadeBrick",
-    "Brick residential building under renovation",
-    "Immeuble résidentiel en briques en rénovation",
-  ),
   protection: {
     ...existing(
       "paintingDetail",
@@ -126,13 +121,37 @@ const p = {
     "Renovated plaster and brick facade",
     "Façade rénovée en enduit et briques",
   ),
-  smoothing: stock(
-    5767932,
-    "Ksenia Chernaya",
-    "worker-leveling-walls-with-trowel-during-repairs",
-    "Eine behandschuhte Hand glättet eine Wand mit einer Kelle",
-    "A gloved hand smoothing a wall with a trowel",
-    "Une main gantée lisse un mur à la taloche",
+  heroFacade: stock(
+    4953232,
+    "Damir Mijailovic",
+    "worker-skim-coating-wall-with-liquid-plaster",
+    "Handwerker mit Sicherungsgurt beim Auftragen von Putz an einer Fassade",
+    "Worker wearing a safety harness applying plaster to a facade",
+    "Artisan équipé d’un harnais appliquant de l’enduit sur une façade",
+  ),
+  heroInterior: stock(
+    7217928,
+    "Blue Bird",
+    "a-wooden-stepladder-inside-a-room",
+    "Heller Raum mit Holzleiter, Abdeckfolie und Werkzeugen für Malerarbeiten",
+    "Bright room with a wooden stepladder, protective sheets and painting tools",
+    "Pièce lumineuse avec escabeau en bois, bâches et outils de peinture",
+  ),
+  heroFinishing: stock(
+    5493658,
+    "Antoni Shkraba",
+    "a-construction-worker-working-on-the-wall-of-a-house",
+    "Handwerker mit Helm und Atemschutz bei der Bearbeitung einer hellen Wand",
+    "Worker wearing a helmet and respirator finishing a light-coloured wall",
+    "Artisan portant un casque et un masque lors de la finition d’un mur clair",
+  ),
+  brightFacade: stock(
+    34264478,
+    "Sóc Năng Động",
+    "workers-painting-exterior-of-urban-building",
+    "Handwerker auf einem Gerüst bei Arbeiten an einer hellen Gebäudefassade",
+    "Worker on scaffolding working on a light-coloured building facade",
+    "Artisan sur un échafaudage intervenant sur une façade de couleur claire",
   ),
   drywallRoom: stock(
     6474207,
@@ -153,7 +172,7 @@ const p = {
   room: stock(
     5691545,
     "Ksenia Chernaya",
-    "interior-of-new-apartment-under-renovation-in-daylight",
+    "new-apartment-interior-during-renovation-process-in-daylight",
     "Blick durch eine Tür in einen Raum mit Werkzeugen",
     "View through a doorway into a room with renovation tools",
     "Vue par une porte sur une pièce avec des outils de rénovation",
@@ -257,7 +276,7 @@ const p = {
 };
 // Every placement is exclusive to its page family. Localized versions share the same photograph.
 export const photoPlan = {
-  homeHero: p.smoothing,
+  homeHeroSlides: [p.heroFacade, p.heroInterior, p.heroFinishing],
   homeCards: {
     fassaden: p.facade,
     trockenbau: p.drywall,
@@ -289,7 +308,7 @@ export const photoPlan = {
   >,
   about: p.tools,
   gallery: {
-    fassaden: p.facadeBrick,
+    fassaden: p.brightFacade,
     trockenbau: p.drywallRoom,
     putzarbeiten: p.plastering,
     malerarbeiten: p.ladder,

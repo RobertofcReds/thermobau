@@ -17,6 +17,7 @@ import {
 import { photoPlan, type EditorialPhoto } from "@/data/photo-plan";
 import { isContactFormEnabled } from "@/lib/contact-config";
 import { LegalPage } from "./LegalPage";
+import { CinematicHero } from "./CinematicHero";
 
 function Photo({
   photo,
@@ -158,7 +159,7 @@ function FAQ({
   items: { question: string; answer: string }[];
 }) {
   return (
-    <section className="section">
+    <section className="section editorial-faq-section">
       <Container className="editorial-faq">
         <Heading eyebrow="FAQ" title={getContent(locale).common.faqTitle} />
         <div>
@@ -337,7 +338,17 @@ export function WebsitePage({
   if (page === "home")
     return (
       <>
-        <Hero locale={locale} {...t.home} photo={photoPlan.homeHero} />
+        <CinematicHero
+          locale={locale}
+          slides={photoPlan.homeHeroSlides}
+          content={{
+            eyebrow: t.home.eyebrow,
+            title: t.home.title,
+            description: t.home.description,
+            projectCta: t.common.projectCta,
+            servicesCta: t.common.servicesCta,
+          }}
+        />
         <section className="section">
           <Container>
             <Heading
@@ -449,7 +460,7 @@ export function WebsitePage({
             <ServiceLinks locale={locale} />
           </Container>
         </section>
-        <section className="section">
+        <section className="section editorial-sage">
           <Container className="editorial-split">
             <Heading
               title={t.about.approachTitle}

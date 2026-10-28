@@ -6,9 +6,16 @@ import { DesktopNav } from "./DesktopNav";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { Locale } from "@/i18n/routing";
 import { pagePath } from "@/i18n/routing";
-export function SiteHeader({ locale }: { locale: Locale }) {
+import { SmartHeader, type HeaderBehavior } from "./SmartHeader";
+export function SiteHeader({
+  locale,
+  headerBehavior = "show-on-scroll-down",
+}: {
+  locale: Locale;
+  headerBehavior?: HeaderBehavior;
+}) {
   return (
-    <header className="site-header">
+    <SmartHeader headerBehavior={headerBehavior}>
       <Container className="header-main">
         <Logo locale={locale} />
         <DesktopNav locale={locale} />
@@ -24,6 +31,6 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </div>
         <MobileNav locale={locale} />
       </Container>
-    </header>
+    </SmartHeader>
   );
 }

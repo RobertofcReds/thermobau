@@ -1,0 +1,162 @@
+/* Mineral blues, warm stone and sage give every page a deliberate rhythm.
+   White is reserved for reading and interaction surfaces. */
+main > .section {
+  background: var(--color-surface);
+}
+main > .editorial-warm,
+main > .editorial-gallery-section {
+  background: var(--color-stone);
+}
+main > .editorial-sage,
+main > .editorial-process {
+  background: var(--color-sage);
+}
+main > .editorial-faq-section {
+  background: var(--color-mist);
+}
+main > .editorial-dark {
+  background: var(--color-ocean);
+  color: #dce8ef;
+}
+.editorial-hero {
+  position: relative;
+  background: linear-gradient(
+    115deg,
+    var(--color-ocean) 30%,
+    var(--color-ocean-light)
+  );
+  color: #e2edf4;
+  border-bottom: 4px solid var(--color-brand);
+}
+.editorial-hero h1 {
+  color: white;
+}
+.editorial-hero .eyebrow {
+  color: #a3ddff;
+}
+.editorial-hero .text-link {
+  color: #d4efff;
+}
+.editorial-hero .button-primary {
+  border-color: #7bbde3;
+}
+.editorial-hero :focus-visible,
+.editorial-cta :focus-visible {
+  outline-color: white;
+}
+.editorial-photo-hero .editorial-photo-frame {
+  box-shadow: 0 20px 48px rgb(0 20 35 / 18%);
+}
+.editorial-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding-bottom: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.editorial-card-copy {
+  padding: 24px;
+}
+.editorial-card .editorial-index {
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: var(--color-mist);
+}
+.editorial-process li {
+  background: rgb(255 255 255 / 52%);
+  border: 1px solid #becfc6;
+  border-top: 3px solid var(--color-brand-dark);
+  border-radius: 5px;
+  padding: 26px 22px;
+}
+.editorial-process ol {
+  gap: 24px;
+}
+.editorial-faq details,
+.editorial-faq details:last-child {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.editorial-faq summary {
+  padding: 22px;
+}
+.editorial-faq details > p {
+  padding: 0 22px 24px;
+}
+.editorial-worklist {
+  background: var(--color-mist);
+  border-radius: 4px;
+}
+.editorial-service-links a {
+  padding-inline: 22px;
+  background: rgb(255 255 255 / 48%);
+}
+.editorial-service-links {
+  gap: 12px 24px;
+}
+.editorial-gallery article > div {
+  background: rgb(255 255 255 / 66%);
+  padding: 26px;
+  border-bottom: 3px solid var(--color-brand);
+}
+.editorial-gallery .editorial-photo-frame {
+  border-radius: 8px 8px 0 0;
+}
+.editorial-notice {
+  background: var(--color-mist);
+  border-left-color: var(--color-brand-dark);
+}
+.editorial-contact .contact-form {
+  border-top: 4px solid var(--color-brand);
+  border-radius: 6px;
+}
+.editorial-contact-guide {
+  padding: 28px;
+  background: var(--color-stone);
+  border-top: 2px solid #bfaa8e;
+  border-radius: 4px;
+}
+.editorial-contact-guide .editorial-checklist {
+  margin-bottom: 0;
+}
+.editorial-legal > div {
+  padding: clamp(22px, 3vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+.editorial-legal nav {
+  top: calc(var(--header-height, 80px) + 24px);
+}
+.editorial-legal nav a {
+  padding: 12px 14px;
+  border-left: 2px solid var(--color-brand-dark);
+  background: var(--color-mist);
+}
+.editorial-cta {
+  background: linear-gradient(115deg, var(--color-brand-dark), #084f78);
+}
+@media (max-width: 767px) {
+  .editorial-card-copy,
+  .editorial-gallery article > div {
+    padding: 22px;
+  }
+  .editorial-process ol {
+    gap: 16px;
+  }
+  .editorial-process li {
+    padding: 22px 18px;
+  }
+  .editorial-contact-guide {
+    padding: 24px;
+  }
+}
+@media (max-width: 399px) {
+  .editorial-process ol {
+    grid-template-columns: 1fr;
+  }
+}

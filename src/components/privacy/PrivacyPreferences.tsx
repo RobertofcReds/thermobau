@@ -168,13 +168,21 @@ export function PrivacyPreferences({ locale }: { locale: Locale }) {
     (forcedOpen || (stored === null && verifiedMapLocation !== null));
   useEffect(() => {
     if (!visible || !panel.current) return;
-    // Reserve enough scroll space to reach controls behind the floating panel,
-    // including the map now placed at the very bottom of the document.
-    const observer = new ResizeObserver(() => {
-      setPanelHeight(panel.current?.getBoundingClientRect().height ?? 0);
-    });
+    // Reserve scroll space and keep floating controls above the actual panel.
+    function measure() {
+      const height = panel.current?.getBoundingClientRect().height ?? 0;
+      setPanelHeight(height);
+      document.documentElement.style.setProperty(
+        "--privacy-panel-height",
+        `${height}px`,
+      );
+    }
+    const observer = new ResizeObserver(measure);
     observer.observe(panel.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--privacy-panel-height");
+    };
   }, [visible]);
   useEffect(() => {
     const reopen = () => {
@@ -264,7 +272,12 @@ export function PrivacyPreferences({ locale }: { locale: Locale }) {
           )}
         </div>
       </section>
-      <div aria-hidden="true" style={{ height: panelHeight + 32 }} />
+      <div
+        aria-hidden="true"
+        style={{
+          height: `calc(${panelHeight + 32}px + env(safe-area-inset-bottom))`,
+        }}
+      />
     </>
   );
 }

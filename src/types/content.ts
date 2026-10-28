@@ -31,6 +31,12 @@ export interface SiteConfig {
   phone: string | null;
   email: string | null;
   whatsapp: string | null;
+  social: {
+    facebook: string | null;
+    instagram: string | null;
+    linkedin: string | null;
+    youtube: string | null;
+  };
   openingHours: string[] | null;
   confirmedServiceAreas: string[];
   domain: string | null;
