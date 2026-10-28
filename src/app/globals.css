@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 @theme inline {
   --color-brand: #078dda;
@@ -7,7 +7,6 @@
   --color-body: #45505b;
   --color-surface: #e7eff4;
   --color-slate: #303943;
-  --color-stone: #ebe1d3;
   --color-mist: #d7e9f5;
   --color-sage: #e0eae4;
   --color-ocean: #12364d;
@@ -20,7 +19,6 @@
   --line: var(--color-border);
   --muted: #5b6571;
   --blue-pale: var(--color-mist);
-  --warm: var(--color-stone);
   --shadow-soft: 0 10px 32px rgb(30 32 36 / 7%);
 }
 * {
@@ -531,7 +529,7 @@ address {
 .service-card-image {
   position: relative;
   overflow: hidden;
-  background: var(--warm);
+  background: var(--color-mist);
 }
 .service-card-image img {
   width: 100%;
@@ -606,7 +604,7 @@ img[src*="plaster"] {
   line-height: 1.6;
 }
 .about-section {
-  background: var(--warm);
+  background: var(--color-mist);
 }
 .about-grid {
   display: grid;
@@ -726,7 +724,7 @@ img[src*="plaster"] {
   min-width: 0;
 }
 .gallery-image {
-  background: var(--warm);
+  background: var(--color-mist);
   position: relative;
   overflow: hidden;
   border-radius: 5px;
@@ -763,7 +761,7 @@ img[src*="plaster"] {
   margin-bottom: 36px;
 }
 .location-section {
-  background: var(--warm);
+  background: var(--color-mist);
 }
 .location-grid {
   display: grid;

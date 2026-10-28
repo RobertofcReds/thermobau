@@ -1,4 +1,24 @@
 import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+
+test("editorial entry keeps text and button contrast throughout the animation", async ({
+  page,
+}) => {
+  await page.goto("/en/services");
+  const copy = page.locator(".editorial-hero-copy");
+  await expect(copy).toHaveAttribute("data-page-reveal", "rise");
+  await copy.evaluate((element) => {
+    for (const animation of element.getAnimations()) {
+      animation.pause();
+      animation.currentTime = 0;
+    }
+  });
+  const result = await new AxeBuilder({ page })
+    .include(".editorial-hero")
+    .withRules(["color-contrast"])
+    .analyze();
+  expect(result.violations).toEqual([]);
+});
 
 test("compact header keeps navigation and mobile targets usable at every breakpoint", async ({
   page,

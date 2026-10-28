@@ -65,9 +65,9 @@ test("hero: deferred photos, twelve-second cycle, alternating visible zoom and e
     page.locator(".cinematic-slide.is-active img"),
   );
   expect(inward.late - inward.early).toBeGreaterThan(0.08);
-  await page.getByRole("button", { name: "Bildwechsel pausieren" }).click();
+  await page.getByRole("button", { name: "Animationen pausieren" }).click();
   await page.mouse.move(0, 0);
-  await page.getByRole("button", { name: "Bildwechsel starten" }).blur();
+  await page.getByRole("button", { name: "Animationen starten" }).blur();
   await expect(hero).toHaveAttribute("data-motion", "paused");
   expect(
     await page
@@ -76,10 +76,10 @@ test("hero: deferred photos, twelve-second cycle, alternating visible zoom and e
   ).toBe("paused");
   await page.clock.runFor(24000);
   await expect(hero).toHaveAttribute("data-active-slide", "1");
-  await page.getByRole("button", { name: "Bildwechsel starten" }).click();
+  await page.getByRole("button", { name: "Animationen starten" }).click();
   await page.mouse.move(0, 0);
   await expect(
-    page.getByRole("button", { name: "Bildwechsel pausieren" }),
+    page.getByRole("button", { name: "Animationen pausieren" }),
   ).toBeFocused();
   await expect(hero).toHaveAttribute("data-playback", "playing");
   await page.clock.runFor(2500);

@@ -1,17 +1,18 @@
-/* Mineral blues, warm stone and sage give every page a deliberate rhythm.
+/* Mineral blues and sage give every page a deliberate rhythm.
    White is reserved for reading and interaction surfaces. */
 main > .section {
   background: var(--color-surface);
 }
-main > .editorial-warm,
+main > .editorial-blue,
 main > .editorial-gallery-section {
-  background: var(--color-stone);
+  background: var(--color-mist);
 }
 main > .editorial-sage,
 main > .editorial-process {
   background: var(--color-sage);
 }
-main > .editorial-faq-section {
+main > .editorial-faq-section,
+main > .editorial-reasons {
   background: var(--color-mist);
 }
 main > .editorial-dark {
@@ -26,7 +27,6 @@ main > .editorial-dark {
     var(--color-ocean-light)
   );
   color: #e2edf4;
-  border-bottom: 4px solid var(--color-brand);
 }
 .editorial-hero h1 {
   color: white;
@@ -116,8 +116,8 @@ main > .editorial-dark {
 }
 .editorial-contact-guide {
   padding: 28px;
-  background: var(--color-stone);
-  border-top: 2px solid #bfaa8e;
+  background: var(--color-mist);
+  border-top: 2px solid var(--color-brand-dark);
   border-radius: 4px;
 }
 .editorial-contact-guide .editorial-checklist {

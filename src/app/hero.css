@@ -98,6 +98,36 @@
   gap: 12px;
   margin-top: 32px;
 }
+.cinematic-actions .button {
+  animation: hero-action-float 4.8s ease-in-out infinite;
+  animation-play-state: paused;
+  transition:
+    background-color 180ms,
+    border-color 180ms,
+    color 180ms,
+    scale 140ms ease;
+}
+.cinematic-actions .button:nth-child(2) {
+  animation-delay: -2.4s;
+}
+.cinematic-hero[data-motion="playing"] .cinematic-actions .button {
+  animation-play-state: running;
+}
+/* Freeze both targets as soon as someone interacts with the action area. */
+.cinematic-hero[data-motion="playing"]
+  .cinematic-actions:is(:hover, :focus-within)
+  .button {
+  animation-play-state: paused;
+}
+.cinematic-actions .button:active {
+  scale: 0.98;
+}
+.cinematic-actions .button svg {
+  transition: transform 180ms ease;
+}
+.cinematic-actions .button:is(:hover, :focus-visible) svg {
+  transform: translate(2px, -2px);
+}
 .cinematic-actions .button-primary {
   border-color: #81c5ef;
 }
@@ -164,6 +194,15 @@
 .cinematic-hero :focus-visible {
   outline-color: white;
   outline-offset: 4px;
+}
+@keyframes hero-action-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
 }
 @keyframes hero-zoom-out {
   from {
@@ -253,6 +292,17 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .cinematic-actions .button,
+  .cinematic-actions .button:active,
+  .cinematic-actions .button svg {
+    animation: none;
+    transition: none;
+    transform: none;
+    scale: none;
+  }
+  .cinematic-actions .button:is(:hover, :focus-visible) svg {
+    transform: none;
+  }
   .cinematic-slide {
     transition: none;
   }

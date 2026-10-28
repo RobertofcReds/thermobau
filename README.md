@@ -1,6 +1,6 @@
 # Thermobau V&V
 
-Site vitrine multilingue DE/EN/FR en Next.js, React et TypeScript. La refonte V4 améliore le projet existant : 42 pages pré-générées, compositions éditoriales communes aux trois langues, 33 photographies Pexels locales sans duplication d’emplacement et formulaire traduit. Le logo approuvé et les six métiers sont conservés. Le formulaire reste en démonstration et l’indexation est désactivée. Aucun déploiement, push GitHub ni e-mail réel n’a été effectué. Voir le [rapport V4](docs/REFONTE_V4.md) et les [routes conservées](docs/REFONTE_V3.md).
+Site vitrine multilingue DE/EN/FR en Next.js, React et TypeScript. La refonte conserve 42 pages pré-générées, 33 photographies Pexels locales sans duplication d’emplacement et un formulaire traduit. La V5 ajoute un header compact, des zooms alternés dans le hero, des entrées animées sur les autres pages, une palette plus colorée et un footer organisé selon la référence KSPH. Le logo approuvé et les six métiers sont conservés. Le formulaire reste en démonstration et l’indexation est désactivée. Aucun déploiement, push GitHub ni e-mail réel n’a été effectué. Voir le [rapport V5](docs/REFONTE_V5.md), l’[historique V4](docs/REFONTE_V4.md) et les [routes conservées](docs/REFONTE_V3.md).
 
 ## Démarrer sous Windows 11
 
@@ -101,9 +101,9 @@ npm.cmd run start
 
 Playwright utilise le **Google Chrome installé** (`channel: "chrome"`) et un serveur de production dédié sur `http://127.0.0.1:3100`. Il lance directement Next.js avec `node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100`, sans réutiliser un serveur existant ; un build préalable est donc nécessaire. Le démarrage de développement reste sur `http://localhost:3000`. Si Chrome manque, installer un navigateur adapté ou modifier explicitement la configuration Playwright pour un navigateur disponible, puis consigner ce changement. Les rapports sont produits dans `playwright-report/` et les traces d'échec dans `test-results/`.
 
-Ces commandes constituent la procédure de vérification, pas une déclaration de réussite. Les résultats réellement obtenus, les captures et les limites de l'environnement sont consignés dans [docs/REFONTE_V4.md](docs/REFONTE_V4.md) (la recette V2 est conservée comme historique). Les cibles Lighthouse, Core Web Vitals et WCAG ne constituent pas des résultats mesurés ou une conformité auditée.
+Ces commandes constituent la procédure de vérification, pas une déclaration de réussite. Les résultats réellement obtenus, les captures et les limites de l'environnement sont consignés dans [docs/REFONTE_V5.md](docs/REFONTE_V5.md) (les recettes précédentes restent disponibles comme historique). Les cibles Lighthouse, Core Web Vitals et WCAG ne constituent pas des résultats mesurés ou une conformité auditée.
 
-Aperçus locaux : [accueil ordinateur](docs/preview/accueil-desktop.png), [accueil mobile](docs/preview/accueil-mobile.png), [contact ordinateur](docs/preview/contact-desktop.png).
+Aperçus V5 : [accueil ordinateur](docs/preview/v5-blue/startseite-1440.png), [accueil mobile](docs/preview/v5-blue/startseite-390.png), [page métier](docs/preview/v5-blue/leistungen-trockenbau-1440.png), [contact ordinateur](docs/preview/v5-blue/kontakt-1440.png).
 
 ## Formulaire et future activation de l'e-mail
 

@@ -391,6 +391,27 @@ for (const width of [320, 360, 390, 768, 1024, 1440, 1920]) {
           route,
         )
       ) {
+        const rejectCookies = page.getByRole("button", {
+          name: "Alle ablehnen",
+          exact: true,
+        });
+        if (await rejectCookies.isVisible()) await rejectCookies.click();
+        // Full-page screenshots do not trigger loading of offscreen photos.
+        // Visit them first so the visual review shows the actual content.
+        for (const image of await page.locator("main img, footer img").all()) {
+          await image.scrollIntoViewIfNeeded();
+          await expect
+            .poll(() =>
+              image.evaluate(
+                (node: HTMLImageElement) =>
+                  node.complete && node.naturalWidth > 0,
+              ),
+            )
+            .toBe(true);
+        }
+        await page.evaluate(() =>
+          window.scrollTo({ top: 0, behavior: "instant" }),
+        );
         const label =
           route === "/" ? "startseite" : route.replaceAll("/", "-").slice(1);
         await page.screenshot({

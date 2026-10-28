@@ -282,7 +282,7 @@ export function ServicePage({
           </div>
         </Container>
       </section>
-      <section className="section editorial-warm">
+      <section className="section editorial-blue">
         <Container className="editorial-split">
           {detailPhoto ? (
             <Photo photo={detailPhoto} locale={locale} />
@@ -315,7 +315,7 @@ export function ServicePage({
       </section>
       <Process locale={locale} steps={s.details.steps} />
       <FAQ locale={locale} items={s.faq} />
-      <section className="section editorial-warm">
+      <section className="section editorial-blue">
         <Container>
           <Heading title={t.common.relatedServices} />
           <ServiceLinks locale={locale} exclude={s.slug} />
@@ -374,7 +374,7 @@ export function WebsitePage({
             </div>
           </Container>
         </section>
-        <section className="section editorial-warm">
+        <section className="section editorial-reasons">
           <Container>
             <Heading title={t.home.whyTitle} />
             <div className="editorial-facts">
@@ -392,7 +392,7 @@ export function WebsitePage({
           locale={locale}
           items={t.home.faq.map(([question, answer]) => ({ question, answer }))}
         />
-        <section className="section editorial-warm">
+        <section className="section editorial-blue">
           <Container>
             <Heading
               title={t.home.galleryTitle}
@@ -454,7 +454,7 @@ export function WebsitePage({
             </div>
           </Container>
         </section>
-        <section className="section editorial-warm">
+        <section className="section editorial-blue">
           <Container>
             <Heading title={t.about.fieldsTitle} />
             <ServiceLinks locale={locale} />
