@@ -5,7 +5,7 @@ main > .section {
 }
 main > .editorial-blue,
 main > .editorial-gallery-section {
-  background: var(--color-mist);
+  background: var(--color-surface);
 }
 main > .editorial-sage,
 main > .editorial-process {
@@ -138,7 +138,7 @@ main > .editorial-dark {
   background: var(--color-mist);
 }
 .editorial-cta {
-  background: linear-gradient(115deg, var(--color-brand-dark), #084f78);
+  background: linear-gradient(115deg, var(--color-ocean), #084f78);
 }
 @media (max-width: 767px) {
   .editorial-card-copy,
