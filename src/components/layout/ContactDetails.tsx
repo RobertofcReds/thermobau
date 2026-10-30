@@ -68,7 +68,16 @@ export function ContactDetails({
           <div key={key} className={channel ? undefined : "contact-pending"}>
             <Icon size={20} aria-hidden="true" />
             {channel ? (
-              <a href={channel.href}>{channel.label}</a>
+              <a href={channel.href}>
+                {key === "whatsapp" ? (
+                  <>
+                    <span className="detail-label">WhatsApp</span>
+                    {config.whatsapp}
+                  </>
+                ) : (
+                  channel.label
+                )}
+              </a>
             ) : (
               <span>
                 {label} – {t.pending}

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PageMotion } from "@/components/layout/PageMotion";
 import { BackToTop } from "@/components/layout/BackToTop";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { siteConfig } from "@/config/site";
 import { publicationReady, getSiteUrl } from "@/lib/publication";
 import { contactChannels } from "@/lib/company-contact";
@@ -15,6 +16,7 @@ import "../footer.css";
 import "../motion.css";
 import "../header.css";
 import "../palette.css";
+import "../chat.css";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -101,6 +103,7 @@ export default async function RootLayout({
           <PageMotion />
           <PrivacyPreferences locale={locale} />
           <BackToTop locale={locale} />
+          <ChatWidget locale={locale} />
         </NextIntlClientProvider>
         {business && (
           <script

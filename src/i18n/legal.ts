@@ -1,4 +1,11 @@
 import type { Locale } from "./routing";
+import { siteConfig } from "@/config/site";
+
+const confirmedContact = {
+  de: `Telefon: ${siteConfig.phone} · E-Mail: ${siteConfig.email} · WhatsApp: ${siteConfig.whatsapp}.`,
+  en: `Phone: ${siteConfig.phone} · Email: ${siteConfig.email} · WhatsApp: ${siteConfig.whatsapp}.`,
+  fr: `Téléphone : ${siteConfig.phone} · E-mail : ${siteConfig.email} · WhatsApp : ${siteConfig.whatsapp}.`,
+};
 type LegalContent = {
   title: string;
   description: string;
@@ -21,7 +28,8 @@ const copy: Record<
           title: "Übermittelte Kontaktdaten",
           paragraphs: [
             "Thermobau V&V · Ansprechpartner: Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Deutschland.",
-            "Der genannte Ansprechpartner ist nicht automatisch mit dem rechtlichen Anbieter oder Verantwortlichen gleichzusetzen. Eine bestätigte geschäftliche E-Mail-Adresse und die genaue Anbieteridentität fehlen noch. Das Demoformular ist kein Kommunikationskanal.",
+            confirmedContact.de,
+            "Der genannte Ansprechpartner ist nicht automatisch mit dem rechtlichen Anbieter oder Verantwortlichen gleichzusetzen. Die genaue Anbieteridentität fehlt noch. Das Demoformular ist kein Kommunikationskanal.",
           ],
         },
         {
@@ -55,7 +63,8 @@ const copy: Record<
         {
           title: "Verantwortlicher und Kontakt",
           paragraphs: [
-            "Übermittelte Bezeichnung: Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Genannter Ansprechpartner: Vasil Velikov Dimitrov. Die genaue Identität des datenschutzrechtlich Verantwortlichen und eine geschäftliche E-Mail-Adresse sind noch zu bestätigen. Ein Datenschutzbeauftragter wird nicht behauptet.",
+            "Übermittelte Bezeichnung: Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Genannter Ansprechpartner: Vasil Velikov Dimitrov. Die genaue Identität des datenschutzrechtlich Verantwortlichen ist noch zu bestätigen. Ein Datenschutzbeauftragter wird nicht behauptet.",
+            confirmedContact.de,
           ],
         },
         {
@@ -70,6 +79,13 @@ const copy: Record<
           paragraphs: [
             "Im derzeitigen Demomodus werden die Eingaben ausschließlich im Browser geprüft. Es wird keine Nachricht versendet; Formulardaten werden weder an die Kontakt-API übermittelt noch von der Anwendung gespeichert. Die automatische Ausfüllfunktion des Browsers ist davon unabhängig.",
             "Nach einer gesonderten Aktivierung kann das Formular Name, E-Mail, freiwillige Telefonnummer, Leistungswahl und Nachricht über die Kontakt-API an den konfigurierten E-Mail-Dienst übermitteln. Ein gesonderter Dienst begrenzt dann Anfragen mit pseudonymisierten technischen Kennungen. Empfänger, Dienste, Rechtsgrundlage, Löschfristen und Transfers müssen vor Aktivierung verbindlich dokumentiert werden. Bitte keine sensiblen Informationen eingeben.",
+          ],
+        },
+        {
+          title: "Automatischer Website-Chat",
+          paragraphs: [
+            "Der Chat beantwortet Fragen anhand hinterlegter Website-Informationen direkt im Browser. Chatnachrichten werden weder an Thermobau V&V noch an einen KI-Dienst übermittelt. Der Verlauf bleibt nur im Arbeitsspeicher des geöffneten Tabs; er wird nicht in Cookies, localStorage oder sessionStorage gespeichert. Sie können ihn im Chat leeren. Beim Neuladen oder Schließen des Tabs geht er verloren.",
+            "Der Chat ist kein Live-Kontakt und versendet keine Projektanfrage. Telefon-, E-Mail- und WhatsApp-Links öffnen den gewählten Kontaktkanal. Eine Nachricht an das Unternehmen müssen Sie dort selbst absenden.",
           ],
         },
         {
@@ -147,7 +163,8 @@ const copy: Record<
           title: "Contact details provided",
           paragraphs: [
             "Thermobau V&V · Named contact: Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Germany.",
-            "The named contact is not automatically the legal provider or data controller. A confirmed business email address and the exact provider identity are still missing. The demo form is not a communication channel.",
+            confirmedContact.en,
+            "The named contact is not automatically the legal provider or data controller. The exact provider identity is still missing. The demo form is not a communication channel.",
           ],
         },
         {
@@ -181,7 +198,8 @@ const copy: Record<
         {
           title: "Controller and contact",
           paragraphs: [
-            "Name provided: Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Named contact: Vasil Velikov Dimitrov. The exact data-controller identity and a business email address remain to be confirmed. No data protection officer is asserted.",
+            "Name provided: Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Named contact: Vasil Velikov Dimitrov. The exact data-controller identity remains to be confirmed. No data protection officer is asserted.",
+            confirmedContact.en,
           ],
         },
         {
@@ -196,6 +214,13 @@ const copy: Record<
           paragraphs: [
             "In the current demo mode, entries are checked only in your browser. No message is sent, no form data is transmitted to the contact API and the application does not store entries. Browser autofill works independently of this application.",
             "After separate activation, the form can transmit your name, email address, optional phone number, selected service and message through the contact API to a configured email service. A separate service then limits requests using pseudonymised technical identifiers. Recipients, providers, legal bases, deletion periods and transfers must be documented before activation. Please do not enter sensitive information.",
+          ],
+        },
+        {
+          title: "Automatic website chat",
+          paragraphs: [
+            "The chat answers questions from prepared website information directly in your browser. Chat messages are not transmitted to Thermobau V&V or an AI service. The conversation stays only in the open tab’s memory; it is not stored in cookies, localStorage or sessionStorage. You can clear it in the chat. Reloading or closing the tab removes it.",
+            "This is not a live conversation and does not submit a project enquiry. Phone, email and WhatsApp links open the chosen contact channel. You must send any message to the company yourself through that channel.",
           ],
         },
         {
@@ -274,7 +299,8 @@ const copy: Record<
           title: "Coordonnées communiquées",
           paragraphs: [
             "Thermobau V&V · Contact indiqué : Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Allemagne.",
-            "Le contact indiqué ne désigne pas automatiquement l’éditeur juridique ou le responsable du traitement. L’adresse e-mail professionnelle confirmée et l’identité juridique exacte restent à préciser. Le formulaire de démonstration n’est pas un canal de communication.",
+            confirmedContact.fr,
+            "Le contact indiqué ne désigne pas automatiquement l’éditeur juridique ou le responsable du traitement. L’identité juridique exacte reste à préciser. Le formulaire de démonstration n’est pas un canal de communication.",
           ],
         },
         {
@@ -308,7 +334,8 @@ const copy: Record<
         {
           title: "Responsable et contact",
           paragraphs: [
-            "Dénomination communiquée : Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Contact indiqué : Vasil Velikov Dimitrov. L’identité exacte du responsable du traitement et l’adresse e-mail professionnelle restent à confirmer. Aucun délégué à la protection des données n’est déclaré.",
+            "Dénomination communiquée : Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Contact indiqué : Vasil Velikov Dimitrov. L’identité exacte du responsable du traitement reste à confirmer. Aucun délégué à la protection des données n’est déclaré.",
+            confirmedContact.fr,
           ],
         },
         {
@@ -323,6 +350,13 @@ const copy: Record<
           paragraphs: [
             "En démonstration, les champs sont vérifiés uniquement dans votre navigateur. Aucun message n’est envoyé, aucune donnée de formulaire n’est transmise à l’API de contact et l’application ne conserve pas les saisies. Le remplissage automatique du navigateur est indépendant de l’application.",
             "Après activation distincte, le formulaire pourra transmettre le nom, l’e-mail, le téléphone facultatif, la prestation et le message à un service d’e-mail configuré via l’API de contact. Un autre service limitera les demandes à l’aide d’identifiants techniques pseudonymisés. Destinataires, prestataires, bases légales, durées de suppression et transferts doivent être documentés avant activation. Ne saisissez pas de données sensibles.",
+          ],
+        },
+        {
+          title: "Chat automatique du site",
+          paragraphs: [
+            "Le chat répond à partir d’informations préparées sur le site, directement dans votre navigateur. Les messages ne sont transmis ni à Thermobau V&V ni à un service d’IA. La conversation reste uniquement en mémoire dans l’onglet ouvert ; elle n’est conservée ni dans des cookies, ni dans localStorage ou sessionStorage. Vous pouvez l’effacer dans le chat. Actualiser ou fermer l’onglet efface le contenu.",
+            "Ce chat n’est pas une conversation en direct et n’envoie aucune demande de projet. Les liens téléphone, e-mail et WhatsApp ouvrent le canal choisi. Vous devez y envoyer vous-même tout message destiné à l’entreprise.",
           ],
         },
         {

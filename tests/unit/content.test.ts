@@ -42,9 +42,9 @@ describe("Contenus confirmés et contrat éditorial", () => {
       city: "Ludwigshafen",
       country: "DE",
     });
-    expect(siteConfig.phone).toBeNull();
-    expect(siteConfig.email).toBeNull();
-    expect(siteConfig.whatsapp).toBeNull();
+    expect(siteConfig.phone).toBe("+49 176 41504088");
+    expect(siteConfig.email).toBe("thermo_bau@web.de");
+    expect(siteConfig.whatsapp).toBe("+49 176 41504088");
     expect(siteConfig.openingHours).toBeNull();
     expect(siteConfig.confirmedServiceAreas).toEqual([]);
     expect(siteConfig.domain).toBeNull();

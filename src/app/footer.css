@@ -168,13 +168,19 @@
 .footer-premium .contact-details a[href^="https://wa.me/"] {
   display: inline-flex;
   min-height: 44px;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   padding: 8px 20px;
   color: white;
   background: var(--color-brand-dark);
   border: 1px solid #65c2f7;
   border-radius: 24px;
   font-weight: 700;
+}
+.footer-premium .contact-details a[href^="https://wa.me/"] .detail-label {
+  color: inherit;
+  margin-bottom: 0;
 }
 .footer-premium .footer-location {
   padding: 0 0 56px;

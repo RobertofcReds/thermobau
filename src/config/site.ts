@@ -10,9 +10,9 @@ export const siteConfig: SiteConfig = {
     city: "Ludwigshafen",
     country: "DE",
   },
-  phone: null,
-  email: null,
-  whatsapp: null,
+  phone: "+49 176 41504088",
+  email: "thermo_bau@web.de",
+  whatsapp: "+49 176 41504088",
   // Numéros internationaux (+49…), adresses et profils officiels vérifiés uniquement.
   social: {
     facebook: null,

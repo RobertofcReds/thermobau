@@ -105,6 +105,27 @@ Ces commandes constituent la procédure de vérification, pas une déclaration d
 
 Aperçus V5 : [accueil ordinateur](docs/preview/v5-blue/startseite-1440.png), [accueil mobile](docs/preview/v5-blue/startseite-390.png), [page métier](docs/preview/v5-blue/leistungen-trockenbau-1440.png), [contact ordinateur](docs/preview/v5-blue/kontakt-1440.png).
 
+## Coordonnées et assistant de discussion
+
+Les coordonnées fournies sont centralisées dans `src/config/site.ts` : téléphone et WhatsApp **+49 176 41504088**, e-mail **thermo_bau@web.de**. Le footer, les pages de contact et les réponses du chat réutilisent cette configuration. Les liens ouvrent le téléphone, le logiciel de messagerie ou WhatsApp ; aucun message n'est envoyé automatiquement.
+
+Le bouton **Chat** est disponible sur toutes les pages. Il ouvre un assistant automatique local, sans abonnement ni clé API. Ses réponses préparées couvrent les six métiers, les coordonnées, la préparation d'une demande et le fonctionnement du site. Il détecte l'allemand, le français et l'anglais à partir des questions ; une phrase ambiguë conserve la langue de la conversation ou de la page. Il peut aussi changer de langue sur demande explicite.
+
+Ce premier assistant fonctionne par reconnaissance de sujets : ce n'est ni une IA générative ni un échange avec un employé. Il ne confirme pas de prix, de disponibilité, de délai ou de zone d'intervention non renseignés. Lorsqu'il ne sait pas répondre, il propose les coordonnées de l'entreprise.
+
+Les messages restent uniquement en mémoire dans le navigateur. Fermer puis rouvrir le chat conserve la conversation ; le bouton d'effacement ou le rechargement de la page la supprime. Les messages ne sont pas enregistrés dans le stockage du navigateur ni transmis à un serveur. Le panneau et ses réponses sont chargés à la première ouverture pour limiter le code chargé au démarrage.
+
+Points d'entrée :
+
+- `src/lib/chat-assistant.ts` : `answerQuestion`, détection de langue, réponses et liens.
+- `src/components/chat/ChatWidget.tsx` et `ChatPanel.tsx` : ouverture, conversation, clavier et effacement.
+- `src/app/chat.css` : présentation responsive dans la palette bleue.
+- `tests/unit/chat-assistant.test.ts` et `tests/e2e/chat.spec.ts` : langues, sujets, liens, confidentialité locale, mobile et accessibilité.
+
+Pour le futur branchement IA, remplacer l'appel local par un adaptateur vers une route serveur en conservant le format `ChatReply` (`locale`, `text`, `links`, `topic`). La clé du fournisseur devra rester exclusivement côté serveur, sans préfixe `NEXT_PUBLIC_`. Prévoir la validation des entrées et des liens, les limites de requêtes, les erreurs réseau, les informations vérifiées de l'entreprise et l'actualisation des textes de confidentialité au moment du choix du fournisseur. Aucun fournisseur IA n'est connecté actuellement.
+
+Résultats de la recette et captures : [coordonnées et chat local](docs/CHAT_ET_CONTACTS.md).
+
 ## Formulaire et future activation de l'e-mail
 
 Le mode par défaut est `CONTACT_FORM_ENABLED=false`. Le bouton allemand **« Eingaben prüfen »** vérifie la saisie dans le navigateur, sans requête de soumission et sans envoi. L'API demeure protégée : une requête valide reçoit `503` lorsque la configuration d'envoi manque. Une requête invalide peut recevoir `400`, `413` ou `429` avant ce contrôle.

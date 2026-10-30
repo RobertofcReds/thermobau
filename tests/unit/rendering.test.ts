@@ -22,6 +22,7 @@ const contactFixture: SiteConfig = {
   },
   phone: "+49 000 000-000",
   email: "contact@example.invalid",
+  whatsapp: null,
   openingHours: ["Testzeit: 09:00–10:00"],
 };
 

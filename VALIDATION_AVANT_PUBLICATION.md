@@ -1,10 +1,9 @@
 # Validation avant publication — Thermobau V&V
 
-Le site V2 reste une prévisualisation locale. Ce document recense les décisions et informations nécessaires avant une publication réelle. Il ne constitue pas une validation juridique. **Envoi et indexation restent désactivés ; aucun déploiement, achat de domaine ou e-mail réel n'a été effectué dans cette refonte.**
+Le site reste une prévisualisation locale. Ce document recense les décisions et informations nécessaires avant une publication réelle. Il ne constitue pas une validation juridique. **Envoi et indexation restent désactivés ; aucun déploiement, achat de domaine ou e-mail réel n'a été effectué dans cette refonte.**
 
 ## Informations bloquantes
 
-- Adresse e-mail publique officielle et moyen de communication directe : le formulaire démo ne permet pas de contacter l'entreprise.
 - Identité juridique exacte du fournisseur du site et rôle de Vasil Velikov Dimitrov ; forme juridique et mentions conditionnelles applicables.
 - Responsable du traitement, coordonnées de contact, hébergeur, journalisation réelle, destinataires, bases légales, conservation et transferts éventuels.
 - Destinataire officiel et prestataires approuvés avant toute activation du formulaire. La validation complète des variables techniques ne vaut pas validation juridique.
@@ -17,9 +16,10 @@ Les champs restent `null` dans `src/config/site.ts`, sous `legal` et `privacy`. 
 - [ ] Confirmer le nom commercial exact : Thermobau V&V.
 - [ ] Confirmer la personne de contact communiquée, Vasil Velikov Dimitrov, son rôle exact et les usages publics autorisés ; ne pas en déduire un titre ou un statut juridique.
 - [ ] Confirmer l'adresse publiable : Blücherstr. 59, 67063 Ludwigshafen, Deutschland.
-- [ ] Déterminer le moyen de communication directe effectivement disponible ; fournir le téléphone officiel si ce moyen est retenu. Ne pas inventer de numéro ni présenter le téléphone comme toujours obligatoire dans tous les cas.
-- [ ] Fournir l'adresse e-mail publique et le destinataire officiel des demandes ; préciser s'il s'agit de deux adresses différentes.
-- [ ] Confirmer l'existence éventuelle d'un numéro WhatsApp professionnel et l'autorisation de le publier, sinon conserver `null`.
+- [x] Téléphone fourni pour affichage : **+49 176 41504088**.
+- [x] Adresse e-mail publique fournie : **thermo_bau@web.de**.
+- [x] Numéro WhatsApp fourni pour affichage : **+49 176 41504088**.
+- [ ] Confirmer le destinataire technique du futur formulaire et les paramètres d'envoi ; l'affichage de l'adresse publique n'active pas le formulaire démo.
 - [ ] Fournir les horaires s'ils doivent être affichés, sinon conserver `null`.
 - [ ] Fournir le domaine officiel et confirmer sa propriété ; il n'est ni inventé ni acheté dans le prototype.
 - [ ] Confirmer les zones d'intervention. Ludwigshafen est la localisation connue ; aucun rayon ni ensemble de communes n'est actuellement déclaré.

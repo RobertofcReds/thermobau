@@ -57,9 +57,16 @@ test("les 14 pages allemandes ont des métadonnées uniques et restent non index
       /noindex.*nofollow/,
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+    await expect(page.locator('a[href="#"]')).toHaveCount(0);
     await expect(
-      page.locator('a[href="#"], a[href^="tel:"], a[href^="mailto:"]'),
-    ).toHaveCount(0);
+      page.locator('footer a[href="tel:+4917641504088"]'),
+    ).toHaveCount(1);
+    await expect(
+      page.locator('footer a[href="mailto:thermo_bau@web.de"]'),
+    ).toHaveCount(1);
+    await expect(
+      page.locator('footer a[href="https://wa.me/4917641504088"]'),
+    ).toHaveCount(1);
     await expect(page.locator("body")).not.toContainText(
       /Lorem ipsum|Meisterbetrieb|seit 20 Jahren/i,
     );
@@ -101,6 +108,8 @@ test("les 14 pages allemandes ont des métadonnées uniques et restent non index
 test("l'accueil donne accès aux services et au contact en un clic", async ({
   page,
 }) => {
+  // Exercise navigation independently of the continuous hero-button animation.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page
     .getByRole("link", { name: "Leistungen entdecken", exact: true })

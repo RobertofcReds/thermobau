@@ -19,14 +19,41 @@ vi.mock("@/components/layout/FooterLocation", () => ({
 const originalDomain = siteConfig.domain;
 const originalSocial = siteConfig.social;
 const originalWhatsapp = siteConfig.whatsapp;
+const originalPhone = siteConfig.phone;
+const originalEmail = siteConfig.email;
+const missingContacts = {
+  ...siteConfig,
+  phone: null,
+  email: null,
+  whatsapp: null,
+};
 afterEach(() => {
   siteConfig.domain = originalDomain;
   siteConfig.social = originalSocial;
   siteConfig.whatsapp = originalWhatsapp;
+  siteConfig.phone = originalPhone;
+  siteConfig.email = originalEmail;
   vi.unstubAllEnvs();
 });
 
 describe("Configuration des canaux de contact", () => {
+  it("rend les coordonnées confirmées et leurs liens dans les trois langues", () => {
+    expect(contactChannels(siteConfig)).toEqual({
+      phone: { href: "tel:+4917641504088", label: "+49 176 41504088" },
+      email: { href: "mailto:thermo_bau@web.de", label: "thermo_bau@web.de" },
+      whatsapp: { href: "https://wa.me/4917641504088", label: "WhatsApp" },
+    });
+    for (const locale of ["de", "en", "fr"] as const) {
+      const html = renderToStaticMarkup(
+        createElement(ContactDetails, { locale, showPending: true }),
+      );
+      expect(html).toContain('href="tel:+4917641504088"');
+      expect(html).toContain('href="mailto:thermo_bau@web.de"');
+      expect(html).toContain('href="https://wa.me/4917641504088"');
+      expect(html).toContain("WhatsApp</span>+49 176 41504088");
+      expect(html).not.toContain("contact-pending");
+    }
+  });
   it.each([
     ["+49 621 1234567", "+496211234567"],
     ["0049 (621) 123-4567", "+496211234567"],
@@ -139,14 +166,18 @@ describe("Configuration des canaux de contact", () => {
     "affiche les coordonnées provisoires %s uniquement en texte",
     (locale, phone, email) => {
       const html = renderToStaticMarkup(
-        createElement(ContactDetails, { locale, showPending: true }),
+        createElement(ContactDetails, {
+          locale,
+          showPending: true,
+          config: missingContacts,
+        }),
       );
       expect(html).toContain(phone);
       expect(html).toContain(email);
       expect(html).not.toContain("href=");
       expect(html).toContain("WhatsApp");
       const hidden = renderToStaticMarkup(
-        createElement(ContactDetails, { locale }),
+        createElement(ContactDetails, { locale, config: missingContacts }),
       );
       expect(hidden).not.toContain(phone);
       expect(hidden).not.toContain("WhatsApp");
@@ -176,6 +207,9 @@ describe("Footer aperçu et publication", () => {
 
   it("rend les canaux manquants inactifs et conserve les liens locaux", () => {
     vi.stubEnv("SITE_PUBLICATION_READY", "false");
+    siteConfig.phone = null;
+    siteConfig.email = null;
+    siteConfig.whatsapp = null;
     const html = renderToStaticMarkup(
       createElement(SiteFooter, { locale: "de" }),
     );
@@ -192,6 +226,9 @@ describe("Footer aperçu et publication", () => {
   });
 
   it("masque les coordonnées et profils non configurés en publication", () => {
+    siteConfig.phone = null;
+    siteConfig.email = null;
+    siteConfig.whatsapp = null;
     siteConfig.domain = "https://publication.example.org";
     vi.stubEnv("NODE_ENV", "production");
     vi.stubEnv("SITE_PUBLICATION_READY", "true");

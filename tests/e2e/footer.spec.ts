@@ -43,11 +43,17 @@ test("footer: reference order, integrated map and copyright last", async ({
       );
     }),
   ).toBe(true);
+  await expect(footer.locator('a[href="#"]')).toHaveCount(0);
+  await expect(footer.locator('a[href="tel:+4917641504088"]')).toHaveText(
+    "+49 176 41504088",
+  );
+  await expect(footer.locator('a[href="mailto:thermo_bau@web.de"]')).toHaveText(
+    "thermo_bau@web.de",
+  );
   await expect(
-    footer.locator(
-      'a[href="#"], a[href^="tel:"], a[href^="mailto:"], a[href*="wa.me"]',
-    ),
-  ).toHaveCount(0);
+    footer.locator('a[href="https://wa.me/4917641504088"]'),
+  ).toContainText("+49 176 41504088");
+  await expect(footer.locator(".contact-pending")).toHaveCount(0);
 });
 
 test("footer: desktop columns and mobile stacking preserve their order", async ({
