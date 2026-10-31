@@ -232,7 +232,7 @@ test("le formulaire EN/FR traduit les erreurs et ne transmet aucune donnée en d
         .getByRole("button", { name: "Reject optional", exact: true })
         .click();
     await expect(page.locator("[name=service]")).toHaveValue("trockenbau");
-    await page.locator("button[type=submit]").click();
+    await page.locator(".contact-form button[type=submit]").click();
     await expect(page.locator("#name-error")).toContainText(
       locale === "fr" ? "Indiquez" : "Enter",
     );
@@ -242,7 +242,7 @@ test("le formulaire EN/FR traduit les erreurs et ne transmet aucune donnée en d
     await page
       .locator("[name=message]")
       .fill("Une demande de rénovation pour une pièce existante.");
-    await page.locator("button[type=submit]").click();
+    await page.locator(".contact-form button[type=submit]").click();
     await expect(page.getByRole("status")).toContainText(
       locale === "fr" ? "aucun message" : "no message",
     );

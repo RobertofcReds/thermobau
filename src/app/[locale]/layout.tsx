@@ -17,6 +17,7 @@ import "../motion.css";
 import "../header.css";
 import "../palette.css";
 import "../chat.css";
+import "../search.css";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";

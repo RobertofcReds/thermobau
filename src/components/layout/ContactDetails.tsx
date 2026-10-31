@@ -1,4 +1,5 @@
-import { MapPin, UserRound, Mail, Phone, MessageCircle } from "lucide-react";
+import { MapPin, UserRound, Mail, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import type { Locale } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
 import type { SiteConfig } from "@/types/content";
@@ -26,7 +27,7 @@ export function ContactDetails({
   const contacts = [
     { key: "phone" as const, label: t.phone, icon: Phone },
     { key: "email" as const, label: t.email, icon: Mail },
-    { key: "whatsapp" as const, label: "WhatsApp", icon: MessageCircle },
+    { key: "whatsapp" as const, label: "WhatsApp", icon: WhatsAppIcon },
   ];
   return (
     <div className="contact-details">

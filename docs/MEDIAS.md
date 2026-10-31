@@ -8,12 +8,12 @@ Le détail des auteurs, pages sources, licences et transformations figure dans [
 
 Le kit d'origine `Thermobau_VV_Kit_Pret_pour_Codex/` reste présent. Ses documents et actifs ont été copiés dans `docs/` et `assets/` à la racine pour le projet, sans suppression des originaux.
 
-| Actif                    | Source                                            | Usage et statut                                                                                                                                                                                                                       |
-| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Logo approuvé            | `assets/Thermobau_VV_Logo_Valide.png`             | Logo fourni et approuvé dans le brief ; réutilisation fidèle. Confirmer les droits de publication dans la validation finale.                                                                                                          |
-| Logo public              | `public/brand/thermobau-vv-logo.png`              | Copie intégrale du PNG approuvé, sans redessin, effet ni recadrage.                                                                                                                                                                   |
-| Icône Next.js            | `src/app/icon.png`                                | Dérivée du logo approuvé le 22 octobre 2026 : seules les marges blanches extérieures sont retirées, puis le logo complet est réduit proportionnellement dans un PNG 128 × 128. Aucun élément ni couleur de l’identité n’est remplacé. |
-| Photographie du véhicule | `assets/Thermobau_Vehicule_Reference_INTERNE.png` | Référence interne pour les métiers et l'identité. Non copiée dans `public/`, non affichée sur le site. Publication conditionnée à une autorisation spécifique.                                                                        |
+| Actif                    | Source                                            | Usage et statut                                                                                                                                                                                               |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Logo approuvé            | `assets/Thermobau_VV_Logo_Valide.png`             | Logo fourni et approuvé dans le brief ; réutilisation fidèle. Confirmer les droits de publication dans la validation finale.                                                                                  |
+| Logo public              | `public/brand/thermobau-vv-logo.png`              | Copie intégrale du PNG approuvé, sans redessin, effet ni recadrage.                                                                                                                                           |
+| Icône Next.js            | `src/app/icon.svg`                                | Contient le PNG 128 × 128 dérivé du logo approuvé, inchangé. Seuls les quatre coins blancs sont masqués avec un rayon de 24 px : carré arrondi, sans modification du dessin, des couleurs ou des proportions. |
+| Photographie du véhicule | `assets/Thermobau_Vehicule_Reference_INTERNE.png` | Référence interne pour les métiers et l'identité. Non copiée dans `public/`, non affichée sur le site. Publication conditionnée à une autorisation spécifique.                                                |
 
 L’égalité SHA-256 du logo source et du logo public a été contrôlée à nouveau le **22 octobre 2026**. Ces deux fichiers restent strictement identiques et inchangés :
 
@@ -25,11 +25,15 @@ Conserver l'image complète et son ratio dans les composants. Le PNG n'est pas p
 
 La nouvelle icône compacte a été produite localement avec Sharp depuis `assets/Thermobau_VV_Logo_Valide.png` (1254 × 1254). L’opération `trim({ background: "#ffffff", threshold: 10 })` retire uniquement le blanc extérieur : rectangle conservé de **977 × 785**, origine **x = 148, y = 255**. Le dessin complet (toit, cheminée, fenêtre, vagues, THERMOBAU, V & V et traits latéraux) est ensuite réduit avec `resize(120, 120, { fit: "contain", background: "#ffffff", kernel: "lanczos3" })`, entouré de 4 px blancs de chaque côté et enregistré en PNG 128 × 128. Aucun redessin, symbole isolé, couleur ajoutée ni changement de proportions. Le fichier final de **12 865 octets** a été inspecté visuellement.
 
-SHA-256 du favicon dérivé `src/app/icon.png` :
+Depuis le 31 octobre 2026, le favicon utilise un SVG avec un masque carré aux coins arrondis (`rx="24"`, largeur et hauteur de 128 px). Il embarque les octets exacts du PNG précédent ; aucun pixel coloré n'est rogné. Le logo du header et les autres fichiers de marque restent inchangés.
+
+SHA-256 du PNG d'origine désormais embarqué dans `src/app/icon.svg` :
 
 ```text
 A02F6243EC04C5E5AC8611FEA29FC85971C61775EAFD85E2022A268E8CAE32A7
 ```
+
+Le pictogramme WhatsApp de `src/components/ui/WhatsAppIcon.tsx` reprend le [tracé de marque Simple Icons](https://github.com/simple-icons/simple-icons/blob/develop/icons/whatsapp.svg), distribué sous [CC0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md). Il remplace l'icône de message générique dans les coordonnées, en conservant les couleurs du site.
 
 ## Illustrations originales du prototype
 

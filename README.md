@@ -105,6 +105,14 @@ Ces commandes constituent la procédure de vérification, pas une déclaration d
 
 Aperçus V5 : [accueil ordinateur](docs/preview/v5-blue/startseite-1440.png), [accueil mobile](docs/preview/v5-blue/startseite-390.png), [page métier](docs/preview/v5-blue/leistungen-trockenbau-1440.png), [contact ordinateur](docs/preview/v5-blue/kontakt-1440.png).
 
+## Recherche dans le site
+
+La barre de recherche du header ouvre les résultats instantanés du site ; sur téléphone, elle est représentée par une loupe pour conserver la hauteur du header. Les 14 pages de chaque langue, les six métiers, les FAQ et les coordonnées sont indexés à partir des contenus existants. Les résultats conservent la langue affichée et proposent un titre, un extrait et le lien de la page. Accents, casse, variantes allemandes et synonymes courants des métiers sont pris en charge.
+
+La recherche est locale : les termes saisis ne sont ni envoyés à une API ni enregistrés. L'index de la langue courante est construit côté serveur par `src/lib/site-search-index.ts` ; le classement se fait dans `src/lib/site-search.ts`. L'interface se trouve dans `src/components/layout/SiteSearch.tsx` et `src/app/search.css`. Entrée ouvre le premier résultat, les flèches parcourent les liens, Échap ferme le panneau et Tab reste dans le dialogue. Un message explicite apparaît lorsqu'aucun contenu ne correspond.
+
+Recette locale du 31 octobre 2026 : build, TypeScript, lint, formatage et **274 tests unitaires réussis**. La recette navigateur a validé 81 scénarios sur 82, puis le dernier scénario a réussi après avoir limité son sélecteur au formulaire de contact, pour le distinguer du nouveau formulaire de recherche. Les 10 nouveaux scénarios de recherche passent, dont le clavier, l'accessibilité automatisée et les largeurs 320, 390, 1024 et 1440 px. Captures vérifiées : [ordinateur](docs/preview/search/search-1440.png), [téléphone](docs/preview/search/search-390.png).
+
 ## Coordonnées et assistant de discussion
 
 Les coordonnées fournies sont centralisées dans `src/config/site.ts` : téléphone et WhatsApp **+49 176 41504088**, e-mail **thermo_bau@web.de**. Le footer, les pages de contact et les réponses du chat réutilisent cette configuration. Les liens ouvrent le téléphone, le logiciel de messagerie ou WhatsApp ; aucun message n'est envoyé automatiquement.

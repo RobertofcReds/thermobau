@@ -7,6 +7,8 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { Locale } from "@/i18n/routing";
 import { pagePath } from "@/i18n/routing";
 import { SmartHeader, type HeaderBehavior } from "./SmartHeader";
+import { SiteSearch } from "./SiteSearch";
+import { buildSearchIndex } from "@/lib/site-search-index";
 export function SiteHeader({
   locale,
   headerBehavior = "show-on-scroll-down",
@@ -19,6 +21,11 @@ export function SiteHeader({
       <Container className="header-main">
         <Logo locale={locale} />
         <DesktopNav locale={locale} />
+        <SiteSearch
+          key={locale}
+          locale={locale}
+          entries={buildSearchIndex(locale)}
+        />
         <LanguageSwitcher />
         <div className="header-cta">
           <Button href={pagePath("contact", locale)}>
