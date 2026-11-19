@@ -21,9 +21,9 @@ const copy: Record<
     legal: {
       title: "Impressum",
       description:
-        "Anbieterinformationen und Hinweise zum Veröffentlichungsstand.",
+        "Anbieterinformationen und noch zu bestätigende rechtliche Pflichtangaben.",
       warning:
-        "Vorläufiger Entwurf – nicht zur Veröffentlichung freigegeben. Die rechtlichen Angaben müssen vor dem Livegang vervollständigt und geprüft werden.",
+        "Die Anbieteridentität und weitere gesetzliche Pflichtangaben sind noch nicht vollständig bestätigt. Das Impressum muss vor der abschließenden rechtlichen Freigabe ergänzt und geprüft werden.",
       sections: [
         {
           title: "Übermittelte Kontaktdaten",
@@ -57,9 +57,9 @@ const copy: Record<
     privacy: {
       title: "Datenschutzerklärung",
       description:
-        "Informationen zum aktuellen Vorschaustand und zu den noch zu bestätigenden Datenverarbeitungen.",
+        "Informationen zu den tatsächlichen Datenverarbeitungen auf dieser Website und zu noch offenen rechtlichen Angaben.",
       warning:
-        "Vorläufiger Datenschutzentwurf. Verantwortlicher, Kontakt, Hosting und Betriebsbedingungen sind vor Veröffentlichung rechtlich zu prüfen und zu ergänzen. Übersetzungen benötigen ebenfalls eine Freigabe.",
+        "Diese Datenschutzhinweise beschreiben die eingesetzte Infrastruktur, sind aber noch nicht abschließend freigegeben. Insbesondere die genaue Identität des Verantwortlichen, Rechtsgrundlagen, Auftragsverarbeitungsverträge, Übermittlungen und gesonderte Löschfristen für E-Mails und Backups sind zu prüfen.",
       sections: [
         {
           title: "Verantwortlicher und Kontakt",
@@ -71,8 +71,8 @@ const copy: Record<
         {
           title: "Technischer Websitebetrieb",
           paragraphs: [
-            "Beim Abruf einer Website werden technisch unter anderem IP-Adresse, angeforderter Pfad, Zeitpunkt und Browserinformationen an den ausliefernden Server übertragen. Ob und wie lange der künftige Hostinganbieter Protokolle speichert, ist noch zu klären.",
-            "Hostinganbieter, Auftragsverarbeitung, Zwecke, Rechtsgrundlagen, Empfänger, Speicherfristen und gegebenenfalls Drittlandtransfers müssen für die tatsächliche Bereitstellung ergänzt werden. Schriftarten und Fotos werden lokal ausgeliefert. Es sind keine Analyse- oder Marketingwerkzeuge eingebunden.",
+            "Die öffentliche Website wird mit Next.js über Vercel bereitgestellt. Die Kontakt-API (PHP), die MariaDB-Datenbank und das E-Mail-Postfach werden bei ALL-INKL betrieben. Beim Aufruf der Website werden technisch unter anderem IP-Adresse, angeforderte Adresse, Zeitpunkt und Browserinformationen an die beteiligten Server übermittelt.",
+            "Zur Bearbeitung von Kontaktanfragen wird eine Serverfunktion bei Vercel genutzt, die die Anfrage verschlüsselt an die PHP-API bei ALL-INKL weiterleitet. Bei beiden Anbietern können technische Zugriffs- und Betriebsprotokolle anfallen. Die konkreten Speicherfristen, Auftragsverarbeitungsvereinbarungen und etwaige Übermittlungen außerhalb des Europäischen Wirtschaftsraums sind noch verbindlich zu prüfen. Schriftarten und Fotos werden nach aktuellem Projektstand lokal ausgeliefert; die Abwesenheit zusätzlicher Analyse- oder Marketingdienste ist anhand der produktiven Einbindung zu kontrollieren.",
           ],
         },
         {
@@ -80,6 +80,13 @@ const copy: Record<
           paragraphs: [
             "Im gekennzeichneten Demomodus werden die Eingaben ausschließlich im Browser geprüft. Es wird keine Nachricht versendet; Formulardaten werden weder an die Kontakt-API übermittelt noch von der Anwendung gespeichert. Die automatische Ausfüllfunktion des Browsers ist davon unabhängig.",
             `Nach gesonderter Aktivierung übermittelt das Formular Name, E-Mail, freiwillige Telefonnummer, Leistungswahl und Nachricht sowie Sprache, Formularseite und Eingangszeit über die Kontakt-API und eine verschlüsselte SMTP-Verbindung bei ALL-INKL an ${siteConfig.email}. Die E-Mail-Adresse wird als Antwortadresse verwendet. Upstash Redis begrenzt Anfragen anhand pseudonymisierter technischer Kennungen für eine Stunde; Formulareingaben werden dort nicht gespeichert. Rechtsgrundlagen, Löschfristen, Verträge und gegebenenfalls Transfers müssen vor Aktivierung verbindlich dokumentiert werden. Bitte keine sensiblen Informationen eingeben.`,
+          ],
+        },
+        {
+          title: "E-Mails und Sicherungskopien",
+          paragraphs: [
+            "Die Benachrichtigungs-E-Mails zu Kontaktanfragen bleiben unabhängig vom Datenbankeintrag im Postfach bei ALL-INKL erhalten. Es ist derzeit keine automatische Löschregel für das gesamte Postfach eingerichtet. Die Aufbewahrung einfacher Anfragen und die längere Aufbewahrung geschäftlich relevanter Korrespondenz sind organisatorisch und rechtlich getrennt festzulegen.",
+            "ALL-INKL stellt gesonderte Sicherungskopien für Datenbanken, E-Mail-Postfächer und Dateien des Webspaces bereit. Diese Sicherungen werden nicht automatisch durch die Löschung eines Kontaktdatensatzes aus der laufenden Datenbank bereinigt. Die Verfügbarkeit von Wiederherstellungspunkten wurde geprüft; eine garantierte maximale Aufbewahrungsfrist und das Wiederherstellungsverfahren müssen noch mit dem Anbieter geklärt werden.",
           ],
         },
         {
@@ -112,7 +119,7 @@ const copy: Record<
           ],
         },
         {
-          title: "Vor Veröffentlichung zu bestätigen",
+          title: "Vor abschließender Freigabe zu bestätigen",
           paragraphs: [
             "Verantwortlicher und elektronische Kontaktmöglichkeit; Hosting und Protokolle; rechtliche Grundlagen; tatsächliche Empfänger und Auftragsverarbeiter; Aufbewahrungs- und Löschfristen; Bedingungen des Kartendienstes und geschäftliche Nutzung der angegebenen Adresse; Formularbetrieb sowie mögliche internationale Übermittlungen.",
           ],
@@ -156,9 +163,9 @@ const copy: Record<
   en: {
     legal: {
       title: "Legal notice",
-      description: "Provider information and the status of this preview.",
+      description: "Provider details and legal particulars still awaiting confirmation.",
       warning:
-        "Provisional draft — not approved for publication. Legal particulars and this translation require completion and review before launch.",
+        "The provider's legal identity and other mandatory information have not yet been fully confirmed. Complete and review these details and this translation before final legal approval.",
       sections: [
         {
           title: "Contact details provided",
@@ -192,9 +199,9 @@ const copy: Record<
     privacy: {
       title: "Privacy notice",
       description:
-        "Information about this preview and the processing details that still need to be confirmed.",
+        "Information about actual data processing on this website and legal details that still need confirmation.",
       warning:
-        "Provisional privacy draft. The controller, contact details, hosting and operating arrangements, including this translation, require legal review before publication.",
+        "This notice describes the infrastructure in use but has not received final approval. The exact controller identity, legal bases, processor agreements, transfers and separate deletion periods for email and backups still require review, including this translation.",
       sections: [
         {
           title: "Controller and contact",
@@ -206,8 +213,8 @@ const copy: Record<
         {
           title: "Technical operation",
           paragraphs: [
-            "Accessing a website technically transmits information such as the IP address, requested path, time and browser information to the serving host. Whether and for how long the future hosting provider retains logs remains to be clarified.",
-            "The actual hosting provider, processing arrangements, purposes, legal bases, recipients, retention periods and any international transfers must be documented before launch. Fonts and photographs are served locally. No analytics or marketing tools are integrated.",
+            "The public Next.js website is hosted by Vercel. The PHP contact API, MariaDB database and email mailbox are operated at ALL-INKL. Visiting the website necessarily sends technical data, including the IP address, requested URL, time and browser details, to the systems involved.",
+            "Contact enquiries pass through a server function at Vercel and are forwarded over an encrypted connection to the PHP API at ALL-INKL. Both providers may generate technical access and operating logs. Their exact retention periods, data-processing agreements and any transfers outside the European Economic Area still need formal review. Fonts and photographs are served locally according to the current project setup; the absence of additional analytics or marketing integrations must be verified on the live website.",
           ],
         },
         {
@@ -215,6 +222,13 @@ const copy: Record<
           paragraphs: [
             "In the labelled demo mode, entries are checked only in your browser. No message is sent, no form data is transmitted to the contact API and the application does not store entries. Browser autofill works independently of this application.",
             `After separate activation, the form transmits your name, email address, optional phone number, selected service and message, plus the language, form page and submission time, through the contact API and an encrypted SMTP connection at ALL-INKL to ${siteConfig.email}. Your email address is used as the reply address. Upstash Redis limits requests using pseudonymised technical identifiers for one hour; form entries are not stored there. Legal bases, deletion periods, contracts and any transfers must be documented before activation. Please do not enter sensitive information.`,
+          ],
+        },
+        {
+          title: "Email messages and backups",
+          paragraphs: [
+            "Notification emails about contact enquiries remain in the ALL-INKL mailbox independently of the database record. There is currently no automatic deletion rule for the entire mailbox. Retention of simple enquiries and longer-term storage of business correspondence must be established separately, taking account of applicable obligations.",
+            "ALL-INKL provides separate backup copies for databases, mailboxes and webspace files. Deleting a contact record from the live database does not immediately remove it from those copies. Recovery points have been checked, but the maximum guaranteed backup retention period and restoration arrangements still require confirmation from the provider.",
           ],
         },
         {
@@ -247,7 +261,7 @@ const copy: Record<
           ],
         },
         {
-          title: "Before publication",
+          title: "To confirm before final approval",
           paragraphs: [
             "Confirm the controller and electronic contact, hosting and logs, legal bases, actual recipients and processors, retention and deletion periods, map-service terms and business use of the supplied address, form operation and any international transfers.",
           ],
@@ -292,9 +306,9 @@ const copy: Record<
     legal: {
       title: "Mentions légales",
       description:
-        "Informations sur l’éditeur et état de cette version de présentation.",
+        "Informations sur l’éditeur et mentions légales restant à confirmer.",
       warning:
-        "Projet provisoire — non approuvé pour publication. Les informations juridiques et cette traduction doivent être complétées et validées avant la mise en ligne.",
+        "L’identité juridique de l’éditeur et certaines mentions obligatoires ne sont pas encore confirmées. Elles doivent être complétées et vérifiées, ainsi que cette traduction, avant la validation juridique définitive.",
       sections: [
         {
           title: "Coordonnées communiquées",
@@ -328,9 +342,9 @@ const copy: Record<
     privacy: {
       title: "Politique de confidentialité",
       description:
-        "Informations sur cette version de présentation et les traitements restant à confirmer.",
+        "Informations sur les traitements réels du site et les points juridiques restant à confirmer.",
       warning:
-        "Projet provisoire. Le responsable, les coordonnées, l’hébergement et les conditions d’exploitation, ainsi que cette traduction, doivent être vérifiés juridiquement avant publication.",
+        "Ce texte décrit l’infrastructure utilisée mais n’a pas encore reçu sa validation définitive. L’identité exacte du responsable, les bases légales, les contrats de sous-traitance, les transferts et les durées distinctes de suppression des e-mails et des sauvegardes doivent encore être vérifiés, ainsi que cette traduction.",
       sections: [
         {
           title: "Responsable et contact",
@@ -342,8 +356,8 @@ const copy: Record<
         {
           title: "Fonctionnement technique",
           paragraphs: [
-            "La consultation d’un site transmet techniquement au serveur notamment l’adresse IP, le chemin demandé, l’heure et des informations sur le navigateur. L’existence de journaux chez le futur hébergeur et leur durée de conservation restent à préciser.",
-            "L’hébergeur réel, les contrats de sous-traitance, finalités, bases légales, destinataires, durées et éventuels transferts internationaux doivent être documentés avant publication. Les polices et photographies sont servies localement. Aucun outil d’analyse ni de marketing n’est intégré.",
+            "Le site public Next.js est hébergé chez Vercel. L’API de contact PHP, la base MariaDB et la messagerie sont exploitées chez ALL-INKL. La consultation du site transmet nécessairement des données techniques aux serveurs concernés, notamment l’adresse IP, l’URL demandée, l’heure et des informations sur le navigateur.",
+            "Les demandes de contact transitent par une fonction serveur de Vercel et sont transférées par connexion chiffrée à l’API PHP chez ALL-INKL. Ces prestataires peuvent générer des journaux techniques d’accès et d’exploitation. Leurs durées exactes de conservation, les accords de sous-traitance et les éventuels transferts hors de l’Espace économique européen restent à vérifier. Selon la configuration actuelle, les polices et les photographies sont servies localement ; l’absence d’autres intégrations publicitaires ou analytiques doit être contrôlée sur le site en production.",
           ],
         },
         {
@@ -351,6 +365,13 @@ const copy: Record<
           paragraphs: [
             "En démonstration, les champs sont vérifiés uniquement dans votre navigateur. Aucun message n’est envoyé, aucune donnée de formulaire n’est transmise à l’API de contact et l’application ne conserve pas les saisies. Le remplissage automatique du navigateur est indépendant de l’application.",
             `Après activation distincte, le formulaire transmet le nom, l’e-mail, le téléphone facultatif, la prestation et le message, ainsi que la langue, la page du formulaire et la date de soumission, via l’API de contact et une connexion SMTP chiffrée chez ALL-INKL à ${siteConfig.email}. L’adresse e-mail sert d’adresse de réponse. Upstash Redis limite les demandes à l’aide d’identifiants techniques pseudonymisés pendant une heure ; les saisies du formulaire n’y sont pas conservées. Les bases légales, durées de suppression, contrats et éventuels transferts doivent être documentés avant activation. Ne saisissez pas de données sensibles.`,
+          ],
+        },
+        {
+          title: "E-mails et sauvegardes",
+          paragraphs: [
+            "Les e-mails de notification des demandes de contact restent dans la boîte ALL-INKL indépendamment des enregistrements de la base. Aucune règle de suppression automatique de l’ensemble de la messagerie n’est actuellement configurée. La conservation des simples demandes et celle, éventuellement plus longue, des échanges commerciaux doivent être définies séparément selon les obligations applicables.",
+            "ALL-INKL conserve des sauvegardes distinctes des bases de données, des boîtes e-mail et des fichiers de l’espace web. La suppression d’un contact dans la base active n’efface pas immédiatement les copies sauvegardées. Des points de restauration ont été vérifiés ; la durée maximale garantie de conservation des sauvegardes et les modalités de restauration doivent encore être confirmées par l’hébergeur.",
           ],
         },
         {
@@ -383,7 +404,7 @@ const copy: Record<
           ],
         },
         {
-          title: "À confirmer avant publication",
+          title: "À confirmer avant validation définitive",
           paragraphs: [
             "Responsable et contact électronique, hébergement et journaux, bases légales, destinataires et sous-traitants réels, durées de conservation et de suppression, conditions du service cartographique et utilisation professionnelle de l’adresse fournie, fonctionnement du formulaire et éventuels transferts internationaux.",
           ],
@@ -431,28 +452,30 @@ const contactRetentionCopy: Record<
 > = {
   de: {
     pending:
-      "Die Aufbewahrungsfrist für Kontaktanfragen in der Datenbank ist noch nicht freigegeben. Sie muss vom Verantwortlichen bestätigt und mit dem laufenden Betrieb abgeglichen werden. Auch die Aufbewahrungs- und Löschregelungen für E-Mails und Sicherungskopien sind gesondert festzulegen.",
+      "Für die derzeit eingesetzte PHP-Kontaktdatenbank ist technisch eine Löschfrist von 90 Tagen ab Eingang eingerichtet. Diese Frist wurde noch nicht abschließend vom Verantwortlichen freigegeben. Die tatsächliche Löschung erfolgt über geplante Bereinigungsläufe. E-Mails und Sicherungskopien werden dadurch nicht automatisch gelöscht und benötigen eigene Aufbewahrungsregeln.",
     approved: (days) =>
-      `Für die in der Kontaktdatenbank gespeicherten Anfragen gilt nach Aktivierung eine Aufbewahrungsfrist von ${days} ${days === 1 ? "Tag" : "Tagen"} ab Eingang. Nach Ablauf dieser Frist werden die Anfragen und die zugehörigen Benachrichtigungsdaten durch geplante Löschläufe gelöscht. Der tatsächliche Löschzeitpunkt hängt vom Ausführungsrhythmus und der erfolgreichen Durchführung dieser Löschläufe ab. E-Mails im Postfach und Sicherungskopien werden dadurch nicht gelöscht; ihre gesonderten Aufbewahrungs- und Löschregelungen müssen vor Veröffentlichung festgelegt und erläutert werden.`,
+      `Für die in der Kontaktdatenbank gespeicherten Anfragen gilt eine Aufbewahrungsfrist von ${days} ${days === 1 ? "Tag" : "Tagen"} ab Eingang. Nach Ablauf dieser Frist werden die Anfragen und die zugehörigen Benachrichtigungsdaten durch geplante Löschläufe gelöscht. Der tatsächliche Löschzeitpunkt hängt vom Ausführungsrhythmus und der erfolgreichen Durchführung dieser Löschläufe ab. E-Mails im Postfach und Sicherungskopien werden dadurch nicht gelöscht; ihre gesonderten Aufbewahrungs- und Löschregelungen müssen vor Veröffentlichung festgelegt und erläutert werden.`,
   },
   en: {
     pending:
-      "The retention period for contact enquiries in the database has not yet been approved. The controller must approve it and confirm that it matches the current operation. Separate retention and deletion rules for emails and backups must also be defined.",
+      "The PHP contact database is currently configured technically to delete enquiries 90 days after receipt. This period has not yet received final approval from the controller. Deletion is carried out through scheduled cleanup runs. Emails and backup copies are not automatically deleted by this process and require separate retention rules.",
     approved: (days) =>
-      `Once enabled, enquiries stored in the contact database have a retention period of ${days} ${days === 1 ? "day" : "days"} from receipt. After this period, the enquiries and associated notification records are deleted through scheduled cleanup tasks. The actual deletion time depends on the schedule and successful execution of these tasks. This process does not delete emails in the mailbox or backup copies; their separate retention and deletion rules must be defined and explained before publication.`,
+      `Enquiries stored in the contact database have a retention period of ${days} ${days === 1 ? "day" : "days"} from receipt. After this period, the enquiries and associated notification records are deleted through scheduled cleanup tasks. The actual deletion time depends on the schedule and successful execution of these tasks. This process does not delete emails in the mailbox or backup copies; their separate retention and deletion rules must be defined and explained before publication.`,
   },
   fr: {
     pending:
-      "La durée de conservation des demandes de contact en base n’est pas encore validée. Elle doit être approuvée par le responsable et correspondre au fonctionnement réel. Les règles de conservation et d’effacement des e-mails et des sauvegardes doivent également être définies séparément.",
+      "La base de contact PHP est actuellement configurée sur le plan technique pour supprimer les demandes 90 jours après leur réception. Ce délai n’a pas encore reçu l’approbation définitive du responsable. L’effacement est exécuté par des nettoyages programmés. Les e-mails et copies de sauvegarde ne sont pas automatiquement supprimés par ce processus et nécessitent des règles de conservation distinctes.",
     approved: (days) =>
-      `Après activation, les demandes enregistrées dans la base de contact sont soumises à une durée de conservation de ${days} ${days === 1 ? "jour" : "jours"} à compter de leur réception. À l’expiration de ce délai, les demandes et les informations de notification associées sont supprimées par des traitements programmés. La date effective de suppression dépend de leur fréquence et de leur bonne exécution. Cette suppression ne concerne pas les e-mails de la messagerie ni les copies de sauvegarde ; leurs règles distinctes de conservation et d’effacement doivent être définies et expliquées avant publication.`,
+      `Les demandes enregistrées dans la base de contact sont soumises à une durée de conservation de ${days} ${days === 1 ? "jour" : "jours"} à compter de leur réception. À l’expiration de ce délai, les demandes et les informations de notification associées sont supprimées par des traitements programmés. La date effective de suppression dépend de leur fréquence et de leur bonne exécution. Cette suppression ne concerne pas les e-mails de la messagerie ni les copies de sauvegarde ; leurs règles distinctes de conservation et d’effacement doivent être définies et expliquées avant publication.`,
   },
 };
 
 function contactRetentionText(locale: Locale): string {
   const days = siteConfig.privacy.contactRetentionDays;
   const text = contactRetentionCopy[locale];
-  // Match the PHP range; an absent or invalid value never implies a default.
+  // Match the PHP range; an absent or invalid value never implies approval.
+  // Pending copy reflects the 90-day PHP setting observed on 2026-11-19.
+  // If that server value changes, update all pending translations as well.
   return typeof days === "number" &&
     Number.isInteger(days) &&
     days >= 1 &&
@@ -465,9 +488,9 @@ export function getLegal(locale: Locale, page: "legal" | "privacy" | "terms") {
   const content = copy[locale][page];
   if (page !== "privacy" || getContactBackend() !== "php") return content;
   const phpContact = {
-    de: `Bei einer Kontaktanfrage werden Name, E-Mail, freiwillige Telefonnummer, Leistungswahl, Nachricht, Sprache und Formularseite über Vercel an ALL-INKL übermittelt und mit einer Referenz und Eingangszeit in einer lokalen Datenbank gespeichert. Eine Benachrichtigung geht an ${siteConfig.email}; die Besucheradresse dient nur als Antwortadresse. Technische pseudonymisierte Kennungen begrenzen die Anfragen für eine Stunde. Kurzlebige Einmalwerte verhindern die Wiederholung signierter Übertragungen. Nachrichten werden nicht in diesen Schutzkennungen gespeichert. Rechtsgrundlagen, Empfänger, Verträge und gegebenenfalls internationale Übermittlungen müssen noch geprüft und dokumentiert werden. Bitte keine sensiblen Angaben eingeben.`,
-    en: `When you submit an enquiry, your name, email, optional phone number, service, message, language and form page are sent through Vercel to ALL-INKL and recorded in a local database with a reference and receipt time. A notification is sent to ${siteConfig.email}; your email is used only as the reply address. Pseudonymous technical identifiers limit requests for one hour. Short-lived single-use values prevent replay of signed transmissions. Messages are not stored in these protection identifiers. Legal bases, recipients, processing contracts and any international transfers still need to be checked and documented. Please do not enter sensitive information.`,
-    fr: `Lors de l’envoi d’une demande, le nom, l’e-mail, le téléphone facultatif, la prestation, le message, la langue et la page du formulaire transitent par Vercel vers ALL-INKL et sont enregistrés dans une base locale avec une référence et une date de réception. Une notification est adressée à ${siteConfig.email} ; l’e-mail du visiteur sert uniquement d’adresse de réponse. Des identifiants techniques pseudonymisés limitent les demandes pendant une heure. Des valeurs à usage unique de courte durée empêchent de rejouer les transmissions signées. Les messages ne sont pas stockés dans ces identifiants de protection. Les bases légales, destinataires, contrats de sous-traitance et éventuels transferts internationaux restent à vérifier et à documenter. Ne saisissez pas de données sensibles.`,
+    de: `Das aktive Kontaktformular dient zur Bearbeitung Ihrer Anfrage und gegebenenfalls zur Vorbereitung eines Angebots. Dabei werden Name, E-Mail, freiwillige Telefonnummer, Leistungswahl, Nachricht, Sprache und Formularseite über eine Serverfunktion bei Vercel verschlüsselt an die PHP-API bei ALL-INKL übertragen und zusammen mit Referenz und Eingangszeit in MariaDB gespeichert. Eine Benachrichtigung wird über den E-Mail-Dienst bei ALL-INKL an ${siteConfig.email} versandt; Ihre Adresse wird als Antwortadresse verwendet. Pseudonymisierte technische Kennungen begrenzen Anfragen für eine Stunde; kurzlebige Einmalwerte schützen signierte Übertragungen vor Wiederholungen. Der Nachrichtentext wird nicht in diesen Schutzkennungen gespeichert. Die einschlägige Rechtsgrundlage (insbesondere vorvertragliche Maßnahmen oder berechtigte Interessen, abhängig vom Anliegen), Empfänger, Verträge und mögliche internationale Übermittlungen müssen abschließend geprüft werden. Bitte geben Sie keine sensiblen Daten ein.`,
+    en: `The active contact form is used to process your enquiry and, where applicable, prepare a quotation. Your name, email, optional phone number, selected service, message, language and form page pass through a Vercel server function over an encrypted connection to the PHP API at ALL-INKL, and are stored in MariaDB with a reference and receipt time. A notification is sent through the ALL-INKL email service to ${siteConfig.email}; your address is used as the reply-to address. Pseudonymous technical identifiers limit requests for one hour and short-lived single-use values protect signed transmissions against replay. The message body is not stored in these protection identifiers. The applicable legal basis (particularly pre-contractual steps or legitimate interests, depending on the enquiry), recipients, processing contracts and possible international transfers still need final review. Please do not provide sensitive data.`,
+    fr: `Le formulaire de contact actif sert à traiter votre demande et, le cas échéant, à préparer un devis. Votre nom, e-mail, téléphone facultatif, prestation choisie, message, langue et page du formulaire transitent par une fonction serveur de Vercel vers l’API PHP d’ALL-INKL, via une connexion chiffrée. Ils sont enregistrés dans MariaDB avec une référence et la date de réception. Une notification est envoyée par la messagerie ALL-INKL à ${siteConfig.email} ; votre adresse est utilisée pour la réponse. Des identifiants techniques pseudonymisés limitent les demandes pendant une heure, et des valeurs temporaires à usage unique protègent les transmissions signées contre leur réutilisation. Le contenu du message n’est pas conservé dans ces identifiants. La base légale applicable (notamment démarches précontractuelles ou intérêt légitime, selon la demande), les destinataires, les accords de sous-traitance et les éventuels transferts internationaux restent à valider. Ne communiquez pas de données sensibles.`,
   };
   return {
     ...content,
