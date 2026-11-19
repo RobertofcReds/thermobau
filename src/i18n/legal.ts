@@ -21,29 +21,29 @@ const copy: Record<
     legal: {
       title: "Impressum",
       description:
-        "Anbieterinformationen und noch zu bestätigende rechtliche Pflichtangaben.",
+        "Angaben zum Einzelunternehmer und noch zu prüfende gesetzliche Pflichtangaben.",
       warning:
-        "Die Anbieteridentität und weitere gesetzliche Pflichtangaben sind noch nicht vollständig bestätigt. Das Impressum muss vor der abschließenden rechtlichen Freigabe ergänzt und geprüft werden.",
+        "Der Inhaber und die Unternehmensform sind bestätigt. Weitere gegebenenfalls erforderliche Pflichtangaben und die Geschäftsanschrift müssen vor der abschließenden rechtlichen Freigabe überprüft werden.",
       sections: [
         {
-          title: "Übermittelte Kontaktdaten",
+          title: "Anbieter und Kontakt",
           paragraphs: [
-            "Thermobau V&V · Ansprechpartner: Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Deutschland.",
+            "Vasil Velikov Dimitrov (Einzelunternehmer), handelnd unter der Geschäftsbezeichnung Thermobau V&V. Geschäftsanschrift laut den vorliegenden Angaben: Blücherstr. 59, 67063 Ludwigshafen, Deutschland.",
             confirmedContact.de,
-            "Der genannte Ansprechpartner ist nicht automatisch mit dem rechtlichen Anbieter oder Verantwortlichen gleichzusetzen. Die genaue Anbieteridentität fehlt noch. Kontaktanfragen können über das Kontaktformular übermittelt werden.",
+            "Vasil Velikov Dimitrov ist als Inhaber des Einzelunternehmens bestätigt. Kontaktanfragen können über das Kontaktformular übermittelt werden; durch eine Anfrage kommt noch kein Vertrag zustande.",
           ],
         },
         {
           title: "Noch zu vervollständigen",
           paragraphs: [
-            "Genaue Anbieteridentität und gegebenenfalls Rechtsform sowie Vertretungsberechtigte. Register, Registergericht, Registernummer, Umsatzsteuer- oder Wirtschafts-Identifikationsnummer nur, soweit vorhanden und einschlägig. Keine persönliche Steuernummer veröffentlichen.",
+            "Zu prüfen sind die Geschäftsanschrift und, soweit tatsächlich vorhanden und rechtlich erforderlich, Handelsregistereintrag, Registergericht und Registernummer sowie Umsatzsteuer- oder Wirtschafts-Identifikationsnummer. Keine persönliche Steuernummer veröffentlichen.",
             "Je nach Tätigkeit sind Angaben zu Aufsichtsbehörde, Kammer, Berufsbezeichnung und Berufsrecht sowie zur Verbraucherstreitbeilegung zu prüfen. Es werden keine Mitgliedschaften, Zulassungen oder Teilnahmepflichten behauptet.",
           ],
         },
         {
           title: "Rechtlicher Prüfbedarf",
           paragraphs: [
-            "Die anwendbaren Angaben nach § 5 DDG sind vor Veröffentlichung zu bestätigen. Auch die Anwendbarkeit des BFSG ist anhand der tatsächlichen Leistungen, einer möglichen elektronischen Vertragsanbahnung und der Unternehmensgröße zu prüfen. Eine Ausnahme oder rechtliche Zertifizierung wird nicht zugesichert.",
+            "Die noch offenen Angaben nach § 5 DDG sind vor der abschließenden rechtlichen Freigabe zu überprüfen. Auch die Anwendbarkeit des BFSG ist anhand der tatsächlichen Leistungen, einer möglichen elektronischen Vertragsanbahnung und der Unternehmensgröße zu prüfen. Eine Ausnahme oder rechtliche Zertifizierung wird nicht zugesichert.",
           ],
         },
         {
@@ -59,12 +59,12 @@ const copy: Record<
       description:
         "Informationen zu den tatsächlichen Datenverarbeitungen auf dieser Website und zu noch offenen rechtlichen Angaben.",
       warning:
-        "Diese Datenschutzhinweise beschreiben die eingesetzte Infrastruktur, sind aber noch nicht abschließend freigegeben. Insbesondere die genaue Identität des Verantwortlichen, Rechtsgrundlagen, Auftragsverarbeitungsverträge, Übermittlungen und gesonderte Löschfristen für E-Mails und Backups sind zu prüfen.",
+        "Diese Datenschutzhinweise beschreiben die eingesetzte Infrastruktur und benennen den bestätigten Einzelunternehmer als Verantwortlichen. Rechtsgrundlagen, Auftragsverarbeitungsverträge, mögliche Übermittlungen und gesonderte Löschfristen für E-Mails und Backups müssen noch abschließend überprüft werden.",
       sections: [
         {
           title: "Verantwortlicher und Kontakt",
           paragraphs: [
-            "Übermittelte Bezeichnung: Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Genannter Ansprechpartner: Vasil Velikov Dimitrov. Die genaue Identität des datenschutzrechtlich Verantwortlichen ist noch zu bestätigen. Ein Datenschutzbeauftragter wird nicht behauptet.",
+            "Verantwortlicher für diese Website: Vasil Velikov Dimitrov (Einzelunternehmer), handelnd unter der Geschäftsbezeichnung Thermobau V&V. Geschäftsanschrift laut den vorliegenden Angaben: Blücherstr. 59, 67063 Ludwigshafen, Deutschland. Ein Datenschutzbeauftragter wird nicht behauptet.",
             confirmedContact.de,
           ],
         },
@@ -121,7 +121,7 @@ const copy: Record<
         {
           title: "Vor abschließender Freigabe zu bestätigen",
           paragraphs: [
-            "Verantwortlicher und elektronische Kontaktmöglichkeit; Hosting und Protokolle; rechtliche Grundlagen; tatsächliche Empfänger und Auftragsverarbeiter; Aufbewahrungs- und Löschfristen; Bedingungen des Kartendienstes und geschäftliche Nutzung der angegebenen Adresse; Formularbetrieb sowie mögliche internationale Übermittlungen.",
+            "Geschäftsanschrift und elektronische Kontaktmöglichkeit; Hosting und Protokolle; rechtliche Grundlagen; tatsächliche Empfänger und Auftragsverarbeiter; Aufbewahrungs- und Löschfristen; Bedingungen des Kartendienstes; Formularbetrieb sowie mögliche internationale Übermittlungen.",
           ],
         },
       ],
@@ -163,29 +163,29 @@ const copy: Record<
   en: {
     legal: {
       title: "Legal notice",
-      description: "Provider details and legal particulars still awaiting confirmation.",
+      description: "Details of the sole proprietor and legal particulars still requiring review.",
       warning:
-        "The provider's legal identity and other mandatory information have not yet been fully confirmed. Complete and review these details and this translation before final legal approval.",
+        "The owner and sole-proprietor status have been confirmed. Other applicable statutory details, the business address and this translation still require review before final legal approval.",
       sections: [
         {
-          title: "Contact details provided",
+          title: "Provider and contact details",
           paragraphs: [
-            "Thermobau V&V · Named contact: Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Germany.",
+            "Vasil Velikov Dimitrov (sole proprietor), trading as Thermobau V&V. Business address according to the information provided: Blücherstr. 59, 67063 Ludwigshafen, Germany.",
             confirmedContact.en,
-            "The named contact is not automatically the legal provider or data controller. The exact provider identity is still missing. The contact form can be used to send non-binding enquiries.",
+            "Vasil Velikov Dimitrov has been confirmed as the owner of the sole proprietorship. The contact form accepts non-binding enquiries; submitting an enquiry does not establish a contract.",
           ],
         },
         {
           title: "Information still required",
           paragraphs: [
-            "Exact provider identity and, where relevant, legal form and authorised representative. Register, court, registration number, VAT ID or economic ID are to be added only if applicable and confirmed. Do not publish a personal tax number.",
+            "Verify the business address and, where actually applicable and required, any commercial-register entry, register court and registration number, VAT ID or economic ID. Do not publish a personal tax number.",
             "Depending on the activity, supervisory authority, chamber, professional title and rules and consumer dispute-resolution information must be checked. No membership, authorisation or participation obligation is asserted.",
           ],
         },
         {
           title: "Legal review",
           paragraphs: [
-            "Applicable disclosures under section 5 DDG must be confirmed before publication. The applicability of the BFSG must also be assessed using the actual services, any electronic contracting process and the size of the business. No exemption or legal certification is claimed.",
+            "Outstanding disclosures under section 5 DDG must be reviewed before final legal approval. The applicability of the BFSG must also be assessed using the actual services, any electronic contracting process and the size of the business. No exemption or legal certification is claimed.",
           ],
         },
         {
@@ -201,12 +201,12 @@ const copy: Record<
       description:
         "Information about actual data processing on this website and legal details that still need confirmation.",
       warning:
-        "This notice describes the infrastructure in use but has not received final approval. The exact controller identity, legal bases, processor agreements, transfers and separate deletion periods for email and backups still require review, including this translation.",
+        "This notice describes the infrastructure and identifies the confirmed sole proprietor as the controller. Legal bases, processing agreements, possible transfers and separate deletion periods for emails and backups still require final review, as does this translation.",
       sections: [
         {
           title: "Controller and contact",
           paragraphs: [
-            "Name provided: Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Named contact: Vasil Velikov Dimitrov. The exact data-controller identity remains to be confirmed. No data protection officer is asserted.",
+            "Controller for this website: Vasil Velikov Dimitrov (sole proprietor), trading as Thermobau V&V. Business address according to the information provided: Blücherstr. 59, 67063 Ludwigshafen, Germany. No data protection officer is asserted.",
             confirmedContact.en,
           ],
         },
@@ -263,7 +263,7 @@ const copy: Record<
         {
           title: "To confirm before final approval",
           paragraphs: [
-            "Confirm the controller and electronic contact, hosting and logs, legal bases, actual recipients and processors, retention and deletion periods, map-service terms and business use of the supplied address, form operation and any international transfers.",
+            "Confirm the business address and electronic contact, hosting and logs, legal bases, actual recipients and processors, retention and deletion periods, map-service terms, form operation and any international transfers.",
           ],
         },
       ],
@@ -306,29 +306,29 @@ const copy: Record<
     legal: {
       title: "Mentions légales",
       description:
-        "Informations sur l’éditeur et mentions légales restant à confirmer.",
+        "Informations sur l’entrepreneur individuel et mentions légales restant à vérifier.",
       warning:
-        "L’identité juridique de l’éditeur et certaines mentions obligatoires ne sont pas encore confirmées. Elles doivent être complétées et vérifiées, ainsi que cette traduction, avant la validation juridique définitive.",
+        "L’identité du propriétaire et le statut d’entreprise individuelle sont confirmés. D’autres mentions obligatoires éventuelles, l’adresse professionnelle et cette traduction doivent être vérifiées avant validation juridique définitive.",
       sections: [
         {
-          title: "Coordonnées communiquées",
+          title: "Éditeur et coordonnées",
           paragraphs: [
-            "Thermobau V&V · Contact indiqué : Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Allemagne.",
+            "Vasil Velikov Dimitrov (entrepreneur individuel), exerçant sous le nom commercial Thermobau V&V. Adresse professionnelle selon les informations communiquées : Blücherstr. 59, 67063 Ludwigshafen, Allemagne.",
             confirmedContact.fr,
-            "Le contact indiqué ne désigne pas automatiquement l’éditeur juridique ou le responsable du traitement. L’identité juridique exacte reste à préciser. Le formulaire de contact permet d’envoyer des demandes sans engagement.",
+            "Vasil Velikov Dimitrov est confirmé comme titulaire de l’entreprise individuelle. Le formulaire permet d’envoyer des demandes sans engagement ; leur envoi ne constitue pas un contrat.",
           ],
         },
         {
           title: "Informations à compléter",
           paragraphs: [
-            "Identité juridique exacte et, selon le cas, forme juridique et représentant habilité. Registre, tribunal, numéro d’inscription, identifiant TVA ou identifiant économique seulement s’ils existent et sont applicables. Ne pas publier de numéro fiscal personnel.",
+            "Vérifier l’adresse professionnelle ainsi que, si cela s’applique réellement, toute inscription au registre du commerce, le tribunal et le numéro d’immatriculation, l’identifiant TVA ou l’identifiant économique. Ne pas publier de numéro fiscal personnel.",
             "Selon l’activité, vérifier les informations relatives à l’autorité de surveillance, la chambre professionnelle, le titre et les règles professionnelles ainsi qu’au règlement des litiges de consommation. Aucune adhésion, autorisation ou obligation de participation n’est affirmée.",
           ],
         },
         {
           title: "Vérifications juridiques",
           paragraphs: [
-            "Les mentions applicables au titre du § 5 DDG doivent être confirmées avant publication. L’applicabilité du BFSG doit également être évaluée selon les services réels, l’éventuel processus de contractualisation électronique et la taille de l’entreprise. Aucune exemption ni certification juridique n’est affirmée.",
+            "Les mentions restant à compléter au titre du § 5 DDG doivent être vérifiées avant validation juridique définitive. L’applicabilité du BFSG doit également être évaluée selon les services réels, l’éventuel processus de contractualisation électronique et la taille de l’entreprise. Aucune exemption ni certification juridique n’est affirmée.",
           ],
         },
         {
@@ -344,12 +344,12 @@ const copy: Record<
       description:
         "Informations sur les traitements réels du site et les points juridiques restant à confirmer.",
       warning:
-        "Ce texte décrit l’infrastructure utilisée mais n’a pas encore reçu sa validation définitive. L’identité exacte du responsable, les bases légales, les contrats de sous-traitance, les transferts et les durées distinctes de suppression des e-mails et des sauvegardes doivent encore être vérifiés, ainsi que cette traduction.",
+        "Ce texte décrit l’infrastructure utilisée et désigne l’entrepreneur individuel confirmé comme responsable du traitement. Les bases légales, contrats de sous-traitance, éventuels transferts et durées distinctes de suppression des e-mails et sauvegardes doivent encore être vérifiés, ainsi que cette traduction.",
       sections: [
         {
           title: "Responsable et contact",
           paragraphs: [
-            "Dénomination communiquée : Thermobau V&V, Blücherstr. 59, 67063 Ludwigshafen. Contact indiqué : Vasil Velikov Dimitrov. L’identité exacte du responsable du traitement reste à confirmer. Aucun délégué à la protection des données n’est déclaré.",
+            "Responsable du traitement pour ce site : Vasil Velikov Dimitrov (entrepreneur individuel), exerçant sous le nom commercial Thermobau V&V. Adresse professionnelle selon les informations communiquées : Blücherstr. 59, 67063 Ludwigshafen, Allemagne. Aucun délégué à la protection des données n’est déclaré.",
             confirmedContact.fr,
           ],
         },
@@ -406,7 +406,7 @@ const copy: Record<
         {
           title: "À confirmer avant validation définitive",
           paragraphs: [
-            "Responsable et contact électronique, hébergement et journaux, bases légales, destinataires et sous-traitants réels, durées de conservation et de suppression, conditions du service cartographique et utilisation professionnelle de l’adresse fournie, fonctionnement du formulaire et éventuels transferts internationaux.",
+            "Adresse professionnelle et contact électronique, hébergement et journaux, bases légales, destinataires et sous-traitants réels, durées de conservation et de suppression, conditions du service cartographique, fonctionnement du formulaire et éventuels transferts internationaux.",
           ],
         },
       ],
