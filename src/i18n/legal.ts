@@ -30,7 +30,7 @@ const copy: Record<
           paragraphs: [
             "Thermobau V&V · Ansprechpartner: Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Deutschland.",
             confirmedContact.de,
-            "Der genannte Ansprechpartner ist nicht automatisch mit dem rechtlichen Anbieter oder Verantwortlichen gleichzusetzen. Die genaue Anbieteridentität fehlt noch. Das Demoformular ist kein Kommunikationskanal.",
+            "Der genannte Ansprechpartner ist nicht automatisch mit dem rechtlichen Anbieter oder Verantwortlichen gleichzusetzen. Die genaue Anbieteridentität fehlt noch. Kontaktanfragen können über das Kontaktformular übermittelt werden.",
           ],
         },
         {
@@ -147,7 +147,7 @@ const copy: Record<
         {
           title: "Freiwillige Nutzung",
           paragraphs: [
-            "Zum Lesen der Website müssen Sie weder optionale Karten aktivieren noch Vertragsbedingungen akzeptieren. Das Kontaktformular bleibt bis zur gesonderten Einrichtung im ausdrücklich gekennzeichneten Demomodus.",
+            "Zum Lesen der Website müssen Sie weder optionale Karten aktivieren noch Vertragsbedingungen akzeptieren. Das Kontaktformular ermöglicht unverbindliche Anfragen; durch das Absenden kommt noch kein Vertrag zustande.",
           ],
         },
       ],
@@ -165,7 +165,7 @@ const copy: Record<
           paragraphs: [
             "Thermobau V&V · Named contact: Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Germany.",
             confirmedContact.en,
-            "The named contact is not automatically the legal provider or data controller. The exact provider identity is still missing. The demo form is not a communication channel.",
+            "The named contact is not automatically the legal provider or data controller. The exact provider identity is still missing. The contact form can be used to send non-binding enquiries.",
           ],
         },
         {
@@ -282,7 +282,7 @@ const copy: Record<
         {
           title: "Optional features",
           paragraphs: [
-            "Reading the website does not require activating optional maps or accepting commercial terms. The contact form remains in clearly labelled demo mode until separately configured.",
+            "Reading the website does not require activating optional maps or accepting commercial terms. The contact form accepts non-binding enquiries; submitting it does not create a contract.",
           ],
         },
       ],
@@ -301,7 +301,7 @@ const copy: Record<
           paragraphs: [
             "Thermobau V&V · Contact indiqué : Vasil Velikov Dimitrov · Blücherstr. 59, 67063 Ludwigshafen, Allemagne.",
             confirmedContact.fr,
-            "Le contact indiqué ne désigne pas automatiquement l’éditeur juridique ou le responsable du traitement. L’identité juridique exacte reste à préciser. Le formulaire de démonstration n’est pas un canal de communication.",
+            "Le contact indiqué ne désigne pas automatiquement l’éditeur juridique ou le responsable du traitement. L’identité juridique exacte reste à préciser. Le formulaire de contact permet d’envoyer des demandes sans engagement.",
           ],
         },
         {
@@ -418,7 +418,7 @@ const copy: Record<
         {
           title: "Consultation libre",
           paragraphs: [
-            "Consulter le site ne nécessite ni d’activer les cartes facultatives ni d’accepter des conditions commerciales. Le formulaire reste en démonstration explicitement signalée jusqu’à sa configuration distincte.",
+            "Consulter le site ne nécessite ni d’activer les cartes facultatives ni d’accepter des conditions commerciales. Le formulaire accepte les demandes sans engagement ; son envoi ne constitue pas un contrat.",
           ],
         },
       ],
@@ -431,19 +431,19 @@ const contactRetentionCopy: Record<
 > = {
   de: {
     pending:
-      "Die Aufbewahrungsfrist für Kontaktanfragen in der Datenbank ist noch nicht freigegeben. Sie muss vor Aktivierung festgelegt werden. Auch die Aufbewahrungs- und Löschregelungen für E-Mails und Sicherungskopien sind gesondert festzulegen.",
+      "Die Aufbewahrungsfrist für Kontaktanfragen in der Datenbank ist noch nicht freigegeben. Sie muss vom Verantwortlichen bestätigt und mit dem laufenden Betrieb abgeglichen werden. Auch die Aufbewahrungs- und Löschregelungen für E-Mails und Sicherungskopien sind gesondert festzulegen.",
     approved: (days) =>
       `Für die in der Kontaktdatenbank gespeicherten Anfragen gilt nach Aktivierung eine Aufbewahrungsfrist von ${days} ${days === 1 ? "Tag" : "Tagen"} ab Eingang. Nach Ablauf dieser Frist werden die Anfragen und die zugehörigen Benachrichtigungsdaten durch geplante Löschläufe gelöscht. Der tatsächliche Löschzeitpunkt hängt vom Ausführungsrhythmus und der erfolgreichen Durchführung dieser Löschläufe ab. E-Mails im Postfach und Sicherungskopien werden dadurch nicht gelöscht; ihre gesonderten Aufbewahrungs- und Löschregelungen müssen vor Veröffentlichung festgelegt und erläutert werden.`,
   },
   en: {
     pending:
-      "The retention period for contact enquiries in the database has not yet been approved. It must be defined before activation. Separate retention and deletion rules for emails and backups must also be defined.",
+      "The retention period for contact enquiries in the database has not yet been approved. The controller must approve it and confirm that it matches the current operation. Separate retention and deletion rules for emails and backups must also be defined.",
     approved: (days) =>
       `Once enabled, enquiries stored in the contact database have a retention period of ${days} ${days === 1 ? "day" : "days"} from receipt. After this period, the enquiries and associated notification records are deleted through scheduled cleanup tasks. The actual deletion time depends on the schedule and successful execution of these tasks. This process does not delete emails in the mailbox or backup copies; their separate retention and deletion rules must be defined and explained before publication.`,
   },
   fr: {
     pending:
-      "La durée de conservation des demandes de contact en base n’est pas encore validée. Elle doit être définie avant activation. Les règles de conservation et d’effacement des e-mails et des sauvegardes doivent également être définies séparément.",
+      "La durée de conservation des demandes de contact en base n’est pas encore validée. Elle doit être approuvée par le responsable et correspondre au fonctionnement réel. Les règles de conservation et d’effacement des e-mails et des sauvegardes doivent également être définies séparément.",
     approved: (days) =>
       `Après activation, les demandes enregistrées dans la base de contact sont soumises à une durée de conservation de ${days} ${days === 1 ? "jour" : "jours"} à compter de leur réception. À l’expiration de ce délai, les demandes et les informations de notification associées sont supprimées par des traitements programmés. La date effective de suppression dépend de leur fréquence et de leur bonne exécution. Cette suppression ne concerne pas les e-mails de la messagerie ni les copies de sauvegarde ; leurs règles distinctes de conservation et d’effacement doivent être définies et expliquées avant publication.`,
   },
@@ -465,9 +465,9 @@ export function getLegal(locale: Locale, page: "legal" | "privacy" | "terms") {
   const content = copy[locale][page];
   if (page !== "privacy" || getContactBackend() !== "php") return content;
   const phpContact = {
-    de: `Nach Aktivierung werden Name, E-Mail, freiwillige Telefonnummer, Leistungswahl, Nachricht, Sprache und Formularseite über Vercel an ALL-INKL übermittelt und mit einer Referenz und Eingangszeit in einer lokalen Datenbank gespeichert. Eine Benachrichtigung geht an ${siteConfig.email}; die Besucheradresse dient nur als Antwortadresse. Technische pseudonymisierte Kennungen begrenzen die Anfragen für eine Stunde. Kurzlebige Einmalwerte verhindern die Wiederholung signierter Übertragungen. Nachrichten werden nicht in diesen Schutzkennungen gespeichert. Rechtsgrundlagen, Empfänger, Verträge und gegebenenfalls Transfers sind vor Aktivierung zu bestätigen. Bitte keine sensiblen Angaben eingeben.`,
-    en: `Once enabled, your name, email, optional phone number, service, message, language and form page are sent through Vercel to ALL-INKL and recorded in a local database with a reference and receipt time. A notification is sent to ${siteConfig.email}; your email is used only as the reply address. Pseudonymous technical identifiers limit requests for one hour. Short-lived single-use values prevent replay of signed transmissions. Messages are not stored in these protection identifiers. Legal bases, recipients, contracts and any international transfers must be confirmed before activation. Please do not enter sensitive information.`,
-    fr: `Après activation, le nom, l’e-mail, le téléphone facultatif, la prestation, le message, la langue et la page du formulaire transitent par Vercel vers ALL-INKL et sont enregistrés dans une base locale avec une référence et une date de réception. Une notification est adressée à ${siteConfig.email} ; l’e-mail du visiteur sert uniquement d’adresse de réponse. Des identifiants techniques pseudonymisés limitent les demandes pendant une heure. Des valeurs à usage unique de courte durée empêchent de rejouer les transmissions signées. Les messages ne sont pas stockés dans ces identifiants de protection. Les bases légales, destinataires, contrats et éventuels transferts restent à confirmer avant activation. Ne saisissez pas de données sensibles.`,
+    de: `Bei einer Kontaktanfrage werden Name, E-Mail, freiwillige Telefonnummer, Leistungswahl, Nachricht, Sprache und Formularseite über Vercel an ALL-INKL übermittelt und mit einer Referenz und Eingangszeit in einer lokalen Datenbank gespeichert. Eine Benachrichtigung geht an ${siteConfig.email}; die Besucheradresse dient nur als Antwortadresse. Technische pseudonymisierte Kennungen begrenzen die Anfragen für eine Stunde. Kurzlebige Einmalwerte verhindern die Wiederholung signierter Übertragungen. Nachrichten werden nicht in diesen Schutzkennungen gespeichert. Rechtsgrundlagen, Empfänger, Verträge und gegebenenfalls internationale Übermittlungen müssen noch geprüft und dokumentiert werden. Bitte keine sensiblen Angaben eingeben.`,
+    en: `When you submit an enquiry, your name, email, optional phone number, service, message, language and form page are sent through Vercel to ALL-INKL and recorded in a local database with a reference and receipt time. A notification is sent to ${siteConfig.email}; your email is used only as the reply address. Pseudonymous technical identifiers limit requests for one hour. Short-lived single-use values prevent replay of signed transmissions. Messages are not stored in these protection identifiers. Legal bases, recipients, processing contracts and any international transfers still need to be checked and documented. Please do not enter sensitive information.`,
+    fr: `Lors de l’envoi d’une demande, le nom, l’e-mail, le téléphone facultatif, la prestation, le message, la langue et la page du formulaire transitent par Vercel vers ALL-INKL et sont enregistrés dans une base locale avec une référence et une date de réception. Une notification est adressée à ${siteConfig.email} ; l’e-mail du visiteur sert uniquement d’adresse de réponse. Des identifiants techniques pseudonymisés limitent les demandes pendant une heure. Des valeurs à usage unique de courte durée empêchent de rejouer les transmissions signées. Les messages ne sont pas stockés dans ces identifiants de protection. Les bases légales, destinataires, contrats de sous-traitance et éventuels transferts internationaux restent à vérifier et à documenter. Ne saisissez pas de données sensibles.`,
   };
   return {
     ...content,
@@ -476,7 +476,6 @@ export function getLegal(locale: Locale, page: "legal" | "privacy" | "terms") {
         ? {
             ...section,
             paragraphs: [
-              section.paragraphs[0],
               phpContact[locale],
               contactRetentionText(locale),
             ],
