@@ -11,3 +11,11 @@ playwright-report/
 .qa/
 tmp/
 .tmp/
+backend-php/private/config.php
+backend-php/private/vendor/
+backend-php/**/config.local.php
+backend-php/backups/
+backend-php/dist/
+*.sql.gz
+# Ne jamais publier l'archive privee PHP
+/backend-php/private.zip
