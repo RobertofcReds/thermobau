@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
     country: "DE",
   },
   phone: "+49 176 41504088",
-  email: "thermo_bau@web.de",
+  email: "info@thermobau-vv.de",
   whatsapp: "+49 176 41504088",
   // Numéros internationaux (+49…), adresses et profils officiels vérifiés uniquement.
   social: {
@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
   },
   openingHours: null,
   confirmedServiceAreas: [],
-  domain: null,
+  domain: "thermobau-vv.de",
   logoPath: "/brand/thermobau-vv-logo.png",
   // À compléter uniquement avec des informations vérifiées et applicables.
   // Ne pas publier de numéro fiscal personnel (Steuernummer).
@@ -54,7 +54,9 @@ export const siteConfig: SiteConfig = {
     hostingRetention: null,
     contactRecipients: null,
     contactLegalBasis: null,
-    contactRetention: null,
+    // Durée en base depuis la réception, à renseigner uniquement après validation.
+    // Aucun délai proposé ne constitue une valeur par défaut approuvée.
+    contactRetentionDays: null,
     abuseProtectionLegalBasis: null,
     internationalTransfers: null,
   },

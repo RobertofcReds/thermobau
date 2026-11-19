@@ -32,7 +32,8 @@ export const formCopy = {
     invalid: "Bitte prüfen Sie die markierten Eingaben.",
     checked:
       "Die Eingaben sind gültig. Demomodus: Es wurde keine Nachricht gesendet. Ihre Eingaben wurden nicht übertragen.",
-    sent: "Ihre Nachricht wurde übermittelt.",
+    sent: "Ihre Nachricht wurde zum Versand angenommen.",
+    stored: "Vielen Dank. Ihre Anfrage wurde gespeichert und wird bearbeitet.",
     failed:
       "Die Übermittlung konnte nicht bestätigt werden. Bitte versuchen Sie es später erneut.",
     limited: "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
@@ -79,7 +80,8 @@ export const formCopy = {
     invalid: "Please check the highlighted fields.",
     checked:
       "Your entries are valid. Demo mode: no message was sent and no entries were transmitted.",
-    sent: "Your message was submitted.",
+    sent: "Your message was accepted for sending.",
+    stored: "Thank you. Your enquiry has been recorded for processing.",
     failed: "Submission could not be confirmed. Please try again later.",
     limited: "Too many requests. Please try again later.",
     errors: {
@@ -124,7 +126,8 @@ export const formCopy = {
     invalid: "Vérifiez les champs signalés.",
     checked:
       "Les champs sont valides. Démonstration : aucun message envoyé, aucune donnée transmise.",
-    sent: "Votre message a été transmis.",
+    sent: "Votre message a été accepté pour envoi.",
+    stored: "Merci. Votre demande a été enregistrée pour traitement.",
     failed: "L’envoi n’a pas pu être confirmé. Réessayez ultérieurement.",
     limited: "Trop de demandes. Réessayez ultérieurement.",
     errors: {

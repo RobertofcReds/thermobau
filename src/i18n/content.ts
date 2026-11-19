@@ -108,7 +108,7 @@ const copy = {
         ],
         [
           "Kann ich über das Formular schon eine Nachricht senden?",
-          "Das Formular befindet sich derzeit im Demomodus. Ihre Eingaben werden nur lokal geprüft. Es werden keine Daten übertragen und keine Nachrichten gesendet.",
+          "Mit „Nachricht senden“ können Sie eine Anfrage übermitteln. Wenn „Eingaben prüfen“ und der Demohinweis angezeigt werden, werden Ihre Angaben nur im Browser geprüft und nicht übertragen. Beachten Sie die Bestätigung nach dem Absenden.",
         ],
       ],
     },
@@ -279,7 +279,7 @@ const copy = {
         ],
         [
           "Can I send a message using the form?",
-          "The form is currently in demo mode. Entries are checked locally in your browser. No data is transmitted and no message is sent.",
+          "Use “Send message” to submit an enquiry. If you see “Check entries” and the demo notice, your entries are only checked in the browser and are not transmitted. Please read the confirmation after submitting.",
         ],
       ],
     },
@@ -450,7 +450,7 @@ const copy = {
         ],
         [
           "Puis-je envoyer un message depuis le formulaire ?",
-          "Le formulaire est actuellement en démonstration. Les champs sont vérifiés localement dans le navigateur. Aucune donnée n’est transmise et aucun message n’est envoyé.",
+          "Le bouton « Envoyer le message » permet de transmettre une demande. Si « Vérifier les champs » et l’avertissement de démonstration sont affichés, les saisies sont seulement vérifiées dans le navigateur. Consultez la confirmation après l’envoi.",
         ],
       ],
     },

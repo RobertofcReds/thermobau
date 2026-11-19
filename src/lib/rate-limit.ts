@@ -4,7 +4,7 @@ import { isIP } from "node:net";
 import type { ContactConfig } from "@/lib/contact-config";
 
 const LIMIT = 5;
-const WINDOW_SECONDS = 15 * 60;
+const WINDOW_SECONDS = 60 * 60;
 
 export class RateLimitUnavailable extends Error {
   constructor() {
@@ -14,29 +14,37 @@ export class RateLimitUnavailable extends Error {
 }
 
 /** Hors Vercel, un compartiment partagé évite de faire confiance aux headers du client. */
-export function contactClientKey(request: Request, salt: string): string {
+export function contactClientKey(request: Request, restToken: string): string {
   const forwarded =
     process.env.VERCEL === "1"
       ? request.headers.get("x-vercel-forwarded-for")
       : null;
   const candidate = forwarded?.split(",")[0]?.trim() ?? "";
   const identity = isIP(candidate) ? candidate : "shared-unidentified-client";
-  return `thermobau:contact:${createHmac("sha256", salt).update(identity).digest("hex")}`;
+  // Derive a purpose-specific key from the existing secret; no extra secret is required.
+  // Rotating the REST token also rotates these short-lived pseudonymous identifiers.
+  const ipKey = createHmac("sha256", restToken)
+    .update("thermobau:contact:ip-key:v1")
+    .digest();
+  return `thermobau:contact:${createHmac("sha256", ipKey).update(identity).digest("hex")}`;
 }
 
 export async function checkContactRateLimit(
   request: Request,
   config: ContactConfig,
 ): Promise<{ allowed: boolean; retryAfter: number }> {
-  const key = contactClientKey(request, config.CONTACT_RATE_LIMIT_SALT);
+  const key = contactClientKey(
+    request,
+    config.UPSTASH_REDIS_REST_KV_REST_API_TOKEN,
+  );
   try {
     // La transaction est atomique entre toutes les instances. NX préserve le délai initial.
     const response = await fetch(
-      `${config.UPSTASH_REDIS_REST_URL.replace(/\/$/, "")}/multi-exec`,
+      `${config.UPSTASH_REDIS_REST_KV_REST_API_URL.replace(/\/$/, "")}/multi-exec`,
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${config.UPSTASH_REDIS_REST_TOKEN}`,
+          Authorization: `Bearer ${config.UPSTASH_REDIS_REST_KV_REST_API_TOKEN}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify([

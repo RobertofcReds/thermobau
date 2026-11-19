@@ -84,7 +84,7 @@ const copy = {
     area: "Thermobau V&V hat seinen Standort in Ludwigshafen. Weitere Einsatzorte können individuell angefragt werden; ein fester Umkreis oder eine Zusage für einen anderen Ort ist hier nicht bestätigt.",
     photos:
       "Die Fotos veranschaulichen die Tätigkeitsbereiche. Sie sind keine dokumentierten Kundenprojekte von Thermobau V&V und zeigen nicht die Beschäftigten des Unternehmens.",
-    form: "Das Kontaktformular ist aktuell im Demomodus: Die Eingaben werden nur im Browser geprüft, nicht versendet. Auch dieser Chat sendet keine Anfrage an das Unternehmen. Nutzen Sie für Ihr Vorhaben Telefon, E-Mail oder WhatsApp.",
+    form: "Auf der Kontaktseite zeigt „Nachricht senden“ die Möglichkeit zur Übermittlung an. Im gekennzeichneten Demomodus prüft „Eingaben prüfen“ die Angaben nur lokal. Beachten Sie die Bestätigung nach dem Absenden. Dieser Chat selbst versendet keine Anfrage. Sie können auch Telefon, E-Mail oder WhatsApp nutzen.",
     privacy:
       "Dieser automatische Chat verarbeitet Fragen lokal im Browser und sendet sie nicht an Thermobau V&V oder einen KI-Dienst. Das Gespräch wird nicht dauerhaft gespeichert. Kontaktlinks öffnen den gewählten Kanal; erst dort können Sie selbst eine Nachricht senden.",
     limitations:
@@ -117,7 +117,7 @@ const copy = {
     area: "Thermobau V&V is based in Ludwigshafen. Other locations can be discussed individually; no fixed service radius or commitment to another location is confirmed here.",
     photos:
       "The photos illustrate the areas of work. They are not documented customer projects by Thermobau V&V and do not depict the company’s employees.",
-    form: "The contact form is currently a demonstration: entries are checked in your browser and are not sent. This chat does not submit enquiries to the company either. Use phone, email or WhatsApp for your project.",
+    form: "On the Contact page, use “Send message” to submit an enquiry. In the clearly marked demo mode, “Check entries” only validates entries locally. Read the confirmation after submitting. This chat itself does not submit enquiries. Phone, email and WhatsApp are also available.",
     privacy:
       "This automatic chat processes questions locally in your browser and does not send them to Thermobau V&V or an AI service. The conversation is not stored permanently. Contact links open the selected channel, where you can choose to send a message yourself.",
     limitations:
@@ -150,7 +150,7 @@ const copy = {
     area: "Thermobau V&V est implantée à Ludwigshafen. D’autres lieux peuvent être discutés individuellement ; aucun rayon fixe ni intervention dans une autre ville n’est confirmé ici.",
     photos:
       "Les photos illustrent les métiers. Elles ne représentent pas des chantiers clients documentés de Thermobau V&V ni les employés de l’entreprise.",
-    form: "Le formulaire de contact est actuellement une démonstration : les champs sont vérifiés dans le navigateur, sans envoi. Ce chat ne transmet pas non plus de demande à l’entreprise. Utilisez le téléphone, l’e-mail ou WhatsApp pour votre projet.",
+    form: "Sur la page Contact, « Envoyer le message » permet de transmettre une demande. En mode démonstration signalé, « Vérifier les champs » ne fait qu’une vérification locale. Consultez la confirmation après l’envoi. Ce chat ne transmet lui-même aucune demande. Le téléphone, l’e-mail et WhatsApp sont également disponibles.",
     privacy:
       "Ce chat automatique traite les questions localement dans le navigateur, sans les envoyer à Thermobau V&V ni à un service d’IA. La conversation n’est pas enregistrée durablement. Les liens de contact ouvrent le canal choisi, où vous pouvez vous-même décider d’envoyer un message.",
     limitations:

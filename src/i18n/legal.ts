@@ -1,5 +1,6 @@
 import type { Locale } from "./routing";
 import { siteConfig } from "@/config/site";
+import { getContactBackend } from "@/lib/contact-config";
 
 const confirmedContact = {
   de: `Telefon: ${siteConfig.phone} · E-Mail: ${siteConfig.email} · WhatsApp: ${siteConfig.whatsapp}.`,
@@ -77,8 +78,8 @@ const copy: Record<
         {
           title: "Kontaktformular",
           paragraphs: [
-            "Im derzeitigen Demomodus werden die Eingaben ausschließlich im Browser geprüft. Es wird keine Nachricht versendet; Formulardaten werden weder an die Kontakt-API übermittelt noch von der Anwendung gespeichert. Die automatische Ausfüllfunktion des Browsers ist davon unabhängig.",
-            "Nach einer gesonderten Aktivierung kann das Formular Name, E-Mail, freiwillige Telefonnummer, Leistungswahl und Nachricht über die Kontakt-API an den konfigurierten E-Mail-Dienst übermitteln. Ein gesonderter Dienst begrenzt dann Anfragen mit pseudonymisierten technischen Kennungen. Empfänger, Dienste, Rechtsgrundlage, Löschfristen und Transfers müssen vor Aktivierung verbindlich dokumentiert werden. Bitte keine sensiblen Informationen eingeben.",
+            "Im gekennzeichneten Demomodus werden die Eingaben ausschließlich im Browser geprüft. Es wird keine Nachricht versendet; Formulardaten werden weder an die Kontakt-API übermittelt noch von der Anwendung gespeichert. Die automatische Ausfüllfunktion des Browsers ist davon unabhängig.",
+            `Nach gesonderter Aktivierung übermittelt das Formular Name, E-Mail, freiwillige Telefonnummer, Leistungswahl und Nachricht sowie Sprache, Formularseite und Eingangszeit über die Kontakt-API und eine verschlüsselte SMTP-Verbindung bei ALL-INKL an ${siteConfig.email}. Die E-Mail-Adresse wird als Antwortadresse verwendet. Upstash Redis begrenzt Anfragen anhand pseudonymisierter technischer Kennungen für eine Stunde; Formulareingaben werden dort nicht gespeichert. Rechtsgrundlagen, Löschfristen, Verträge und gegebenenfalls Transfers müssen vor Aktivierung verbindlich dokumentiert werden. Bitte keine sensiblen Informationen eingeben.`,
           ],
         },
         {
@@ -212,8 +213,8 @@ const copy: Record<
         {
           title: "Contact form",
           paragraphs: [
-            "In the current demo mode, entries are checked only in your browser. No message is sent, no form data is transmitted to the contact API and the application does not store entries. Browser autofill works independently of this application.",
-            "After separate activation, the form can transmit your name, email address, optional phone number, selected service and message through the contact API to a configured email service. A separate service then limits requests using pseudonymised technical identifiers. Recipients, providers, legal bases, deletion periods and transfers must be documented before activation. Please do not enter sensitive information.",
+            "In the labelled demo mode, entries are checked only in your browser. No message is sent, no form data is transmitted to the contact API and the application does not store entries. Browser autofill works independently of this application.",
+            `After separate activation, the form transmits your name, email address, optional phone number, selected service and message, plus the language, form page and submission time, through the contact API and an encrypted SMTP connection at ALL-INKL to ${siteConfig.email}. Your email address is used as the reply address. Upstash Redis limits requests using pseudonymised technical identifiers for one hour; form entries are not stored there. Legal bases, deletion periods, contracts and any transfers must be documented before activation. Please do not enter sensitive information.`,
           ],
         },
         {
@@ -349,7 +350,7 @@ const copy: Record<
           title: "Formulaire de contact",
           paragraphs: [
             "En démonstration, les champs sont vérifiés uniquement dans votre navigateur. Aucun message n’est envoyé, aucune donnée de formulaire n’est transmise à l’API de contact et l’application ne conserve pas les saisies. Le remplissage automatique du navigateur est indépendant de l’application.",
-            "Après activation distincte, le formulaire pourra transmettre le nom, l’e-mail, le téléphone facultatif, la prestation et le message à un service d’e-mail configuré via l’API de contact. Un autre service limitera les demandes à l’aide d’identifiants techniques pseudonymisés. Destinataires, prestataires, bases légales, durées de suppression et transferts doivent être documentés avant activation. Ne saisissez pas de données sensibles.",
+            `Après activation distincte, le formulaire transmet le nom, l’e-mail, le téléphone facultatif, la prestation et le message, ainsi que la langue, la page du formulaire et la date de soumission, via l’API de contact et une connexion SMTP chiffrée chez ALL-INKL à ${siteConfig.email}. L’adresse e-mail sert d’adresse de réponse. Upstash Redis limite les demandes à l’aide d’identifiants techniques pseudonymisés pendant une heure ; les saisies du formulaire n’y sont pas conservées. Les bases légales, durées de suppression, contrats et éventuels transferts doivent être documentés avant activation. Ne saisissez pas de données sensibles.`,
           ],
         },
         {
@@ -424,6 +425,63 @@ const copy: Record<
     },
   },
 };
+const contactRetentionCopy: Record<
+  Locale,
+  { pending: string; approved: (days: number) => string }
+> = {
+  de: {
+    pending:
+      "Die Aufbewahrungsfrist für Kontaktanfragen in der Datenbank ist noch nicht freigegeben. Sie muss vor Aktivierung festgelegt werden. Auch die Aufbewahrungs- und Löschregelungen für E-Mails und Sicherungskopien sind gesondert festzulegen.",
+    approved: (days) =>
+      `Für die in der Kontaktdatenbank gespeicherten Anfragen gilt nach Aktivierung eine Aufbewahrungsfrist von ${days} ${days === 1 ? "Tag" : "Tagen"} ab Eingang. Nach Ablauf dieser Frist werden die Anfragen und die zugehörigen Benachrichtigungsdaten durch geplante Löschläufe gelöscht. Der tatsächliche Löschzeitpunkt hängt vom Ausführungsrhythmus und der erfolgreichen Durchführung dieser Löschläufe ab. E-Mails im Postfach und Sicherungskopien werden dadurch nicht gelöscht; ihre gesonderten Aufbewahrungs- und Löschregelungen müssen vor Veröffentlichung festgelegt und erläutert werden.`,
+  },
+  en: {
+    pending:
+      "The retention period for contact enquiries in the database has not yet been approved. It must be defined before activation. Separate retention and deletion rules for emails and backups must also be defined.",
+    approved: (days) =>
+      `Once enabled, enquiries stored in the contact database have a retention period of ${days} ${days === 1 ? "day" : "days"} from receipt. After this period, the enquiries and associated notification records are deleted through scheduled cleanup tasks. The actual deletion time depends on the schedule and successful execution of these tasks. This process does not delete emails in the mailbox or backup copies; their separate retention and deletion rules must be defined and explained before publication.`,
+  },
+  fr: {
+    pending:
+      "La durée de conservation des demandes de contact en base n’est pas encore validée. Elle doit être définie avant activation. Les règles de conservation et d’effacement des e-mails et des sauvegardes doivent également être définies séparément.",
+    approved: (days) =>
+      `Après activation, les demandes enregistrées dans la base de contact sont soumises à une durée de conservation de ${days} ${days === 1 ? "jour" : "jours"} à compter de leur réception. À l’expiration de ce délai, les demandes et les informations de notification associées sont supprimées par des traitements programmés. La date effective de suppression dépend de leur fréquence et de leur bonne exécution. Cette suppression ne concerne pas les e-mails de la messagerie ni les copies de sauvegarde ; leurs règles distinctes de conservation et d’effacement doivent être définies et expliquées avant publication.`,
+  },
+};
+
+function contactRetentionText(locale: Locale): string {
+  const days = siteConfig.privacy.contactRetentionDays;
+  const text = contactRetentionCopy[locale];
+  // Match the PHP range; an absent or invalid value never implies a default.
+  return typeof days === "number" &&
+    Number.isInteger(days) &&
+    days >= 1 &&
+    days <= 3650
+    ? text.approved(days)
+    : text.pending;
+}
+
 export function getLegal(locale: Locale, page: "legal" | "privacy" | "terms") {
-  return copy[locale][page];
+  const content = copy[locale][page];
+  if (page !== "privacy" || getContactBackend() !== "php") return content;
+  const phpContact = {
+    de: `Nach Aktivierung werden Name, E-Mail, freiwillige Telefonnummer, Leistungswahl, Nachricht, Sprache und Formularseite über Vercel an ALL-INKL übermittelt und mit einer Referenz und Eingangszeit in einer lokalen Datenbank gespeichert. Eine Benachrichtigung geht an ${siteConfig.email}; die Besucheradresse dient nur als Antwortadresse. Technische pseudonymisierte Kennungen begrenzen die Anfragen für eine Stunde. Kurzlebige Einmalwerte verhindern die Wiederholung signierter Übertragungen. Nachrichten werden nicht in diesen Schutzkennungen gespeichert. Rechtsgrundlagen, Empfänger, Verträge und gegebenenfalls Transfers sind vor Aktivierung zu bestätigen. Bitte keine sensiblen Angaben eingeben.`,
+    en: `Once enabled, your name, email, optional phone number, service, message, language and form page are sent through Vercel to ALL-INKL and recorded in a local database with a reference and receipt time. A notification is sent to ${siteConfig.email}; your email is used only as the reply address. Pseudonymous technical identifiers limit requests for one hour. Short-lived single-use values prevent replay of signed transmissions. Messages are not stored in these protection identifiers. Legal bases, recipients, contracts and any international transfers must be confirmed before activation. Please do not enter sensitive information.`,
+    fr: `Après activation, le nom, l’e-mail, le téléphone facultatif, la prestation, le message, la langue et la page du formulaire transitent par Vercel vers ALL-INKL et sont enregistrés dans une base locale avec une référence et une date de réception. Une notification est adressée à ${siteConfig.email} ; l’e-mail du visiteur sert uniquement d’adresse de réponse. Des identifiants techniques pseudonymisés limitent les demandes pendant une heure. Des valeurs à usage unique de courte durée empêchent de rejouer les transmissions signées. Les messages ne sont pas stockés dans ces identifiants de protection. Les bases légales, destinataires, contrats et éventuels transferts restent à confirmer avant activation. Ne saisissez pas de données sensibles.`,
+  };
+  return {
+    ...content,
+    sections: content.sections.map((section, index) =>
+      index === 2
+        ? {
+            ...section,
+            paragraphs: [
+              section.paragraphs[0],
+              phpContact[locale],
+              contactRetentionText(locale),
+            ],
+          }
+        : section,
+    ),
+  };
 }

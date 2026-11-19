@@ -29,6 +29,8 @@ export function ContactForm({
   const t = formCopy[locale];
   const titles = serviceLabels[locale];
   const formRef = useRef<HTMLFormElement>(null);
+  // Kept only in memory. Reuse after an ambiguous timeout; renew for edited input.
+  const submissionRef = useRef<{ payload: string; id: string } | null>(null);
   const hydrated = useSyncExternalStore(
     subscribe,
     () => true,
@@ -62,7 +64,11 @@ export function ContactForm({
     event.preventDefault();
     if (sending) return;
     setMessage("");
-    const data = Object.fromEntries(new FormData(event.currentTarget));
+    const data = {
+      ...Object.fromEntries(new FormData(event.currentTarget)),
+      locale,
+      source: pagePath("contact", locale),
+    };
     const parsed = contactSchema.safeParse(data);
     if (!parsed.success) {
       const errors = contactFieldErrors(parsed.error);
@@ -83,26 +89,28 @@ export function ContactForm({
     setState("sending");
     setMessage(t.sending);
     try {
+      const payload = JSON.stringify(parsed.data);
+      if (submissionRef.current?.payload !== payload) {
+        submissionRef.current = { payload, id: crypto.randomUUID() };
+      }
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
-        signal: AbortSignal.timeout(25_000),
+        headers: {
+          "Content-Type": "application/json",
+          "Idempotency-Key": submissionRef.current.id,
+        },
+        body: payload,
+        signal: AbortSignal.timeout(55_000),
       });
       const result = (await response.json()) as ContactResponse;
       if (response.ok && result.ok === true) {
         setState("sent");
-        setMessage(t.sent);
+        setMessage(result.code === "stored" ? t.stored : t.sent);
+        submissionRef.current = null;
         formRef.current?.reset();
       } else {
         setState(response.status === 503 ? "unavailable" : "failed");
-        setMessage(
-          response.status === 429
-            ? t.limited
-            : response.status === 503
-              ? t.unavailable
-              : t.failed,
-        );
+        setMessage(response.status === 429 ? t.limited : t.failed);
         if (result.fieldErrors) {
           setFieldErrors(result.fieldErrors);
           focusFirstError(result.fieldErrors);

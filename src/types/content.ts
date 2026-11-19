@@ -68,7 +68,8 @@ export interface SiteConfig {
     hostingRetention: string | null;
     contactRecipients: string | null;
     contactLegalBasis: string | null;
-    contactRetention: string | null;
+    /** Approved database retention from receipt; null until the business signs off. */
+    contactRetentionDays: number | null;
     abuseProtectionLegalBasis: string | null;
     internationalTransfers: string | null;
   };
