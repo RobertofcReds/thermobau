@@ -19,3 +19,12 @@ backend-php/dist/
 *.sql.gz
 # Ne jamais publier l'archive privee PHP
 /backend-php/private.zip
+# Sauvegardes et correctifs temporaires Thermobau
+/thermobau-seo/
+/thermobau-code-seo.zip
+/thermobau-correctif-ville-seo.zip
+/tsconfig.avant-correctif.json
+
+# Anciennes copies des documents legaux
+/src/i18n/legal.bak.ts
+/src/i18n/legal2.bak.ts

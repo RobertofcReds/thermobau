@@ -113,7 +113,7 @@ function CTA({ locale, service }: { locale: Locale; service?: string }) {
     <section className="editorial-cta">
       <Container>
         <div>
-          <p className="eyebrow">Thermobau V&V · Ludwigshafen</p>
+          <p className="eyebrow">Thermobau V&V · Ludwigshafen am Rhein</p>
           <h2>{t.ctaTitle}</h2>
           <p>{t.ctaText}</p>
         </div>

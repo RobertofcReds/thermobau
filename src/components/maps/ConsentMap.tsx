@@ -20,7 +20,7 @@ const text = {
     load: "Karte hier anzeigen",
     directions: "Route planen auf Google Maps",
     privacy: "Datenschutzerklärung",
-    title: "Karte: Thermobau V&V in Ludwigshafen",
+    title: "Karte: Thermobau V&V in Ludwigshafen am Rhein",
   },
   en: {
     notice:
@@ -31,7 +31,7 @@ const text = {
     load: "Show map here",
     directions: "Get directions on Google Maps",
     privacy: "Privacy notice",
-    title: "Map: Thermobau V&V in Ludwigshafen",
+    title: "Map: Thermobau V&V in Ludwigshafen am Rhein",
   },
   fr: {
     notice:
@@ -42,7 +42,7 @@ const text = {
     load: "Afficher la carte ici",
     directions: "Itinéraire sur Google Maps",
     privacy: "Politique de confidentialité",
-    title: "Carte : Thermobau V&V à Ludwigshafen",
+    title: "Carte : Thermobau V&V à Ludwigshafen am Rhein",
   },
 };
 export function ConsentMap({ locale = "de" }: { locale?: Locale }) {

@@ -36,7 +36,7 @@ const en: Translation[] = [
     teaser:
       "Prepare, repair and redesign existing facade surfaces, from the substrate to the visible finish.",
     description:
-      "A facade gives a building its character. Weathered finishes, damaged areas or a different colour scheme can be reasons for refurbishment. Thermobau V&V is a contact for facade work in Ludwigshafen. The building’s condition, the affected surfaces and the desired finish are the starting point for your enquiry.",
+      "A facade gives a building its character. Weathered finishes, damaged areas or a different colour scheme can be reasons for refurbishment. Thermobau V&V is a contact for facade work in Ludwigshafen am Rhein. The building’s condition, the affected surfaces and the desired finish are the starting point for your enquiry.",
     highlights: [
       "Preparation of existing facade surfaces",
       "Repair of suitable damaged plaster areas",
@@ -260,7 +260,7 @@ const fr: Translation[] = [
     teaser:
       "Préparer, réparer et repenser les façades existantes, du support à la finition visible.",
     description:
-      "La façade donne son caractère à un bâtiment. Une surface vieillie, des zones abîmées ou une nouvelle envie de couleur peuvent motiver sa rénovation. Thermobau V&V est votre interlocuteur à Ludwigshafen. L’état du bâtiment, les surfaces concernées et la finition souhaitée constituent le point de départ de votre demande.",
+      "La façade donne son caractère à un bâtiment. Une surface vieillie, des zones abîmées ou une nouvelle envie de couleur peuvent motiver sa rénovation. Thermobau V&V est votre interlocuteur à Ludwigshafen am Rhein. L’état du bâtiment, les surfaces concernées et la finition souhaitée constituent le point de départ de votre demande.",
     highlights: [
       "Préparation des surfaces de façade existantes",
       "Réparation des zones d’enduit adaptées",
@@ -715,8 +715,8 @@ export function getServices(locale: Locale): LocalizedService[] {
     highlights: s.highlights,
     faq: s.faq.map(([question, answer]) => ({ question, answer })),
     seo: {
-      title: `${s.title} ${locale === "en" ? "in" : "à"} Ludwigshafen`,
-      description: s.teaser + " Thermobau V&V, Ludwigshafen.",
+      title: `${s.title} ${locale === "en" ? "in" : "à"} Ludwigshafen am Rhein`,
+      description: s.teaser + " Thermobau V&V, Ludwigshafen am Rhein.",
     },
     details: {
       heading: s.heading,

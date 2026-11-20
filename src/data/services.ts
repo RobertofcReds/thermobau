@@ -10,7 +10,7 @@ export const services: Service[] = [
     teaser:
       "Bestehende Fassaden überarbeiten und gestalten – vom Untergrund bis zur sichtbaren Oberfläche.",
     description:
-      "Die Fassade gibt einem Gebäude sein Gesicht. Verwitterte Oberflächen, schadhafte Stellen oder der Wunsch nach einer neuen Gestaltung können Anlass für eine Überarbeitung sein. Thermobau V&V ist Ihr Ansprechpartner für Fassadenarbeiten in Ludwigshafen. Im Mittelpunkt stehen der Zustand des Gebäudes, die betroffenen Flächen und die gewünschte Oberfläche.",
+      "Die Fassade gibt einem Gebäude sein Gesicht. Verwitterte Oberflächen, schadhafte Stellen oder der Wunsch nach einer neuen Gestaltung können Anlass für eine Überarbeitung sein. Thermobau V&V ist Ihr Ansprechpartner für Fassadenarbeiten in Ludwigshafen am Rhein. Im Mittelpunkt stehen der Zustand des Gebäudes, die betroffenen Flächen und die gewünschte Oberfläche.",
     imageSrc: photos.facade.src,
     imageAlt: photos.facade.alt,
     highlights: [
@@ -21,9 +21,9 @@ export const services: Service[] = [
     ],
     sortOrder: 1,
     seo: {
-      title: "Fassadenarbeiten in Ludwigshafen",
+      title: "Fassadenarbeiten in Ludwigshafen am Rhein",
       description:
-        "Fassaden vorbereiten, ausbessern und gestalten: Besprechen Sie Ihr Vorhaben mit Thermobau V&V in Ludwigshafen. Informationen zu Ablauf und Anfrage.",
+        "Fassaden vorbereiten, ausbessern und gestalten: Besprechen Sie Ihr Vorhaben mit Thermobau V&V in Ludwigshafen am Rhein. Informationen zu Ablauf und Anfrage.",
     },
     faq: [
       {
@@ -60,9 +60,9 @@ export const services: Service[] = [
     ],
     sortOrder: 2,
     seo: {
-      title: "Trockenbau in Ludwigshafen",
+      title: "Trockenbau in Ludwigshafen am Rhein",
       description:
-        "Trockenbau für Raumaufteilung, Innenwände und Deckenbekleidungen in Ludwigshafen. Entdecken Sie den Tätigkeitsbereich von Thermobau V&V.",
+        "Trockenbau für Raumaufteilung, Innenwände und Deckenbekleidungen in Ludwigshafen am Rhein. Entdecken Sie den Tätigkeitsbereich von Thermobau V&V.",
     },
     faq: [
       {
@@ -100,9 +100,9 @@ export const services: Service[] = [
     ],
     sortOrder: 3,
     seo: {
-      title: "Putzarbeiten in Ludwigshafen",
+      title: "Putzarbeiten in Ludwigshafen am Rhein",
       description:
-        "Putzarbeiten von der Untergrundvorbereitung bis zur Oberflächenbearbeitung. Besprechen Sie Ihre Wandflächen mit Thermobau V&V in Ludwigshafen.",
+        "Putzarbeiten von der Untergrundvorbereitung bis zur Oberflächenbearbeitung. Besprechen Sie Ihre Wandflächen mit Thermobau V&V in Ludwigshafen am Rhein.",
     },
     faq: [
       {
@@ -139,9 +139,9 @@ export const services: Service[] = [
     ],
     sortOrder: 4,
     seo: {
-      title: "Malerarbeiten in Ludwigshafen",
+      title: "Malerarbeiten in Ludwigshafen am Rhein",
       description:
-        "Neue Farbe für Wände und Decken: Malerarbeiten, Oberflächenvorbereitung und Raumgestaltung mit Thermobau V&V in Ludwigshafen besprechen.",
+        "Neue Farbe für Wände und Decken: Malerarbeiten, Oberflächenvorbereitung und Raumgestaltung mit Thermobau V&V in Ludwigshafen am Rhein besprechen.",
     },
     faq: [
       {
@@ -178,9 +178,9 @@ export const services: Service[] = [
     ],
     sortOrder: 5,
     seo: {
-      title: "Fliesenarbeiten in Ludwigshafen",
+      title: "Fliesenarbeiten in Ludwigshafen am Rhein",
       description:
-        "Wand- und Bodenfliesen, Verlegebild und Untergrund: Informationen zu Fliesenarbeiten und Ihrer Anfrage bei Thermobau V&V in Ludwigshafen.",
+        "Wand- und Bodenfliesen, Verlegebild und Untergrund: Informationen zu Fliesenarbeiten und Ihrer Anfrage bei Thermobau V&V in Ludwigshafen am Rhein.",
     },
     faq: [
       {
@@ -219,9 +219,9 @@ export const services: Service[] = [
     ],
     sortOrder: 6,
     seo: {
-      title: "Renovierungen in Ludwigshafen",
+      title: "Renovierungen in Ludwigshafen am Rhein",
       description:
-        "Eine Renovierung planen: Thermobau V&V in Ludwigshafen stellt passende Tätigkeitsbereiche für bestehende Wohn- und Nutzräume vor.",
+        "Eine Renovierung planen: Thermobau V&V in Ludwigshafen am Rhein stellt passende Tätigkeitsbereiche für bestehende Wohn- und Nutzräume vor.",
     },
     faq: [
       {

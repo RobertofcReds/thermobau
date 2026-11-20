@@ -28,7 +28,7 @@ const copy: Record<
         {
           title: "Anbieter und Kontakt",
           paragraphs: [
-            "Vasil Velikov Dimitrov (Einzelunternehmer), handelnd unter der Geschäftsbezeichnung Thermobau V&V. Geschäftsanschrift laut den vorliegenden Angaben: Blücherstr. 59, 67063 Ludwigshafen, Deutschland.",
+            "Vasil Velikov Dimitrov (Einzelunternehmer), handelnd unter der Geschäftsbezeichnung Thermobau V&V. Geschäftsanschrift laut den vorliegenden Angaben: Blücherstr. 59, 67063 Ludwigshafen am Rhein, Deutschland.",
             confirmedContact.de,
             "Vasil Velikov Dimitrov ist als Inhaber des Einzelunternehmens bestätigt. Kontaktanfragen können über das Kontaktformular übermittelt werden; durch eine Anfrage kommt noch kein Vertrag zustande.",
           ],
@@ -64,7 +64,7 @@ const copy: Record<
         {
           title: "Verantwortlicher und Kontakt",
           paragraphs: [
-            "Verantwortlicher für diese Website: Vasil Velikov Dimitrov (Einzelunternehmer), handelnd unter der Geschäftsbezeichnung Thermobau V&V. Geschäftsanschrift laut den vorliegenden Angaben: Blücherstr. 59, 67063 Ludwigshafen, Deutschland. Ein Datenschutzbeauftragter wird nicht behauptet.",
+            "Verantwortlicher für diese Website: Vasil Velikov Dimitrov (Einzelunternehmer), handelnd unter der Geschäftsbezeichnung Thermobau V&V. Geschäftsanschrift laut den vorliegenden Angaben: Blücherstr. 59, 67063 Ludwigshafen am Rhein, Deutschland. Ein Datenschutzbeauftragter wird nicht behauptet.",
             confirmedContact.de,
           ],
         },
@@ -170,7 +170,7 @@ const copy: Record<
         {
           title: "Provider and contact details",
           paragraphs: [
-            "Vasil Velikov Dimitrov (sole proprietor), trading as Thermobau V&V. Business address according to the information provided: Blücherstr. 59, 67063 Ludwigshafen, Germany.",
+            "Vasil Velikov Dimitrov (sole proprietor), trading as Thermobau V&V. Business address according to the information provided: Blücherstr. 59, 67063 Ludwigshafen am Rhein, Germany.",
             confirmedContact.en,
             "Vasil Velikov Dimitrov has been confirmed as the owner of the sole proprietorship. The contact form accepts non-binding enquiries; submitting an enquiry does not establish a contract.",
           ],
@@ -206,7 +206,7 @@ const copy: Record<
         {
           title: "Controller and contact",
           paragraphs: [
-            "Controller for this website: Vasil Velikov Dimitrov (sole proprietor), trading as Thermobau V&V. Business address according to the information provided: Blücherstr. 59, 67063 Ludwigshafen, Germany. No data protection officer is asserted.",
+            "Controller for this website: Vasil Velikov Dimitrov (sole proprietor), trading as Thermobau V&V. Business address according to the information provided: Blücherstr. 59, 67063 Ludwigshafen am Rhein, Germany. No data protection officer is asserted.",
             confirmedContact.en,
           ],
         },
@@ -313,7 +313,7 @@ const copy: Record<
         {
           title: "Éditeur et coordonnées",
           paragraphs: [
-            "Vasil Velikov Dimitrov (entrepreneur individuel), exerçant sous le nom commercial Thermobau V&V. Adresse professionnelle selon les informations communiquées : Blücherstr. 59, 67063 Ludwigshafen, Allemagne.",
+            "Vasil Velikov Dimitrov (entrepreneur individuel), exerçant sous le nom commercial Thermobau V&V. Adresse professionnelle selon les informations communiquées : Blücherstr. 59, 67063 Ludwigshafen am Rhein, Allemagne.",
             confirmedContact.fr,
             "Vasil Velikov Dimitrov est confirmé comme titulaire de l’entreprise individuelle. Le formulaire permet d’envoyer des demandes sans engagement ; leur envoi ne constitue pas un contrat.",
           ],
@@ -349,7 +349,7 @@ const copy: Record<
         {
           title: "Responsable et contact",
           paragraphs: [
-            "Responsable du traitement pour ce site : Vasil Velikov Dimitrov (entrepreneur individuel), exerçant sous le nom commercial Thermobau V&V. Adresse professionnelle selon les informations communiquées : Blücherstr. 59, 67063 Ludwigshafen, Allemagne. Aucun délégué à la protection des données n’est déclaré.",
+            "Responsable du traitement pour ce site : Vasil Velikov Dimitrov (entrepreneur individuel), exerçant sous le nom commercial Thermobau V&V. Adresse professionnelle selon les informations communiquées : Blücherstr. 59, 67063 Ludwigshafen am Rhein, Allemagne. Aucun délégué à la protection des données n’est déclaré.",
             confirmedContact.fr,
           ],
         },

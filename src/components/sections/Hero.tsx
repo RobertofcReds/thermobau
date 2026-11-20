@@ -14,7 +14,7 @@ export function Hero() {
             Räume mit neuen Möglichkeiten
           </p>
           <h1>
-            Renovierung und <span>Innenausbau</span> in Ludwigshafen
+            Renovierung und <span>Innenausbau</span> in Ludwigshafen am Rhein
           </h1>
           <p className="hero-description">
             Thermobau V&V ist Ihr Ansprechpartner für Fassadenarbeiten,

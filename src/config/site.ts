@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = {
   address: {
     street: "Blücherstr. 59",
     postalCode: "67063",
-    city: "Ludwigshafen",
+    city: "Ludwigshafen am Rhein",
     country: "DE",
   },
   phone: "+49 176 41504088",

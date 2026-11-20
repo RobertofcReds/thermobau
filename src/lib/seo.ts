@@ -36,6 +36,14 @@ export function pageMetadata(
           },
         }
       : {}),
+    twitter: {
+      card: "summary",
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      ...(siteUrl
+        ? { images: [new URL(siteConfig.logoPath, `${siteUrl}/`).toString()] }
+        : {}),
+    },
     openGraph: {
       title: `${title} | ${siteConfig.name}`,
       description,

@@ -18,7 +18,7 @@ import { socialProfileUrl, type SocialPlatform } from "@/lib/company-contact";
 const copy = {
   de: {
     description:
-      "Fassadenarbeiten, Trockenbau, Putzarbeiten, Malerarbeiten, Fliesen und Renovierungen in Ludwigshafen.",
+      "Fassadenarbeiten, Trockenbau, Putzarbeiten, Malerarbeiten, Fliesen und Renovierungen in Ludwigshafen am Rhein.",
     navigation: "Schnellzugriff",
     navigationLabel: "Navigation im Fußbereich",
     services: "Leistungen",
@@ -34,7 +34,7 @@ const copy = {
   },
   en: {
     description:
-      "Facade work, drywall, plastering, painting, tiling and renovations in Ludwigshafen.",
+      "Facade work, drywall, plastering, painting, tiling and renovations in Ludwigshafen am Rhein.",
     navigation: "Quick links",
     navigationLabel: "Footer navigation",
     services: "Services",
@@ -50,7 +50,7 @@ const copy = {
   },
   fr: {
     description:
-      "Façades, cloisons sèches, enduits, peinture, carrelage et rénovation à Ludwigshafen.",
+      "Façades, cloisons sèches, enduits, peinture, carrelage et rénovation à Ludwigshafen am Rhein.",
     navigation: "Accès rapide",
     navigationLabel: "Navigation du pied de page",
     services: "Prestations",

@@ -13,6 +13,7 @@ import {
 import { getServices } from "@/i18n/services";
 import { getContent } from "@/i18n/content";
 import { getLegal } from "@/i18n/legal";
+import { editorialSeo, type EditorialPageKey } from "@/i18n/seo-pages";
 import { WebsitePage, ServicePage } from "@/components/sections/EditorialPages";
 import { pageMetadata } from "@/lib/seo";
 type Params = Promise<{ locale: string; path?: string[] }>;
@@ -59,9 +60,13 @@ export async function generateMetadata({
       : getContent(locale)[
           page as "home" | "services" | "about" | "gallery" | "contact"
         ];
+  const metadataContent =
+    page === "legal" || page === "privacy" || page === "terms"
+      ? { title: content.title, description: content.description }
+      : editorialSeo[locale][page as EditorialPageKey];
   return pageMetadata(
-    content.title,
-    content.description,
+    metadataContent.title,
+    metadataContent.description,
     pagePath(page!, locale),
     locale,
   );

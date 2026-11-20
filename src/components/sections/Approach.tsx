@@ -31,7 +31,7 @@ const points = [
   },
   {
     icon: MapPin,
-    title: "Standort Ludwigshafen",
+    title: "Standort Ludwigshafen am Rhein",
     text: "Unser Standort liegt in der Blücherstraße in Ludwigshafen am Rhein.",
   },
 ];

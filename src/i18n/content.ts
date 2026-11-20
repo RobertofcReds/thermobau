@@ -39,8 +39,8 @@ const copy = {
       },
     ],
     home: {
-      eyebrow: "Thermobau V&V · Ludwigshafen",
-      title: "Renovierung und Innenausbau in Ludwigshafen",
+      eyebrow: "Thermobau V&V · Ludwigshafen am Rhein",
+      title: "Renovierung und Innenausbau in Ludwigshafen am Rhein",
       description:
         "Fassaden, Trockenbau, Putzarbeiten, Malerarbeiten, Fliesen und Renovierungen – entdecken Sie unsere Tätigkeitsbereiche und sprechen Sie mit uns über Ihr Vorhaben.",
       servicesTitle: "Sechs Bereiche. Ein guter Anfang für Ihr Projekt.",
@@ -74,8 +74,8 @@ const copy = {
           text: "Vasil Velikov Dimitrov ist Ihr Ansprechpartner.",
         },
         {
-          title: "In Ludwigshafen",
-          text: "Standort: Blücherstr. 59, 67063 Ludwigshafen.",
+          title: "In Ludwigshafen am Rhein",
+          text: "Standort: Blücherstr. 59, 67063 Ludwigshafen am Rhein.",
         },
         {
           title: "Raum für Ihre Fragen",
@@ -99,8 +99,8 @@ const copy = {
           "Hilfreich sind die betroffenen Flächen, ungefähre Maße, der aktuelle Zustand, die gewünschte Veränderung und zeitliche Vorstellungen. Ein verbindlicher Umfang entsteht erst nach weiterer Klärung.",
         ],
         [
-          "Arbeitet Thermobau V&V auch außerhalb von Ludwigshafen?",
-          "Der Standort ist Ludwigshafen. Weitere Einsatzorte können individuell angefragt werden; ein fester Umkreis wird hier nicht zugesagt.",
+          "Arbeitet Thermobau V&V auch außerhalb von Ludwigshafen am Rhein?",
+          "Der Standort ist Ludwigshafen am Rhein. Weitere Einsatzorte können individuell angefragt werden; ein fester Umkreis wird hier nicht zugesagt.",
         ],
         [
           "Zeigen die Fotos eigene Projekte?",
@@ -131,9 +131,9 @@ const copy = {
       title: "Ihr Vorhaben beginnt mit einem Gespräch.",
       description:
         "Renovierung und Innenausbau haben mit konkreten Räumen und persönlichen Vorstellungen zu tun. Genau dort setzt eine Anfrage bei Thermobau V&V an.",
-      introTitle: "In Ludwigshafen. Rund um den Bestand.",
+      introTitle: "In Ludwigshafen am Rhein. Rund um den Bestand.",
       paragraphs: [
-        "Thermobau V&V ist in der Blücherstr. 59 in Ludwigshafen ansässig. Vasil Velikov Dimitrov ist der mitgeteilte Ansprechpartner für Ihre Anfrage.",
+        "Thermobau V&V ist in der Blücherstr. 59 in Ludwigshafen am Rhein ansässig. Vasil Velikov Dimitrov ist der mitgeteilte Ansprechpartner für Ihre Anfrage.",
         "Die sechs Tätigkeitsbereiche reichen von Fassadenarbeiten über Trockenbau und Putz bis zu Malerarbeiten, Fliesen und Renovierungen. Ob eine einzelne Fläche oder mehrere Aufgaben: Zunächst geht es darum, den Bestand und Ihre Wünsche zu verstehen.",
         "Welche Arbeiten für das konkrete Vorhaben infrage kommen, wie sie abgegrenzt werden und wie der weitere Ablauf aussehen kann, wird anschließend besprochen.",
       ],
@@ -210,8 +210,8 @@ const copy = {
       },
     ],
     home: {
-      eyebrow: "Thermobau V&V · Ludwigshafen",
-      title: "Renovation and interior construction in Ludwigshafen",
+      eyebrow: "Thermobau V&V · Ludwigshafen am Rhein",
+      title: "Renovation and interior construction in Ludwigshafen am Rhein",
       description:
         "Facades, drywall, plastering, painting, tiling and renovation – explore our areas of work and talk to us about your project.",
       servicesTitle: "Six areas. A clear starting point for your project.",
@@ -245,8 +245,8 @@ const copy = {
           text: "Vasil Velikov Dimitrov is your named contact.",
         },
         {
-          title: "Based in Ludwigshafen",
-          text: "Located at Blücherstr. 59, 67063 Ludwigshafen.",
+          title: "Based in Ludwigshafen am Rhein",
+          text: "Located at Blücherstr. 59, 67063 Ludwigshafen am Rhein.",
         },
         {
           title: "Space for your questions",
@@ -270,8 +270,8 @@ const copy = {
           "Include the surfaces, approximate dimensions, current condition, desired changes and preferred timing. The final scope requires further clarification.",
         ],
         [
-          "Does Thermobau V&V work outside Ludwigshafen?",
-          "The business is based in Ludwigshafen. Other locations can be discussed individually; no fixed service radius is promised here.",
+          "Does Thermobau V&V work outside Ludwigshafen am Rhein?",
+          "The business is based in Ludwigshafen am Rhein. Other locations can be discussed individually; no fixed service radius is promised here.",
         ],
         [
           "Do the photos show company projects?",
@@ -302,9 +302,9 @@ const copy = {
       title: "Your project starts with a conversation.",
       description:
         "Renovation and interior construction concern real spaces and individual ideas. That is where an enquiry with Thermobau V&V begins.",
-      introTitle: "In Ludwigshafen. Working with existing spaces.",
+      introTitle: "In Ludwigshafen am Rhein. Working with existing spaces.",
       paragraphs: [
-        "Thermobau V&V is based at Blücherstr. 59 in Ludwigshafen. Vasil Velikov Dimitrov is the contact provided for your enquiry.",
+        "Thermobau V&V is based at Blücherstr. 59 in Ludwigshafen am Rhein. Vasil Velikov Dimitrov is the contact provided for your enquiry.",
         "The six areas range from facade work, drywall and plastering to painting, tiling and renovations. Whether a single surface or several tasks are involved, the starting point is understanding the existing space and your wishes.",
         "The work that may suit the project, its boundaries and the possible next steps are then discussed.",
       ],
@@ -381,8 +381,8 @@ const copy = {
       },
     ],
     home: {
-      eyebrow: "Thermobau V&V · Ludwigshafen",
-      title: "Rénovation et aménagement intérieur à Ludwigshafen",
+      eyebrow: "Thermobau V&V · Ludwigshafen am Rhein",
+      title: "Rénovation et aménagement intérieur à Ludwigshafen am Rhein",
       description:
         "Façades, cloisons sèches, enduits, peinture, carrelage et rénovation – découvrez nos domaines d’activité et échangeons sur votre projet.",
       servicesTitle: "Six domaines. Un point de départ pour votre projet.",
@@ -416,8 +416,8 @@ const copy = {
           text: "Vasil Velikov Dimitrov est votre interlocuteur.",
         },
         {
-          title: "À Ludwigshafen",
-          text: "Adresse : Blücherstr. 59, 67063 Ludwigshafen.",
+          title: "À Ludwigshafen am Rhein",
+          text: "Adresse : Blücherstr. 59, 67063 Ludwigshafen am Rhein.",
         },
         {
           title: "Vos questions ont leur place",
@@ -441,8 +441,8 @@ const copy = {
           "Indiquez les surfaces, les dimensions approximatives, l’état actuel, les changements souhaités et le calendrier envisagé. Le périmètre définitif demande des précisions supplémentaires.",
         ],
         [
-          "Thermobau V&V intervient-elle hors de Ludwigshafen ?",
-          "L’entreprise est implantée à Ludwigshafen. D’autres lieux peuvent être discutés individuellement ; aucun rayon d’intervention fixe n’est promis ici.",
+          "Thermobau V&V intervient-elle hors de Ludwigshafen am Rhein ?",
+          "L’entreprise est implantée à Ludwigshafen am Rhein. D’autres lieux peuvent être discutés individuellement ; aucun rayon d’intervention fixe n’est promis ici.",
         ],
         [
           "Les photos montrent-elles des réalisations de l’entreprise ?",
@@ -473,9 +473,9 @@ const copy = {
       title: "Votre projet commence par un échange.",
       description:
         "La rénovation et l’aménagement intérieur concernent des espaces concrets et des idées personnelles. C’est là que commence une demande auprès de Thermobau V&V.",
-      introTitle: "À Ludwigshafen. Autour de l’existant.",
+      introTitle: "À Ludwigshafen am Rhein. Autour de l’existant.",
       paragraphs: [
-        "Thermobau V&V est implantée Blücherstr. 59 à Ludwigshafen. Vasil Velikov Dimitrov est le contact communiqué pour votre demande.",
+        "Thermobau V&V est implantée Blücherstr. 59 à Ludwigshafen am Rhein. Vasil Velikov Dimitrov est le contact communiqué pour votre demande.",
         "Les six domaines vont des façades, cloisons sèches et enduits à la peinture, au carrelage et aux rénovations. Une seule surface ou plusieurs tâches : il s’agit d’abord de comprendre l’existant et vos souhaits.",
         "Les travaux adaptés au projet, leurs limites et les étapes possibles sont ensuite discutés.",
       ],

@@ -143,7 +143,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                 ? "Renovation & interiors"
                 : "Rénovation & aménagement intérieur"}
             <br />
-            Ludwigshafen
+            Ludwigshafen am Rhein
           </p>
         </div>
       </dialog>
